@@ -231,9 +231,10 @@ class Assistant:
             return self._result(c,'The policy decision stopped booking. No booking was sent.','guidance')
         slot=next(s for s in c.slots if s['slotId']==c.proposal.slot_id)
         pid,sid=c.proposal.patient_id,c.proposal.slot_id
-        c.state='booking'
+        c.state='booking';c.booking_effect='unknown'
         try:appointment=self._call(c,'book',lambda:self.api.book(pid,sid))
         except ApiError as e:
+            if not e.unknown:c.booking_effect='rejected'
             if e.status==409:
                 c.blocked_slots.add(sid);c.slots=[s for s in c.slots if s['slotId']!=sid];c.proposal=None
                 self._decide(c,'report',api='conflict_409')
@@ -242,7 +243,7 @@ class Assistant:
             appointment=validate_appointment(appointment)
             if appointment['patientId']!=pid or any(appointment[k]!=slot[k] for k in ('providerId','specialty','location','startTime')):raise ValueError()
         except (ValueError,TypeError,KeyError):raise ApiError('unknown_write',unknown=True) from None
-        c.completed=appointment;c.proposal=None;c.state='completed'
+        c.completed=appointment;c.proposal=None;c.state='completed';c.booking_effect='confirmed'
         self._decide(c,'report',api='created_201')
         return self._result(c,self._booked_message(appointment),'booked')
 

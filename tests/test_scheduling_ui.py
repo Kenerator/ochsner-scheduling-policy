@@ -193,3 +193,15 @@ class SchedulingUITests(unittest.TestCase):
         self.assertIsNone(conversation.proposal)
         session.submit('yes')
         self.assertNotIn('book',[call[0] for call in api.calls])
+
+    def test_recovery_context_is_local_private_and_pure(self):
+        session,api=self.session(IntentResult('book',{'phone':'555-0101'}))
+        session.submit('Book with synthetic phone')
+        calls=list(api.calls)
+        view=session.view()
+        self.assertEqual(view['recovery']['known'],['phone'])
+        rendered=self.ui.view_html(view)
+        self.assertIn('Recovery context',rendered)
+        self.assertIn('Not sent',rendered)
+        self.assertNotIn('555-0101',rendered)
+        self.assertEqual(api.calls,calls)

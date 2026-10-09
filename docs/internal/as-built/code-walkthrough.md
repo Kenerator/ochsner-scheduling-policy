@@ -24,3 +24,6 @@ UI presentation update — 2026-10-09 (delta from 7cbbd7a): `app.py` adds the ad
 
 
 RC-2 correction reviewed2026-10-09: pending proposals are revoked before model interpretation of intervening non-consent messages and on rejected oversized input. UI rejection delegates to shared core under its callback lock. Needed-field context names selection when choosing known slots; model extraction still supplies fields, ZEN gates actions and independent core requires a new proposal/separate yes. Source hashes and actual final-candidate rehearsal evidence: [video notes](../video-notes.md), T063–T064 and quickstart.
+
+
+Persona impact reviewed2026-10-09: `models.recovery_context` is a pure allowlisted field-name/categorical snapshot. `Conversation.booking_effect` tracks notattempted→unknownbeforePOST→knownrejected/validatedconfirmed; unknown overrides displayed effect. `UISession.view` derives context without effects and `recovery_html` validates/escapes bounded output inside existing inspector. No support transmission or admin capability. Actual source hashes,116tests and live affected-flow evidence are in video notes; compiled diagram architecture unchanged.

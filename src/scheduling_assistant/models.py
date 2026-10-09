@@ -82,7 +82,28 @@ class Conversation:
     proposal:Proposal|None=field(default=None,repr=False)
     completed:dict|None=field(default=None,repr=False)
     unknown:bool=False
+    booking_effect:str='not_attempted'
     revision:int=0
     blocked_slots:set=field(default_factory=set,repr=False)
     identity_attempts:int=0
     policy_trace:list=field(default_factory=list,repr=False)
+
+
+def recovery_context(c):
+    """Local categorical support context; no identity values, delivery or effects."""
+    fields=('phone','dob','zip','specialty','location','startDate','endDate')
+    known=[key for key in fields if c.fields.get(key)]
+    missing=(['zip'] if len(c.candidates)>1 and not c.patient else
+             [key for key in ('phone','dob','specialty')
+              if not c.fields.get(key) and not (c.patient and key in {'phone','dob'})])
+    if c.intent=='provider_lookup':missing=[]
+    effect='unknown' if c.unknown else 'confirmed' if c.completed else c.booking_effect
+    if effect not in {'not_attempted','confirmed','rejected','unknown'}:effect='unknown'
+    next_step=('reconcile_before_retry' if effect=='unknown' else
+               'keep_confirmation' if effect=='confirmed' else
+               'provide_missing_information' if missing else
+               'confirm_current_proposal' if c.proposal else
+               'choose_returned_option' if c.slots else 'contact_scheduling')
+    return {'known':known,'missing':missing,
+            'identity':'verified' if c.patient else 'ambiguous' if len(c.candidates)>1 else 'unverified',
+            'booking':effect,'support_delivery':'not_sent','next_step':next_step}

@@ -81,6 +81,26 @@ class CoreTests(unittest.TestCase):
         a.handle(c,'2')
         self.assertEqual(contexts,[{'state':'offering','intent':'book','needed':['selection']}])
 
+    def test_local_recovery_context_distinguishes_information_and_real_effects(self):
+        from scheduling_assistant.models import recovery_context
+        api=API();c=Conversation()
+        before=list(api.calls)
+        initial=recovery_context(c)
+        self.assertEqual(initial['missing'],['phone','dob','specialty'])
+        self.assertEqual(initial['booking'],'not_attempted')
+        self.assertEqual(initial['support_delivery'],'not_sent')
+        self.assertEqual(api.calls,before)
+        for error,effect in [(None,'confirmed'),(ApiError('slot_taken',status=409),'rejected'),(ApiError('unknown_write',unknown=True),'unknown')]:
+            a,c,api,_,_=booking();api.error=error
+            a.handle(c,'yes');calls=list(api.calls)
+            context=recovery_context(c)
+            self.assertEqual(context['booking'],effect)
+            self.assertEqual(context['missing'],[])
+            self.assertEqual(api.calls,calls)
+            for private in ['555-0101','1985-04-12','Synthetic Person','pat_x','slot_x']:
+                self.assertNotIn(private,str(context))
+            if effect=='unknown':self.assertEqual(context['next_step'],'reconcile_before_retry')
+
     def test_foreign_proposal_and_forged_engine_proceed_cannot_book(self):
         a,c,api,_,_=booking();p=c.proposal
         c.proposal=Proposal('foreign',p.revision,p.patient_id,p.slot_id,p.criteria,p.slot_signature)

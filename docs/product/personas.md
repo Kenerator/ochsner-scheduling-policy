@@ -5,8 +5,8 @@ Adopted2026-10-09 from the shared preparation portfolio, exact revision1 pins re
 | Persona | Native story coverage | Focused result |
 |---|---|---|
 | Jules (HUMAN) | US1–US4 | Existing provider/identity/exact proposal/separate yes verified; correction safety fixed before adoption in RC-2 |
-| Ellie-Rae (HUMAN) | US1–US4 | Existing short numbered choices and retained fields verified; invalid choice/keyboard focus checks retained for focused validation |
-| Morgan-Rae (HUMAN support) | US5 and US4 | Gap: concise local known/missing/booking-effect/recovery summary; implement under existing US5 acceptance3, no delivery/console |
+| Ellie-Rae (HUMAN) | US1–US4 | Existing short numbered choices and retained fields verified; actual keyboard-only field→Send/Return, invalid99→valid1 context retention, and inspector/recovery focus verified |
+| Morgan-Rae (HUMAN support) | US5 and US4 | Implemented local known/missing/booking-effect/recovery summary under existing US5 acceptance3; actualIAB known/missing/not-attempted/confirmed/rejected verified, unknown meaningful core/UI tests; no delivery/console |
 | Sam-Rae (AGENT QA) | US2–US5 | Existing stale consent/schema/replay/unknown freeze tests verified; no booking or retry permissions |
 
 No phone channel, admin console or additional policy engine accepted. Language/channel availability and research validation remain unknown. Detailed behavior/progress: [native spec](../../specs/001-appointment-scheduling/spec.md) and [tasks](../../specs/001-appointment-scheduling/tasks.md).

@@ -15,6 +15,7 @@ with app.setup:
     from threading import Lock
     import marimo as mo
     from scheduling_assistant.policy import ENUMS as POLICY_FACT_ENUMS
+    from scheduling_assistant.models import recovery_context
 
     def normalized_trace(rows):
         """Display the fixed normalized policy shape, never arbitrary engine fields."""
@@ -86,7 +87,7 @@ with app.setup:
             """Pure snapshot: rerendering cannot interpret text or perform an effect."""
             return {**self._last, 'policy': normalized_trace(self._last['policy']),
                     'mode': self._config['mode'], 'model': self._config['model'],
-                    'intent': self.conversation.intent}
+                    'intent': self.conversation.intent, 'recovery': recovery_context(self.conversation)}
 
         def submit(self, text):
             if text is None or isinstance(text, str) and not text.strip():
@@ -138,15 +139,46 @@ with app.setup:
         .policy-reply{background:var(--surface);color:var(--text);border:1px solid #c7d1dc;border-left:5px solid var(--brand-primary);border-radius:8px;padding:16px;margin:10px 0;white-space:pre-wrap;line-height:1.6}
         .policy-meta{color:#394957;font-size:13px;line-height:1.5;margin:0 0 8px;overflow-wrap:anywhere}
         .policy-inspector{margin:12px 0 0;border:1px solid #c7d1dc;border-radius:8px;padding:14px;color:var(--text);background:var(--surface)}
+        .policy-recovery{margin-top:12px}
+        .policy-recovery dt{font-weight:600;margin-top:8px}
+        .policy-recovery dd{margin:2px 0 8px}
         .policy-inspector summary{cursor:pointer;font-weight:600;color:var(--brand-primary)}
         .policy-table-scroll{overflow-x:auto;max-width:100%}
         .policy-inspector table{width:100%;min-width:580px;border-collapse:collapse;font-size:13px;margin-top:12px}
-        .policy-inspector th,.policy-inspector td{text-align:left;vertical-align:top;padding:8px;border-bottom:1px solid #d7dfe7;overflow-wrap:anywhere}
+        .policy-inspector th,.policy-inspector td{min-width:80px;text-align:left;vertical-align:top;padding:8px;border-bottom:1px solid #d7dfe7;overflow-wrap:anywhere}
         .policy-inspector pre{min-width:210px;white-space:pre-wrap;font-size:12px;line-height:1.5}
         .policy-inspector :focus-visible{outline:3px solid var(--brand-primary);outline-offset:3px}
         </style><header class="policy-hero"><div class="policy-logo" role="img" aria-label="Ochsner Health">''' + logo + '''</div>
         <h1>Let's find your appointment</h1><p>AI scheduling assistant · synthetic demonstration</p>
         <p>Find providers, explore returned appointments, and confirm your choice. Use synthetic information only. I cannot provide medical advice.</p></header>'''
+
+
+    def recovery_html(snapshot):
+        """Render only the shared core's categorical context, never arbitrary values."""
+        labels={'phone':'phone','dob':'date of birth','zip':'ZIP','specialty':'specialty',
+                'location':'location','startDate':'start date','endDate':'end date'}
+        effects={'not_attempted':'Not attempted in this conversation','confirmed':'Confirmed',
+                 'rejected':'Rejected by scheduling service','unknown':'Unknown — reconcile before retry'}
+        steps={'reconcile_before_retry':'Contact scheduling through your usual channel to reconcile before retrying.',
+               'keep_confirmation':'Keep the confirmed appointment details. Reset does not undo booking.',
+               'provide_missing_information':'For booking, provide or correct the missing information.',
+               'confirm_current_proposal':'Review the exact proposal; send yes to confirm or no to decline.',
+               'choose_returned_option':'Choose a returned numbered option, or contact scheduling.',
+               'contact_scheduling':'Contact scheduling through your usual channel.'}
+        if (not isinstance(snapshot,dict) or
+            snapshot.get('booking') not in effects or snapshot.get('next_step') not in steps or
+            snapshot.get('identity') not in {'verified','ambiguous','unverified'} or
+            snapshot.get('support_delivery')!='not_sent' or
+            any(not isinstance(snapshot.get(k),list) or
+                any(not isinstance(v,str) or v not in labels for v in snapshot[k]) for k in ('known','missing'))):
+            return ''
+        fields=lambda key: ', '.join(labels[v] for v in snapshot[key]) or 'None'
+        values=[('Information supplied (field names only)',fields('known')),
+                ('Missing for booking',fields('missing')),('Patient match',snapshot['identity']),
+                ('Booking outcome',effects[snapshot['booking']]),('Support contact','Not sent'),
+                ('Next step',steps[snapshot['next_step']])]
+        return '<details class="policy-recovery"><summary>Recovery context</summary><dl>'+''.join(
+            '<dt>'+html.escape(k)+'</dt><dd>'+html.escape(v)+'</dd>' for k,v in values)+'</dl></details>'
 
 
     def view_html(view):
@@ -161,7 +193,7 @@ with app.setup:
                         if facts is not None else 'Snapshot unavailable')
             table_rows += '<tr><td>'+esc(row['disposition'])+'</td><td>'+esc(row['reason'])+'</td><td>'+esc(row['rule'])+'</td><td>'+esc(', '.join(row['sources']))+'</td><td>'+snapshot+'</td></tr>'
         table = ('<div class="policy-table-scroll" role="region" aria-label="Policy decision table" tabindex="0"><table><thead><tr><th scope="col">Decision</th><th scope="col">Reason</th><th scope="col">Rule</th><th scope="col">Sources</th><th scope="col">Facts</th></tr></thead><tbody>'+table_rows+'</tbody></table></div>' if rows else '<p>No policy-gated action was proposed in this turn.</p>')
-        return '<div class="policy-meta">'+esc(mode)+model+' · State: '+esc(view['state'])+' · Intent: '+esc(view.get('intent','unknown'))+'</div><section class="policy-reply" role="status" aria-live="polite" aria-label="Assistant response">'+esc(view['message'])+'</section><details class="policy-inspector"><summary>Inspect this turn’s policy decisions</summary><p>ZEN 2.1.2 gates proposed actions. The shared core independently checks identity, current confirmation and booking outcomes.</p>'+table+'</details>'
+        return '<div class="policy-meta">'+esc(mode)+model+' · State: '+esc(view['state'])+' · Intent: '+esc(view.get('intent','unknown'))+'</div><section class="policy-reply" role="status" aria-live="polite" aria-label="Assistant response">'+esc(view['message'])+'</section><details class="policy-inspector"><summary>Inspect this turn’s policy decisions</summary><p>ZEN 2.1.2 gates proposed actions. The shared core independently checks identity, current confirmation and booking outcomes.</p>'+table+recovery_html(view.get('recovery'))+'</details>'
 
 
 @app.cell

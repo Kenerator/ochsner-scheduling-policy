@@ -14,4 +14,4 @@ User-selected visual repair is complete: approved logo coordinate scaling, compa
 
 RC-2 recording-off correction and full control/required-scenario rehearsal are complete; source-bound coverage and reset state are in video notes. Await exclusive SM recording slot/capability; no video exists yet.
 
-Exact narrow persona pins are retained; Morgan local recovery-summary refinement and focused final checks are active T066–T067. No recording until affected controls/workflows are rehearsed on the resulting candidate.
+Exact narrow persona pins are retained; Morgan local recovery-summary refinement and focused final checks are completed T066–T067. No recording until affected controls/workflows are rehearsed on the resulting candidate.

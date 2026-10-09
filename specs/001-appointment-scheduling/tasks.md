@@ -247,5 +247,7 @@ T063–T064: 114tests pass, all8scenario demos and generic success/failure pass,
 ## Focused selected-persona validation
 
 - [x] T065 Retain exact narrow Jules/Ellie-Rae/Morgan-Rae/Sam-Rae pins and ancestry locally; map native stories, distinguish existing implementation evidence/hypotheses and record introduced milestone.
-- [ ] T066 Write meaningful privacy/no-effect/known-missing-outcome tests first; implement Morgan's local recovery context within existing US5, preserving actual delivery and unknown-effect boundaries.
-- [ ] T067 Qualify invalid-number context, keyboard-only controls and new recovery context in actual IAB with recording off; full tests/demos, independent delta review, as-built/video updates, impact milestone and next qualifiedRC.
+- [x] T066 Write meaningful privacy/no-effect/known-missing-outcome tests first; implement Morgan's local recovery context within existing US5, preserving actual delivery and unknown-effect boundaries.
+- [x] T067 Qualify invalid-number context, keyboard-only controls and new recovery context in actual IAB with recording off; full tests/demos, independent delta review, as-built/video updates, impact milestone and next qualifiedRC.
+
+Focused validation:116tests16.615s, all8scenario demos+generic2, Marimo check clean; independent30testreview noissues. Actual live keyboard-only booking, invalid99retainedidentity/options, exactproposal/separateyes201, support-beforePOST, missing/confirmed/rejected recoverypanel verified recordingOFF. Unknown effect is controlledcore/UI evidence, not an actual ambiguous-write IAB claim. Persona introduction milestone d99a6e8 precedes actual impact; nextqualifiedRC follows impact commit.

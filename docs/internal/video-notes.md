@@ -50,3 +50,18 @@ Rehearsal exposed missed changed selection on RC-1 before any filming. Fixed by 
 - `src/scheduling_assistant/adapters/intent.py`: `fcedc803dac2c7b29300995a3ac94a42ccf566ffa9bdb0999862c8501bc579b0`
 
 Starting state restored: owned supplied mock restarted to pristine fixture state, UI collecting/unknown with inspector closed and empty field, viewport override reset. Controlled IAB rehearsal is green; native recording capability/exclusive SM capture slot still required. Capture every listed control and required operation; multiple raw clips may be needed, Media owns final≤5minute edit. Never claim omitted controls or tests as footage.
+
+
+## Persona impact rehearsal — 2026-10-09T01:37:54.349413-05:00
+
+Exact Jules/Ellie-Rae/Morgan-Rae/Sam-Rae pins retained with ancestry; all hypotheses. Existing behavior verified: short numbered choice, preserved identity/search on invalid99, stale/current consent and unknownfreeze. New actual impact: local Recoverycontext disclosure inside policy inspector, no delivery/console. Recording OFF.
+
+Keyboard-only IAB: Tab from page→inspector→message field→Send, typed request changes character counter, Return submits, focus stays Send; Shift+Tab returns to input. Missingidentity→identity→invalid99→valid1 preserves context; inspector/Recoverycontext opened via Tab/Return. Newpanel displays field names only, missing names, patient-match category, actual booking-effect state, support Not sent, finite nextstep. Actual app checked beforeidentity, afteroptions/support-beforePOST (no booking), confirmed201 and rejected409; narrow390px panel has no document overflow. Unknown state tested meaningfully through actual core/UI adapters with controlled port outcome, not a claimed live ambiguous-write recording.
+
+116tests16.615s, all8scenario demos+generic2 and Marimo check pass; independent focused review30tests no material issues. Earlier fullRC2 required/control rehearsal remains linked above; persona delta affected workflows reverified. Sourcehashes at final qualification:
+- `app.py`: `16f46e9d09d2c8f740b31d085434a9cbf7d5d735f2ceb07cdf27ccf9d7d61504`
+- `src/scheduling_assistant/models.py`: `39f89d129b05529656edb7c5f50a9616c6afe72c66029a1fc655de3121ebac69`
+- `src/scheduling_assistant/core.py`: `aadc912af33c393c9037606d171f30e978ab5090dfe6e5475f9c083a0038ad45`
+- `src/scheduling_assistant/adapters/intent.py`: `fcedc803dac2c7b29300995a3ac94a42ccf566ffa9bdb0999862c8501bc579b0`
+
+Before filming: exercise new Recoverycontext open/close in addition to prior control checklist; reset only owned supplied mock and conversation, inspector closed, viewport default. Owned mock restored to pristine fixture state after persona checks. No footage exists; awaiting SM exclusive capture slot/capability.
