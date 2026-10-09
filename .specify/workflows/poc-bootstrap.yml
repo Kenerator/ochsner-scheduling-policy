@@ -1,0 +1,44 @@
+{
+  "inputs": {
+    "answers": {
+      "default": "{}",
+      "type": "string"
+    },
+    "bootstrap_sha": {
+      "type": "string"
+    },
+    "retry_token": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "id": "specify",
+      "stage": "specify",
+      "type": "poc-stage"
+    },
+    {
+      "id": "clarify",
+      "stage": "clarify",
+      "type": "poc-stage"
+    },
+    {
+      "id": "plan",
+      "stage": "plan",
+      "type": "poc-stage"
+    },
+    {
+      "id": "tasks",
+      "stage": "tasks",
+      "type": "poc-stage"
+    }
+  ],
+  "workflow": {
+    "id": "poc-bootstrap",
+    "integration": "codex",
+    "name": "Cumulative PoC bootstrap",
+    "version": "1.0.0"
+  }
+}

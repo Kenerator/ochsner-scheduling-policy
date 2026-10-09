@@ -1,0 +1,21 @@
+{
+  "id": "workflow-planner",
+  "actor_type": "agent",
+  "description": "Planning-only agent",
+  "constraint": "Separate planning/execution surfaces",
+  "components": [
+    {
+      "id": "workflow-planner",
+      "version": 1
+    },
+    {
+      "id": "agent-context",
+      "version": 1
+    },
+    {
+      "id": "tool-limited",
+      "version": 1
+    }
+  ],
+  "unknowns": []
+}

@@ -1,0 +1,25 @@
+{
+  "id": "coordinator",
+  "actor_type": "agent",
+  "description": "Delegated work coordinator",
+  "constraint": "Distinct domain owners",
+  "components": [
+    {
+      "id": "coordinator",
+      "version": 1
+    },
+    {
+      "id": "agent-context",
+      "version": 1
+    },
+    {
+      "id": "approval-boundary",
+      "version": 1
+    },
+    {
+      "id": "concurrent",
+      "version": 1
+    }
+  ],
+  "unknowns": []
+}

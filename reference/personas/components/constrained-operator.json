@@ -1,0 +1,27 @@
+{
+  "id": "constrained-operator",
+  "version": 1,
+  "traits": {
+    "purpose": "Complete repetitive operations safely",
+    "abilities.input": "Single-thumb input; limited reach across body",
+    "access.display": "A few text lines",
+    "access.environment": "Vehicle-mounted terminal; interact only while stationary",
+    "preferences.response": "Short actionable messages"
+  },
+  "requirements": [
+    "Frequent operations need one deliberate key and no scrolling."
+  ],
+  "scenarios": [
+    {
+      "id": "constrained-operator-behavior",
+      "given": "A frequent operation is presented",
+      "when": "The user confirms",
+      "then": "One intentional key suffices; no scrolling"
+    }
+  ],
+  "references": [
+    "inclusive",
+    "needs"
+  ],
+  "basis": "hypothesis"
+}

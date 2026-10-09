@@ -1,0 +1,16 @@
+{
+  "id": "acute-care-professional",
+  "actor_type": "human",
+  "description": "Time-pressured clinical professional",
+  "constraint": "Time pressure and divided attention",
+  "components": [
+    {
+      "id": "acute-care-professional",
+      "version": 1
+    }
+  ],
+  "unknowns": [
+    "preferences.conversational_style",
+    "abilities.sensory"
+  ]
+}

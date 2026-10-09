@@ -1,0 +1,24 @@
+{
+  "id": "observer",
+  "version": 1,
+  "traits": {
+    "purpose": "Observe and raise actionable changes",
+    "capabilities.visibility": "Partial logs or delayed callbacks",
+    "preferences.alerts": "Quiet when unchanged; distinguish unknown from failure"
+  },
+  "requirements": [
+    "Blank or idle output alone is not proof of a stall."
+  ],
+  "scenarios": [
+    {
+      "id": "observer-behavior",
+      "given": "A display is blank",
+      "when": "Progress is assessed",
+      "then": "Report unknown visibility, not an invented stall"
+    }
+  ],
+  "references": [
+    "a2a"
+  ],
+  "basis": "hypothesis"
+}

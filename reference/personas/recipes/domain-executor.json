@@ -1,0 +1,25 @@
+{
+  "id": "domain-executor",
+  "actor_type": "agent",
+  "description": "Domain-owned implementation agent",
+  "constraint": "Adjacent work has another owner",
+  "components": [
+    {
+      "id": "domain-executor",
+      "version": 1
+    },
+    {
+      "id": "agent-context",
+      "version": 1
+    },
+    {
+      "id": "interrupted",
+      "version": 1
+    },
+    {
+      "id": "concurrent",
+      "version": 1
+    }
+  ],
+  "unknowns": []
+}

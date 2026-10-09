@@ -1,0 +1,12 @@
+{
+  "revision": "poc-default-v5",
+  "common": "Be concise. Preserve approved scope, disclose simulation, and stop for material conflicts rather than inventing requirements.",
+  "stages": {
+    "specify": "Capture user pain, persona constraints, success/failure/handoff scenarios and reversible assumptions. Keep technology choices for Plan.",
+    "clarify": "Ask consequential unanswered questions one at a time with options and a recommendation. Do not re-ask answered questions or infer consent.",
+    "plan": "Prefer a small reusable core and thin adapters. Account for selected stack, confirmation/effect boundaries, demo/reset and meaningful verification. Before declaring completion, fill template headers and paths with this feature's actual values; replace unused example rows or optional sections with explicit none/not applicable.",
+    "tasks": "For each behavior, schedule meaningful TDD RED tests before the first task introducing it and make that implementation depend on those tests. Include failure/validation/CLI cases before shared implementations, even across user-story phases; later repair tests do not satisfy tests-first. Include selected persona/UAT needs. Avoid coverage-only tests. Mark eligible dependency-independent work [P]. Include near-final tasks to populate and check the as-built walkthrough/architecture after their code stabilizes, not as prerequisites for coding. Consider one optional near-final or deferred adversarial-review task using docs/internal/reviews/adversarial-review.md; reuse adequate independent review, no new MVP gate.",
+    "analyze": "Report prioritized inconsistencies and gaps without editing. Corrections require a separately authorized follow-up and re-analysis.",
+    "implement": "Execute agreed tasks, parallelizing eligible independent work where practical without competing writers or weakening dependencies. Demonstrate RED/GREEN where applicable, comment intent, verify demo/failure paths and update next steps honestly. Populate as-built documentation near the end of implementation."
+  }
+}

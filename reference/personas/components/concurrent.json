@@ -1,0 +1,20 @@
+{
+  "id": "concurrent",
+  "version": 1,
+  "traits": {
+    "context.ownership": "One owner per work item"
+  },
+  "requirements": [
+    "Avoid duplicate ownership and stale overwrite."
+  ],
+  "scenarios": [
+    {
+      "id": "concurrent-behavior",
+      "given": "A concurrent constraint applies",
+      "when": "Work crosses the constraint",
+      "then": "Avoid duplicate ownership and stale overwrite."
+    }
+  ],
+  "references": [],
+  "basis": "hypothesis"
+}

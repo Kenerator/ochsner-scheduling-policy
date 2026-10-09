@@ -1,0 +1,16 @@
+{
+  "id": "longitudinal-care-consumer",
+  "actor_type": "human",
+  "description": "Continuity-focused healthcare consumer",
+  "constraint": "Travel and continuity constraints",
+  "components": [
+    {
+      "id": "longitudinal-care-consumer",
+      "version": 1
+    }
+  ],
+  "unknowns": [
+    "preferences.conversational_style",
+    "abilities.sensory"
+  ]
+}

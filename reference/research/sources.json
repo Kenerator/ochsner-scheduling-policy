@@ -1,0 +1,121 @@
+{
+  "needs": {
+    "title": "GOV.UK: learning about user needs",
+    "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+    "finding": "Research people's contexts, constraints and goals; test assumptions",
+    "limitation": "Does not prescribe this portfolio or validate its synthetic profiles",
+    "reviewed": "2026-10-05"
+  },
+  "assisted": {
+    "title": "GOV.UK: understanding users who do not use digital services",
+    "url": "https://www.gov.uk/service-manual/user-research/understanding-users-who-dont-use-digital-services",
+    "finding": "Account for barriers to digital access and assisted routes",
+    "limitation": "Specific needs still require project research",
+    "reviewed": "2026-10-05"
+  },
+  "inclusive": {
+    "title": "Microsoft Inclusive Design",
+    "url": "https://inclusive.microsoft.design/",
+    "finding": "Learn from exclusion; an improvement for one constrained user can benefit others",
+    "limitation": "Not an accessibility certification or a validated persona",
+    "reviewed": "2026-10-05"
+  },
+  "predictable": {
+    "title": "W3C WCAG: predictable interaction",
+    "url": "https://www.w3.org/WAI/WCAG22/Understanding/predictable.html",
+    "finding": "Keep navigation and behavior predictable and avoid unexpected context changes",
+    "limitation": "Conformance requires checking applicable criteria in the actual UI",
+    "reviewed": "2026-10-05"
+  },
+  "hax": {
+    "title": "Microsoft human-AI interaction guidelines",
+    "url": "https://www.microsoft.com/en-us/haxtoolkit/ai-guidelines/",
+    "finding": "Explain AI capabilities and limits, support correction and user control",
+    "limitation": "Project-specific risks and user preferences need validation",
+    "reviewed": "2026-10-05"
+  },
+  "a2a": {
+    "title": "A2A v1.0.1 enterprise guidance",
+    "url": "https://a2a-protocol.org/v1.0.1/topics/enterprise-ready/",
+    "finding": "Separate advertised authentication, actual credentials and application authorization",
+    "limitation": "Optional protocol guidance, not a required SDK or supplied authorization",
+    "reviewed": "2026-10-05"
+  },
+  "doherty": {
+    "title": "Laws of UX: Doherty Threshold",
+    "url": "https://lawsofux.com/doherty-threshold/",
+    "finding": "Timely useful feedback around 400 milliseconds can preserve interactive flow",
+    "limitation": "Modern UX summary; not proof of response time, nor a full AI-answer deadline",
+    "reviewed": "2026-10-05"
+  },
+  "diataxis": {
+    "title": "Diataxis documentation framework",
+    "url": "https://diataxis.fr/",
+    "finding": "Separate tutorials, how-to guidance, explanation and reference for distinct needs",
+    "limitation": "A small PoC may combine views without duplicating facts",
+    "reviewed": "2026-10-05"
+  },
+  "speckit": {
+    "title": "Spec-Kit workflow reference",
+    "url": "https://github.github.io/spec-kit/reference/workflows.html",
+    "finding": "Workflows can record stage progress, gates and explicit resumption",
+    "limitation": "Actual cumulative invocation must be verified against the pinned release/integration; this portfolio does not implement it",
+    "reviewed": "2026-10-05"
+  },
+  "claude-permissions": {
+    "title": "Claude non-interactive permission handling",
+    "url": "https://code.claude.com/docs/en/headless",
+    "finding": "Non-interactive execution retains permission controls and can report denied tools",
+    "limitation": "A permission mode is not an OS sandbox or authority for external effects",
+    "reviewed": "2026-10-06"
+  },
+  "claude-rules": {
+    "title": "Claude fine-grained permission rules",
+    "url": "https://code.claude.com/docs/en/permissions",
+    "finding": "Review exact commands and grant narrow rules rather than general shell access",
+    "limitation": "Actual command matching and managed policy must be checked in the installed release",
+    "reviewed": "2026-10-06"
+  },
+  "claude-settings": {
+    "title": "Claude project-local settings",
+    "url": "https://code.claude.com/docs/en/settings",
+    "finding": "Project-local settings can keep personal permissions out of shared configuration",
+    "limitation": "Settings precedence and repository/worktree placement remain environment-dependent",
+    "reviewed": "2026-10-06"
+  },
+  "codex-config": {
+    "title": "Codex configuration reference",
+    "url": "https://learn.chatgpt.com/docs/config-file/config-reference#configtoml",
+    "finding": "Model and reasoning choices can be selected explicitly for a native invocation",
+    "limitation": "Actual model/effort availability depends on the account and installed client",
+    "reviewed": "2026-10-06"
+  },
+  "codex-exec": {
+    "title": "Codex native exec reference",
+    "url": "https://learn.chatgpt.com/docs/cli/reference#codex-exec",
+    "finding": "Non-interactive execution supports per-run configuration and structured final output",
+    "limitation": "Structured output alone does not prove semantic completion; normal permissions remain",
+    "reviewed": "2026-10-06"
+  },
+  "accessibility": {
+    "title": "W3C WCAG 2.2",
+    "url": "https://www.w3.org/TR/WCAG22/",
+    "finding": "Check keyboard/focus, contrast, readable labels and meaningful error/status feedback",
+    "limitation": "Targeted PoC checks do not establish full conformance",
+    "reviewed": "2026-10-07"
+  },
+  "tagging": {
+    "title": "Git: tagging",
+    "url": "https://git-scm.com/book/en/v2/Git-Basics-Tagging",
+    "finding": "Use annotated tags for meaningful source checkpoints and explicitly push selected tags",
+    "limitation": "A checkpoint is not release/publication authority or a budget-compliance claim",
+    "reviewed": "2026-10-07"
+  },
+  "marimo": {
+    "title": "Marimo documentation",
+    "url": "https://docs.marimo.io/",
+    "finding": "Optional reactive Python presentation can import a reusable application core",
+    "limitation": "Reactivity is not action authorization; notebook isolation is not an OS security sandbox",
+    "reviewed": "2026-10-05"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "steps": {
+    "poc-stage": {
+      "name": "Bounded Spec-Kit stage completion",
+      "version": "0.1.0",
+      "description": "",
+      "author": "",
+      "type_key": "poc-stage",
+      "source": "local",
+      "installed_at": "2026-10-09T04:08:09.816789+00:00",
+      "updated_at": "2026-10-09T04:08:09.816946+00:00"
+    }
+  }
+}

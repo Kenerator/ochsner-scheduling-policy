@@ -1,0 +1,21 @@
+{
+  "id": "observer",
+  "actor_type": "agent",
+  "description": "Partial-visibility observer",
+  "constraint": "Incomplete observability",
+  "components": [
+    {
+      "id": "observer",
+      "version": 1
+    },
+    {
+      "id": "agent-context",
+      "version": 1
+    },
+    {
+      "id": "tool-limited",
+      "version": 1
+    }
+  ],
+  "unknowns": []
+}

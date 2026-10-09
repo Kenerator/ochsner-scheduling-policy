@@ -1,0 +1,6 @@
+{
+  "default": ["Ellie-Mae", "Amy", "Roger", "Billy-Ray", "Morgan", "Robin", "Robert", "Robby-Alex", "Roberta-June", "Robin-Lee", "Sam", "Casey", "Taylor", "Jamie-Lou", "Alex", "Dana", "Lee", "Terry", "Pat", "Jordan"],
+  "southern-compound": ["Ellie-Mae", "Billy-Ray", "Jamie-Lou", "Bobbie-Jo", "Lee-Ann"],
+  "family_suggestions": {"coordination": ["Robin", "Robert", "Roberta-June", "Robby-Alex"], "constrained-access": ["Ellie-Mae", "Jamie-Lou"]},
+  "note": "Spelling hints are optional mnemonics, never behavioral distance, demographic inference or authority. The catalog, not this pool, owns reservations."
+}

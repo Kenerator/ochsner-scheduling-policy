@@ -1,0 +1,16 @@
+{
+  "id": "enterprise-support",
+  "actor_type": "human",
+  "description": "Support specialist",
+  "constraint": "Limited case time and fragmented context",
+  "components": [
+    {
+      "id": "enterprise-support",
+      "version": 1
+    }
+  ],
+  "unknowns": [
+    "preferences.conversational_style",
+    "abilities.sensory"
+  ]
+}

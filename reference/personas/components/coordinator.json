@@ -1,0 +1,24 @@
+{
+  "id": "coordinator",
+  "version": 1,
+  "traits": {
+    "purpose": "Sequence delegated work and resolve dependencies",
+    "capabilities.planning": "Cross-domain dependency tracking",
+    "preferences.escalation": "Only missing or reserved decisions"
+  },
+  "requirements": [
+    "Continue delegated work without inventing fresh authority."
+  ],
+  "scenarios": [
+    {
+      "id": "coordinator-behavior",
+      "given": "An in-scope grant exists",
+      "when": "Work crosses a task boundary",
+      "then": "Continue within scope; stop on revocation or unsupported work"
+    }
+  ],
+  "references": [
+    "a2a"
+  ],
+  "basis": "hypothesis"
+}

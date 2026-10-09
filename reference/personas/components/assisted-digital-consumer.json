@@ -1,0 +1,27 @@
+{
+  "id": "assisted-digital-consumer",
+  "version": 1,
+  "traits": {
+    "purpose": "Complete a service journey",
+    "access.device": "Basic phone",
+    "access.email": false,
+    "abilities.digital_familiarity": "Limited, selected explicitly",
+    "attitudes.automation": "Needs transparent AI disclosure"
+  },
+  "requirements": [
+    "Offer non-email access and a human assistance route."
+  ],
+  "scenarios": [
+    {
+      "id": "assisted-digital-consumer-behavior",
+      "given": "Email is unavailable",
+      "when": "Contact details are needed",
+      "then": "Offer a usable alternative without restarting"
+    }
+  ],
+  "references": [
+    "assisted",
+    "hax"
+  ],
+  "basis": "hypothesis"
+}

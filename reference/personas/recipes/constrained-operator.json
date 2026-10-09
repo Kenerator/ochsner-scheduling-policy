@@ -1,0 +1,16 @@
+{
+  "id": "constrained-operator",
+  "actor_type": "human",
+  "description": "Limited-reach operational user",
+  "constraint": "Reach and display constrain primary workflow",
+  "components": [
+    {
+      "id": "constrained-operator",
+      "version": 1
+    }
+  ],
+  "unknowns": [
+    "preferences.conversational_style",
+    "abilities.sensory"
+  ]
+}

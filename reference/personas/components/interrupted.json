@@ -1,0 +1,20 @@
+{
+  "id": "interrupted",
+  "version": 1,
+  "traits": {
+    "context.resumption": "Reconcile canonical current state after interruption"
+  },
+  "requirements": [
+    "Resume remaining work without replay or superseded instructions."
+  ],
+  "scenarios": [
+    {
+      "id": "interrupted-behavior",
+      "given": "A interrupted constraint applies",
+      "when": "Work crosses the constraint",
+      "then": "Resume remaining work without replay or superseded instructions."
+    }
+  ],
+  "references": [],
+  "basis": "hypothesis"
+}

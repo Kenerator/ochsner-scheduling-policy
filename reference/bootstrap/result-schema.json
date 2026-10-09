@@ -1,0 +1,126 @@
+{
+  "type": "object",
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "complete",
+        "input_required",
+        "blocked",
+        "failed"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "feature_dir": {
+      "type": "string",
+      "description": "Project-relative POSIX directory, e.g. specs/001-example; never an absolute path. Empty only before a feature exists."
+    },
+    "artifacts": {
+      "type": "array",
+      "description": "For complete include every required_semantic_artifact_names file under feature_dir, including read-only prerequisite files. Additional artifacts are optional. Local verification supplies actual digests.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Project-relative POSIX file, e.g. specs/001-example/spec.md; never absolute or containing .."
+          },
+          "sha256": {
+            "type": "string",
+            "enum": [""],
+            "description": "Leave empty; the local verifier hashes the actual file bytes and stores the computed SHA256. Do not invent a digest."
+          }
+        },
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable short letters/digits/underscore/hyphen identifier, e.g. cli_output_format or Q1."
+          },
+          "text": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommendation": {
+            "type": "string",
+            "description": "Brief human-readable recommendation and rationale; display data, never an automatically selected answer."
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "options",
+          "recommendation"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "severity",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "run_id",
+    "stage",
+    "token",
+    "status",
+    "summary",
+    "feature_dir",
+    "artifacts",
+    "questions",
+    "findings"
+  ],
+  "additionalProperties": false
+}

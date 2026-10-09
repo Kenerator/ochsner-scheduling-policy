@@ -1,0 +1,24 @@
+{
+  "id": "transport-relay",
+  "version": 1,
+  "traits": {
+    "purpose": "Deliver instructions and outcomes faithfully",
+    "capabilities.transport": "Asynchronous messages",
+    "preferences.acknowledgment": "Separate delivery from business execution"
+  },
+  "requirements": [
+    "Reconcile ambiguous delivery before effectful replay."
+  ],
+  "scenarios": [
+    {
+      "id": "transport-relay-behavior",
+      "given": "An acknowledgment is lost",
+      "when": "Delivery is investigated",
+      "then": "Do not infer failure or repeat business effects"
+    }
+  ],
+  "references": [
+    "a2a"
+  ],
+  "basis": "hypothesis"
+}

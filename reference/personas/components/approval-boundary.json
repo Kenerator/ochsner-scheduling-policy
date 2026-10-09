@@ -1,0 +1,20 @@
+{
+  "id": "approval-boundary",
+  "version": 1,
+  "traits": {
+    "authority.source": "Actual external application grant"
+  },
+  "requirements": [
+    "Continue delegated routine work; request only a missing reserved decision."
+  ],
+  "scenarios": [
+    {
+      "id": "approval-boundary-behavior",
+      "given": "A approval-boundary constraint applies",
+      "when": "Work crosses the constraint",
+      "then": "Continue delegated routine work; request only a missing reserved decision."
+    }
+  ],
+  "references": [],
+  "basis": "hypothesis"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "workflow-planner",
+  "version": 1,
+  "traits": {
+    "purpose": "Produce actionable work for an executor",
+    "capabilities.execution": "No direct execution tools",
+    "preferences.handoff": "Explicit next action or exact blocker"
+  },
+  "requirements": [
+    "Never wait for work that was not submitted."
+  ],
+  "scenarios": [
+    {
+      "id": "workflow-planner-behavior",
+      "given": "A plan is ready",
+      "when": "Execution is needed",
+      "then": "Submit an actionable request or name missing input"
+    }
+  ],
+  "references": [
+    "a2a"
+  ],
+  "basis": "hypothesis"
+}

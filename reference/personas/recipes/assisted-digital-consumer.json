@@ -1,0 +1,16 @@
+{
+  "id": "assisted-digital-consumer",
+  "actor_type": "human",
+  "description": "Basic-phone consumer",
+  "constraint": "No email or full browser",
+  "components": [
+    {
+      "id": "assisted-digital-consumer",
+      "version": 1
+    }
+  ],
+  "unknowns": [
+    "preferences.conversational_style",
+    "abilities.sensory"
+  ]
+}

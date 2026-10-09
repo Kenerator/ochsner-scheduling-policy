@@ -1,0 +1,26 @@
+{
+  "id": "enterprise-support",
+  "version": 1,
+  "traits": {
+    "purpose": "Resolve an escalated user problem",
+    "abilities.domain_knowledge": "Diagnostic workflow",
+    "access.environment": "Concurrent cases",
+    "preferences.response": "Structured evidence and context"
+  },
+  "requirements": [
+    "Carry context into handoff without repeated questions."
+  ],
+  "scenarios": [
+    {
+      "id": "enterprise-support-behavior",
+      "given": "A case is escalated",
+      "when": "Support takes ownership",
+      "then": "Transfer relevant history with consent; name next ownership"
+    }
+  ],
+  "references": [
+    "needs",
+    "predictable"
+  ],
+  "basis": "hypothesis"
+}

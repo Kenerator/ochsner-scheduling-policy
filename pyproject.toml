@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "poc-template"
+version = "0.1.0"
+description = "Small, deterministic helpers for human-centered proof-of-concept projects"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+bootstrap = ["specify-cli @ git+https://github.com/github/spec-kit.git@f1d3a4f8337ebbd3ae22760a9c12e3352b93a175"]
+
+[project.scripts]
+poc-template = "poc_template.__main__:main"
+poc-demo = "poc_demo.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

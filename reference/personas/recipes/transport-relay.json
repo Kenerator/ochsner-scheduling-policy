@@ -1,0 +1,21 @@
+{
+  "id": "transport-relay",
+  "actor_type": "agent",
+  "description": "Message transport agent",
+  "constraint": "Ambiguous transport outcome",
+  "components": [
+    {
+      "id": "transport-relay",
+      "version": 1
+    },
+    {
+      "id": "agent-context",
+      "version": 1
+    },
+    {
+      "id": "interrupted",
+      "version": 1
+    }
+  ],
+  "unknowns": []
+}

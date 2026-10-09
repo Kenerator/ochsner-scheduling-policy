@@ -1,0 +1,26 @@
+{
+  "id": "longitudinal-care-consumer",
+  "version": 1,
+  "traits": {
+    "purpose": "Coordinate ongoing care",
+    "access.travel": "Limited travel availability",
+    "context.continuity": "Multiple interactions over time",
+    "preferences.response": "Clear next steps and convenient choices"
+  },
+  "requirements": [
+    "Preserve continuity and explain the next step without medical advice claims."
+  ],
+  "scenarios": [
+    {
+      "id": "longitudinal-care-consumer-behavior",
+      "given": "A continuing service journey",
+      "when": "A next step is chosen",
+      "then": "Retain constraints and context; explain next ownership"
+    }
+  ],
+  "references": [
+    "needs",
+    "predictable"
+  ],
+  "basis": "hypothesis"
+}

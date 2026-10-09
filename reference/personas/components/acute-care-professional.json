@@ -1,0 +1,27 @@
+{
+  "id": "acute-care-professional",
+  "version": 1,
+  "traits": {
+    "purpose": "Find critical information quickly",
+    "abilities.domain_knowledge": "Clinical professional, selected explicitly",
+    "context.urgency": "Time-critical",
+    "preferences.response": "Concise, precise, source-aware",
+    "attitudes.uncertainty": "Must see uncertainty, not false confidence"
+  },
+  "requirements": [
+    "Keep critical details and appropriate escalation accessible immediately."
+  ],
+  "scenarios": [
+    {
+      "id": "acute-care-professional-behavior",
+      "given": "A high-urgency situation",
+      "when": "Information is requested",
+      "then": "Show critical details and escalation before elaboration"
+    }
+  ],
+  "references": [
+    "needs",
+    "doherty"
+  ],
+  "basis": "hypothesis"
+}

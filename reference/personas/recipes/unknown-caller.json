@@ -1,0 +1,13 @@
+{
+  "id": "unknown-caller",
+  "actor_type": "unknown",
+  "description": "Caller with unestablished actor type",
+  "constraint": "Actor classification unavailable",
+  "components": [
+    {
+      "id": "unknown-caller",
+      "version": 1
+    }
+  ],
+  "unknowns": []
+}

@@ -1,0 +1,20 @@
+{
+  "id": "resource-bounded",
+  "version": 1,
+  "traits": {
+    "resources.quota": "Finite; may reset later"
+  },
+  "requirements": [
+    "Preserve progress and next safe action at quota exhaustion."
+  ],
+  "scenarios": [
+    {
+      "id": "resource-bounded-behavior",
+      "given": "A resource-bounded constraint applies",
+      "when": "Work crosses the constraint",
+      "then": "Preserve progress and next safe action at quota exhaustion."
+    }
+  ],
+  "references": [],
+  "basis": "hypothesis"
+}

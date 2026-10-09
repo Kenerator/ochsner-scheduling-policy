@@ -1,0 +1,5 @@
+schema_version: "1.0"
+step:
+  type_key: poc-stage
+  name: Bounded Spec-Kit stage completion
+  version: "0.1.0"

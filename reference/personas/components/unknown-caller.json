@@ -1,0 +1,24 @@
+{
+  "id": "unknown-caller",
+  "version": 1,
+  "traits": {
+    "purpose": "Request a service operation",
+    "identity.classification": "Unverified; human or agent unknown",
+    "preferences.response": null
+  },
+  "requirements": [
+    "Never infer authorization from a claimed persona or actor type."
+  ],
+  "scenarios": [
+    {
+      "id": "unknown-caller-behavior",
+      "given": "A caller claims a role",
+      "when": "An action is requested",
+      "then": "Check actual authority; unknown type alone does not deny legitimate access"
+    }
+  ],
+  "references": [
+    "a2a"
+  ],
+  "basis": "hypothesis"
+}
