@@ -6,39 +6,7 @@ The blocks use codex syntax. Claude uses `/speckit-STAGE`; Codex uses `$speckit-
 
 Manual stage execution does not update the automated workflow's completion state. Before manual continuation, stop/reconcile any live automated owner. Resolve any reported failure or pending question; these prompts do not bypass it. Let installed Spec-Kit handle its normal prerequisites, clarifications and Constitution checks.
 
-## Stage 1: Specify
-
-Codex: `$speckit-specify` · Claude: `/speckit-specify`
-
-```text
-$speckit-specify
-Create the feature described in docs/product/RFP/README.md.
-Background draft User Stories and Persona mappings: docs/product/user-stories.md. Reconcile with supplied intake.
-```
-
-## Stage 2: Clarify
-
-Codex: `$speckit-clarify` · Claude: `/speckit-clarify`
-
-```text
-$speckit-clarify
-```
-
-## Stage 3: Plan
-
-Codex: `$speckit-plan` · Claude: `/speckit-plan`
-
-```text
-$speckit-plan
-```
-
-## Stage 4: Tasks
-
-Codex: `$speckit-tasks` · Claude: `/speckit-tasks`
-
-```text
-$speckit-tasks
-```
+Last automated result: Generated tasks.md with 53 tasks: US1 7, US2 8, US3 4, US4 7, US5 6, shared 21. Identified 24 parallel tasks with explicit prerequisites and ownership boundaries. Independent criteria cover public provider lookup, exactly confirmed booking, safe identity clarification, truthful failure/unknown outcomes, and sanitized diagnostics/reproducible recovery. US1 is the first useful increment; the required MVP includes all required stories and documentation. Validated checklist format, sequential IDs, story labels, paths and links. Prerequisite digests are unchanged. No pre/post extension hooks exist. Implementation was not executed; live-model validation and external delivery remain pending follow-ons.
 
 ## Stage 5: Analyze
 

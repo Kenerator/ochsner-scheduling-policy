@@ -1,6 +1,6 @@
 # Backlog
 
-Status: placeholder — no project-specific backlog captured yet.
+Status: scheduling priorities derive from [US1–5](../../specs/001-appointment-scheduling/spec.md); detailed tasks await the native Tasks stage. Optional appointment retrieval, automated handoff, UI refinement and production integration remain deferred/unaccepted. No additional backlog increment is committed.
 
 Capture unmet needs, useful improvements and debt without silently expanding the current PoC. Prioritize by user pain/value and dependency; link existing specs, issues or [next steps](next-steps.md) instead of copying them.
 

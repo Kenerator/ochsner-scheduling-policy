@@ -24,6 +24,8 @@ Requires **Python 3.11+**. The baseline demo, personas and offline scaffolding h
 
 ## Project documents
 
+- Scheduling feature: [specification](specs/001-appointment-scheduling/spec.md), [implementation plan](specs/001-appointment-scheduling/plan.md), [planned validation](specs/001-appointment-scheduling/quickstart.md). Plan artifacts are present; appointment-assistant implementation is pending.
+
 - Product: [brief](docs/product/brief.md), [client requirements/RFP](docs/product/RFP/README.md), [personas](docs/product/personas.md), [User Stories](docs/product/user-stories.md), [decisions](docs/product/decisions.md).
 - Planning: [backlog](docs/product/backlog.md), [roadmap](docs/product/roadmap.md), [sprint planning](docs/product/sprint-planning.md), [next steps](docs/product/next-steps.md).
 - Use and review: [user setup](docs/user/getting-started.md), [developer setup](docs/internal/development.md), [demo runbook](docs/internal/demo.md), [video notes](docs/internal/video-notes.md).

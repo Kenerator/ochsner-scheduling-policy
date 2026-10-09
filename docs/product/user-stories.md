@@ -1,6 +1,6 @@
 # User Stories — draft and index
 
-Stage 0 background, not approved scope or completion evidence. Supplied stories, journeys and scenarios remain verbatim in intake. These seeds do not assert that intake lacks stories; reconcile it first during native Specify.
+Updated 2026-10-08. Supplied journeys and scenarios remain verbatim in intake. Reconciled story detail now lives in the native specification below; Q1 is resolved with optional appointment lookup and required duplicate-identity clarification within booking. Specification validation is not implementation completion evidence.
 
 **Origin** (specified/inferred) is separate from **scope** (proposed/accepted/deferred). Inferred story wording can describe an explicitly required capability; preserve that requirement. Acceptance of an inference does not change its origin. Persona labels and drafts grant no permissions.
 
@@ -10,18 +10,22 @@ Stage 0 background, not approved scope or completion evidence. Supplied stories,
 
 ## Native specification index
 
-After Specify, link the feature `spec.md` User Scenarios & Testing sections here. Move reconciled draft detail into those native stories and replace it here with links, retaining Persona pins and origin/source labels there. Native `tasks.md` tracks implementation; this is not another progress ledger.
+- [Find providers](../../specs/001-appointment-scheduling/spec.md#user-story-1---find-providers-without-identifying-a-patient-priority-p1)
+- [Confirm and book](../../specs/001-appointment-scheduling/spec.md#user-story-2---book-the-selected-appointment-with-confirmation-priority-p1)
+- [Resolve identity safely](../../specs/001-appointment-scheduling/spec.md#user-story-3---resolve-identity-safely-or-stop-priority-p1)
+- [Failure and human-help guidance](../../specs/001-appointment-scheduling/spec.md#user-story-4---receive-truthful-failure-and-human-help-guidance-priority-p1)
+- [Support/Admin recovery context](../../specs/001-appointment-scheduling/spec.md#user-story-5---understand-outcomes-and-recover-responsibly-priority-p2)
 
-## Provisional seeds
+Native stories retain inferred wording, supplied scenario/requirement basis and scope labels separately. Native `tasks.md` will own implementation progress after Tasks; none exists yet.
 
-Primary-user Persona/story selection pending. Infer a useful journey from intake when available; do not invent a named Persona or call it validated research.
+## Persona mappings
+
+Primary-user/patient Persona selection remains pending in [Personas](personas.md). Stories 1–4 use this unresolved placeholder, without inventing a named Persona or claiming validated research.
 
 ## Support/Admin coverage
 
 **Persona selection pending:** corresponding Support/Admin placeholder in [Personas](personas.md); not a fabricated identity or permission.
 
-- **Origin:** INFERRED generic teammate need; scope proposed, not a required admin UI.
-- **Story seed:** As the mapped support/admin teammate, I want accurate outcome and recovery context, so I can help without making the user repeat work or taking unsafe action.
-- **Acceptance seed:** Given an unresolved case; When a permitted summary or diagnostic is inspected; Then known facts, missing information, attempted/completed/unknown outcomes and a truthful next step are distinguishable, with sensitive data excluded as required.
+- The INFERRED generic teammate seed and acceptance basis were migrated into [native Story 5](../../specs/001-appointment-scheduling/spec.md#user-story-5---understand-outcomes-and-recover-responsibly-priority-p2), reconciled with supplied observability policy. Coverage is documentation/diagnostics, not an admin UI or actual staff handoff.
 
 Always retain this coverage or an explicit documented deferral. It may be served by existing help, diagnostics or documentation; do not silently add a console, authentication, live handoff or new permissions. Validate against actual policy and interfaces.

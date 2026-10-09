@@ -1,5 +1,13 @@
 # Next steps
 
+## Scheduling Plan handoff — 2026-10-08
+
+- Continue with native Tasks from the [scheduling plan](../../specs/001-appointment-scheduling/plan.md) and [validation guide](../../specs/001-appointment-scheduling/quickstart.md). Q1 retains optional existing-appointment lookup and requires duplicate-identity clarification within booking; implementation has not started.
+- Select/validate primary-user and Support/Admin Personas when practical; current native stories retain unresolved mappings.
+- Establish the assignment receipt/deadline baseline with the Operator before making any time-window compliance claim. Publication, credentials and external submission remain outside this local-stage grant.
+
+The remaining generic follow-ons below are background, not additional scheduling scope.
+
 - Validate selected persona needs with intended users/support staff.
 - Add real application authorization, handoff and side-effect tests where relevant.
 - Run bootstrap UAT with a real small concept; record useful friction. Later automatic Spec-Kit stages and optional executable profiles remain separate follow-ons.

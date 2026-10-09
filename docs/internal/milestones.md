@@ -1,10 +1,10 @@
 # Milestones and optional UX refinement
 
-Updated: not yet populated. No checkpoint tags created by bootstrap.
+Updated: 2026-10-08 23:25 CDT. Local annotated scaffold checkpoint; no external push.
 
 | Tag | Source commit | Purpose / timing | Relevant docs or demo |
 | --- | --- | --- | --- |
-| Pending | Pending | Scaffold only | Pending |
+| `poc/scaffold` | `42e6bb0bab4b934c6361a59fcab17b64d080adf1` | Isolated scaffold and unchanged selectively supplied reference mock; no product qualification | [Provenance](../../reference/PROVENANCE.md), [video notes](video-notes.md) |
 
 Create **annotated, immutable tags** for useful reviewed milestones—not each tool call. Suggested names: `poc/scaffold`, `poc/planned`, `poc/mvp`, `poc/ux-01-before`, `poc/ux-01-after`, `poc/submitted`. Use `poc/budget-baseline` only when the Operator directs capture of an actual agreed work-window baseline. Names are suggestions, not mandatory gates; tags do not confer release/publication authority.[^tagging]
 

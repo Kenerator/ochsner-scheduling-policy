@@ -1,8 +1,24 @@
 # Video production notes
 
-Updated: not yet completed. Status: scaffold, not a finished script or recording.
+Updated: 2026-10-08 23:23 CDT. Status: planning/prerequisites; no finished assistant demo or recording.
+
+Candidate: policy-first scheduling assistant. Exact local root: `/Users/ken/codeRepos/ochsner-scheduling-policy`. Supplied independent mock: `http://127.0.0.1:4012`. Planned Marimo conversation/policy inspector: `http://127.0.0.1:28182` (not yet running).
+
+Verified prerequisites: Python 3.11.13, Marimo 0.25.1 with passing dependency check; unchanged selectively vendored reference mock returns provider results and no-match response. A bounded live structured intent check returned HTTP200 from `gpt-5.4-mini-2026-03-17`, validated provider intent in 1.12 seconds. This is a single-call capability result, not end-to-end or multi-turn assistant qualification.
+
+Start reference mock from candidate root: `.venv/bin/python reference/mock-api/server.py --port 4012`. Reset by stopping only this candidate-owned process and restarting it; no shared booking state or unrelated process termination. Source hashes: [provenance](../../reference/PROVENANCE.md). No raw query/prompt/transcript or credential retained in evidence.
+
+Baseline local commit: `42e6bb0bab4b934c6361a59fcab17b64d080adf1`; staged guard passed170 files. Private GitHub provisioning is centrally owned by MLX; no candidate remote yet. Native bootstrap `802acfd5` completed Specify and is in Clarify. The supplied scenario lookup-scope conflict was resolved using approved common-contract precedence: duplicate identity safeguards required, existing appointment retrieval optional.
+
+Timing: advisory horizons 00:41/01:41/02:11CDT on October9; Operator owns compliance and baseline capture. No work-window compliance claim.
 
 Keep this file current as Specify, Plan and Implement establish the actual product. Record confirmed behavior, not aspirations; link to canonical specs/tests instead of copying them. Use synthetic data and keep credentials and personal data out of recordings.
+
+## Native Plan update — 2026-10-08
+
+[Planning artifacts](../../specs/001-appointment-scheduling/plan.md) now define the reusable policy core, CLI, scheduling/intent ports, diagnostic boundaries and [planned five-minute validation walkthrough](../../specs/001-appointment-scheduling/quickstart.md). Native setup identifies `001-appointment-scheduling`; actual local Git branch is `main`. Implementation has not started. Preliminary Marimo inspector remains deferred; it is not required by the accepted text slice.
+
+This Plan stage made no model-service call and used no credentials. Fresh verification ran ten generic starter tests and the generic success/failure demos successfully; this proves no appointment-assistant outcome. Prior single-call prerequisite evidence above remains separate from planned/live end-to-end AI verification. Next native stage is Tasks; manual planning does not rewrite bootstrap execution state. No recording, delivery or time-window compliance is claimed.
 
 ## Audience and personas
 
