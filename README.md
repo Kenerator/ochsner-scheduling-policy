@@ -4,9 +4,11 @@ A synthetic AI scheduling assistant with **ZEN 2.1.2 policy decisions** and a **
 
 ## Setup
 
-Use Python **3.11+** on macOS ARM64 or Linux x86_64. Verify your selected executable before creating the environment; substitute `python3.11` or another compatible interpreter if needed.
+Use Python **3.11+** on macOS ARM64 or Linux x86_64. Obtain authorized access to the [private review repository](https://github.com/Kenerator/ochsner-scheduling-policy), then clone from the directory where you want the checkout using your normal authenticated GitHub setup. No local SSH alias is required. Verify your selected interpreter; substitute `python3.11` or another compatible executable if needed.
 
 ```sh
+git clone https://github.com/Kenerator/ochsner-scheduling-policy.git
+cd ochsner-scheduling-policy
 python3 --version
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.lock
