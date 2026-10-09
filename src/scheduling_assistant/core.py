@@ -96,7 +96,10 @@ class Assistant:
             return self._result(c,'The request or service data could not be validated. No confirmed booking can be reported. Check the information or contact the scheduling team.','failed')
 
     def _handle(self,c,text,diagnostic):
-        if not isinstance(text,str) or len(text)>4000:return self._result(c,'Use a short scheduling request. No action was taken.','failed')
+        if not isinstance(text,str) or len(text)>4000:
+            if c.proposal:
+                c.proposal=None;c.revision+=1;c.state='offering'
+            return self._result(c,'Use a short scheduling request. No action was taken.','failed')
         literal=text.strip().lower().rstrip('.!')
         if c.unknown:
             self._decide(c,'report',api='unknown_write')
@@ -106,7 +109,13 @@ class Assistant:
             return self._result(c,'New conversation. Mock bookings are unchanged. How can I help with provider lookup or booking?')
         if c.completed:
             return self._result(c,self._booked_message(c.completed)+' This is the existing result; no new booking was sent. Use reset for a new conversation.','booked')
+        # An intervening message is not consent to the old displayed choice.
+        # Revoke before model interpretation, including missed fields/errors;
+        # a new selection must produce a new proposal and a separate yes turn.
+        if c.proposal and literal not in YES | NO:
+            c.proposal=None;c.revision+=1;c.state='offering'
         needed=['zip'] if c.state=='clarifying_identity' else [k for k in ('phone','dob','specialty') if not c.fields.get(k)]
+        if not needed and c.slots and c.state=='offering':needed=['selection']
         result=self.intent.interpret(text,{'state':c.state,'intent':c.intent,'needed':needed})
         if not isinstance(result,IntentResult) or result.intent not in {'provider_lookup','book','human_help','medical_advice','unsupported','unknown'} or not isinstance(result.fields,dict) or set(result.fields)-FIELDS:
             raise ApiError('invalid_model_output')

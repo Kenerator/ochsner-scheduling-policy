@@ -234,3 +234,11 @@ Reviewed source49c5ad5/poc/mvp: all60tasks verified for required implementation/
 - [x] T062 Verify desktop/narrow browser layouts and keyboard-accessible table overflow; run UI/full tests, Marimo check and success/failure demos; record delta review and handoff (depends on T061).
 
 Validation: 13 UI tests and 110 full tests pass; Marimo check is clean; generic success/failure demos pass. Independent source/test delta review found no material issues. Browser evidence and scope are recorded in quickstart.
+
+
+## Recording-off rehearsal correction
+
+- [x] T063 Reproduce model-missed changed selection retaining pending proposal; write failing core/UI boundary tests, revoke before interpretation/rejection, supply selection-needed context and qualify live changed choice with separate consent.
+- [x] T064 Exercise actual app controls and required flows with recording off on corrected candidate; resolve discovered defects, rerun full tests/demos, record source-bound coverage in existing video notes, restore owned synthetic starting state.
+
+T063–T064: 114tests pass, all8scenario demos and generic success/failure pass, Marimo check clean. Independent delta review findings fixed. RC-1 remains immutable historical baseline; corrected candidate receives RC-2.

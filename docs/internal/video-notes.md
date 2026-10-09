@@ -23,3 +23,30 @@ Handoff state at2026-10-09 00:36CDT: final-source liveUI28182 collecting/unknown
 
 
 2026-10-09 visual repair: use the current app for future recording; the logo is no longer clipped and narrow policy tables scroll. Earlier recording-ready revision notes are historical. No finished video was created by this repair.
+
+
+## Recording-off rehearsal — 2026-10-09T01:23:07.955665-05:00
+
+Corrected candidate for RC-2 (delta from RC-1, source hashes below). Live gpt-5.4-mini, actual ZEN, supplied mock4012 and IAB28182. Recording OFF throughout. Complete before filming; no footage or delivery claim.
+
+| Control/workflow | Actual rehearsal result |
+|---|---|
+| Message field, character counter, Send, clear after submit | Typed synthetic requests; counter changed and field cleared; current replies rendered |
+| Reset, numbered choice, no, changed choice, separate yes | Reset collecting; refusal zero booking; change1→2 produced revised proposal; separate yes booked option2 with actual201 |
+| Policy inspector and Action facts | Opened/closed both; enum-only decision/source/facts visible |
+| Narrow table and focus | 390px viewport, no document overflow; native Right key scrolled focused region40px; expanded facts minimum210px readable |
+| Framework menu, HTML and PNG exports | Opened menu and invoked both controls with public provider results only; no recorded-video claim |
+| Provider lookup | Actual returned downtown primary-care providers, no identity |
+| Missing identity and duplicate match | Missing fields requested; ZIP asked privately, candidates hidden; unique clarification continued |
+| Conflict | Supplied conflict slot produced actual409 and truthful no-confirmation guidance |
+| Empty availability and no match | Explicit no-slots/no-patient guidance, no invented booking/handoff |
+| Medical advice and human help | No advice/triage, truthful usual-channel guidance, no queued-handoff claim |
+| Service outage | Owned API stopped; actual UI request gave finite failure guidance; API then restarted |
+
+Rehearsal exposed missed changed selection on RC-1 before any filming. Fixed by revoking pending proposal before model interpretation (also oversized input), accurately requesting selection in safe context and clarifying numeric extraction. Meaningful failing regressions preceded fixes; full114tests pass in16.585s, all8scenario demos and generic success/failure demos pass, Marimo check clean, independent delta review closed oversized boundary. No known rehearsal defect remains. Repeated identical form submit retained existing visible result and caused no additional POST.
+
+- `app.py`: `7431190fd2e3022410ac76fb4faf44feedc4f95a7d4b81ebadd356e362f6760b`
+- `src/scheduling_assistant/core.py`: `36aed4af3b0ce1da2679f8d68c664fb965033b471fd0aedfc0d7ef3dd626be37`
+- `src/scheduling_assistant/adapters/intent.py`: `fcedc803dac2c7b29300995a3ac94a42ccf566ffa9bdb0999862c8501bc579b0`
+
+Starting state restored: owned supplied mock restarted to pristine fixture state, UI collecting/unknown with inspector closed and empty field, viewport override reset. Controlled IAB rehearsal is green; native recording capability/exclusive SM capture slot still required. Capture every listed control and required operation; multiple raw clips may be needed, Media owns final≤5minute edit. Never claim omitted controls or tests as footage.

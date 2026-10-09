@@ -183,3 +183,13 @@ class SchedulingUITests(unittest.TestCase):
         self.assertEqual(svg.attrib.get('preserveAspectRatio'),'xMinYMid meet')
         self.assertEqual([ET.tostring(child) for child in svg],
                          [ET.tostring(child) for child in source])
+
+    def test_rejected_oversized_message_cannot_preserve_pending_booking(self):
+        from test_scheduling_core import booking
+        core,conversation,api,_,_=booking()
+        session=self.ui.UISession(assistant=core,environ={'SCHEDULING_INTENT_MODE':'offline'})
+        session.conversation=conversation
+        session.submit('2'+' '*4000)
+        self.assertIsNone(conversation.proposal)
+        session.submit('yes')
+        self.assertNotIn('book',[call[0] for call in api.calls])

@@ -91,8 +91,8 @@ with app.setup:
         def submit(self, text):
             if text is None or isinstance(text, str) and not text.strip():
                 return self.view()
-            if not isinstance(text, str) or len(text) > 4000:
-                return {**self.view(), 'message': 'Use a short scheduling message of at most 4,000 characters.', 'outcome': 'failed'}
+            # The shared core rejects invalid/oversized input under this lock;
+            # rejection must also revoke any pending appointment proposal.
             if self._assistant is None or self._blocked:
                 return self.view()
             if not self._lock.acquire(blocking=False):
@@ -142,7 +142,7 @@ with app.setup:
         .policy-table-scroll{overflow-x:auto;max-width:100%}
         .policy-inspector table{width:100%;min-width:580px;border-collapse:collapse;font-size:13px;margin-top:12px}
         .policy-inspector th,.policy-inspector td{text-align:left;vertical-align:top;padding:8px;border-bottom:1px solid #d7dfe7;overflow-wrap:anywhere}
-        .policy-inspector pre{white-space:pre-wrap;font-size:12px;line-height:1.5}
+        .policy-inspector pre{min-width:210px;white-space:pre-wrap;font-size:12px;line-height:1.5}
         .policy-inspector :focus-visible{outline:3px solid var(--brand-primary);outline-offset:3px}
         </style><header class="policy-hero"><div class="policy-logo" role="img" aria-label="Ochsner Health">''' + logo + '''</div>
         <h1>Let's find your appointment</h1><p>AI scheduling assistant · synthetic demonstration</p>

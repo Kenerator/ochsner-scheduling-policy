@@ -11,3 +11,5 @@ Enterprise follow-ons require separate design and validation: real identity/auth
 Optional appointment retrieval, automated handoff, cancellation/rescheduling are deferred scope. One final independent adversarial review is selected; do not add repeated mandatory proof cycles. Meaningful annotated checkpoints are selected, not a tag per task.
 
 User-selected visual repair is complete: approved logo coordinate scaling, compact spacing and narrow policy-table scrolling. See T061–T062 and quickstart; broader UI redesign remains unselected.
+
+RC-2 recording-off correction and full control/required-scenario rehearsal are complete; source-bound coverage and reset state are in video notes. Await exclusive SM recording slot/capability; no video exists yet.

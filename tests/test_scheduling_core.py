@@ -51,6 +51,36 @@ class CoreTests(unittest.TestCase):
         a,c,api,_,_=booking();a.intent=ScriptIntent(IntentResult('book',{'location':'uptown'}))
         a.handle(c,'yes but change to uptown')
         self.assertIsNone(c.proposal);self.assertNotIn('book',[x[0] for x in api.calls])
+    def test_unrecognized_change_or_model_failure_revokes_pending_consent_context(self):
+        for interpretation in (IntentResult('book',{}), ApiError('model_unavailable')):
+            with self.subTest(interpretation=type(interpretation).__name__):
+                a,c,api,_,_=booking()
+                revision=c.revision
+                a.intent=ScriptIntent(interpretation,IntentResult('book',{}))
+                a.handle(c,'2')
+                self.assertIsNone(c.proposal)
+                self.assertGreater(c.revision,revision)
+                a.handle(c,'yes')
+                self.assertNotIn('book',[call[0] for call in api.calls])
+
+    def test_oversized_intervening_message_revokes_pending_proposal(self):
+        a,c,api,_,_=booking()
+        a.handle(c,'2'+' '*4000)
+        self.assertIsNone(c.proposal)
+        a.handle(c,'yes')
+        self.assertNotIn('book',[call[0] for call in api.calls])
+
+    def test_changed_choice_requests_selection_without_patient_values_in_model_context(self):
+        a,c,api,_,_=booking()
+        contexts=[]
+        class Capture:
+            def interpret(self,text,context):
+                contexts.append(context)
+                return IntentResult('book',{})
+        a.intent=Capture()
+        a.handle(c,'2')
+        self.assertEqual(contexts,[{'state':'offering','intent':'book','needed':['selection']}])
+
     def test_foreign_proposal_and_forged_engine_proceed_cannot_book(self):
         a,c,api,_,_=booking();p=c.proposal
         c.proposal=Proposal('foreign',p.revision,p.patient_id,p.slot_id,p.criteria,p.slot_signature)
