@@ -84,3 +84,10 @@ Suggested closing scroll (factual reference text; Media controls final edit):
 > **Verification:**116tests; eight scheduling demos plus generic success/failure demos; actual live browser required-flow/control rehearsals with recording off; independent focused review. Unknown-effect evidence includes controlled core/UI tests and is not presented as a live ambiguous-write demonstration.
 >
 > **Limits and next steps:** synthetic fixtures and in-memory sessions; no production authentication, durable distributed effect/idempotency guarantees, load qualification or enterprise-readiness claim. Validate real-user needs and operational/security/audit requirements before expansion. Optional appointment retrieval and automated staff delivery remain unselected. Video/public submission are incomplete and Operator-owned; filming is currently on hold.
+
+
+### Preserved partial capture — 2026-10-09T01:53:24.589965-05:00
+
+Media confirmed browser CLOSED and capture reservation RELEASED; canonical28182/4012 remain running unchanged. The already-started clip was preserved at the safe hold boundary. Owner independently verified file existence,1577380bytes and SHA256`c4cb1f049a9c4bcb3fb60ba2b8385ca8654a8f08853f5fb9a9fe8f1ccdbc4610`. External original filename:`OSCAR__policy__provider__078b34f4__T01.webm`, in Media's assigned policy/20261009 source-media directory; binary is not in Git.
+
+Media-reported coverage: live badge, provider reply, policy inspector, Actionfacts, Recoverycontext, Tab/ShiftTab and Return/reset. Only providerGET and independent sessionreset; no bookingPOST. This is partial provider/control footage, not proof of complete required-flow capture. Full decode QA and final edit/duration/coverage verification remain pending. No further capture or rendering under Operator hold. Qualified product remains RC-3/078b34f4; subsequent commits change these notes only.
