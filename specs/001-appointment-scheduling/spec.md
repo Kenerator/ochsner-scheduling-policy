@@ -4,7 +4,9 @@
 
 **Created**: 2026-10-08
 
-**Status**: Specification validated — Q1 resolved; ready for planning; implementation not started
+**Status**: Specification reconciled with the approved Policy candidate; implementation and integration verification are ongoing. Detailed progress is maintained in [tasks.md](tasks.md).
+
+**Historical Specify record (2026-10-08)**: Q1 was resolved and the specification was ready for planning before implementation began. That stage boundary did not revoke the separate launch approval.
 
 **Input**: User description: "Include the client requirements indexed by docs/product/RFP/README.md. Reconcile docs/product/user-stories.md and Persona mappings with supplied intake."
 
@@ -184,18 +186,18 @@ As the support/admin teammate, I want sanitized diagnostic and recovery context,
 
 ### Scope and dependencies
 
-- Text interaction is required; a CLI is an allowed default for later planning. The approved Policy candidate includes a thin Marimo conversation and inspectable ZEN policy decisions. New scheduling backend, database, reschedule and cancellation remain outside scope.
+- Text interaction is required through the shared core, a CLI and the approved thin Marimo 0.25.1 conversation/policy inspector. ZEN 2.1.2 executes inspectable policy decisions in the actual workflow. New scheduling backend, database, reschedule and cancellation remain outside scope.
 - **Q1 resolved — 2026-10-08, explicit developer response (Option A)**: “Existing approved common contract establishes assignment.md/policies/OpenAPI source precedence and optional appointment lookup; retain duplicate-identity clarification within booking. No new mandatory retrieval scope.” This resolves the scenario/scope conflict without removing identity safety requirements or authorizing optional integrations.
 - Automated handoff submission, existing-appointment lookup, a larger evaluation harness, advanced traces, production/design extension notes remain optional, unaccepted additions. Marimo and ZEN are accepted by the candidate launch and direct Operator correction. Basic diagnostic and mandatory behavior verification remain required independently of those additions.
-- Required human-help behavior means truthful escalation guidance, not real staff availability or ticket delivery. If automated handoff is later selected, its confirmed queued outcome and reason must match the scheduling service, and failures cannot be presented as delivered handoffs. The recommended outage scenario's actual queued handoff depends on selecting this optional capability.
-- The mock contract defines the implementation's later scheduling-call obligations: provider search, patient search, availability and confirmed appointment creation. Protocol details belong in Plan/contracts rather than user requirements. The supplied service's in-memory reset, fixed-offset fixture times and synthetic identities do not prove durable execution, concurrency safety or clinical readiness.
-- The assignment expects AI/model use and offers a temporary model-service key; model reasoning may help interpret language but cannot invent service facts, resolve ambiguous identity by guessing or supply confirmation. No credential acquisition, authenticated model call or live integration is performed or authorized by this Specify stage. Offline fixtures must remain available; later implementation must report the difference between simulated and actual model behavior.
+- Required human-help behavior means truthful escalation guidance, not real staff availability or ticket delivery. If automated handoff is later selected, its confirmed queued outcome and reason must match the scheduling service, and failures cannot be presented as delivered handoffs. The outage scenario requires truthful guidance; the supplied outage also rejects handoff submission, so it cannot establish a queued handoff even if that optional capability is later selected.
+- The mock contract defines the implementation's scheduling-call obligations: provider search, patient search, availability and confirmed appointment creation. Protocol details belong in Plan/contracts rather than user requirements. The supplied service's in-memory reset, fixed-offset fixture times and synthetic identities do not prove durable execution, concurrency safety or clinical readiness.
+- The assignment expects AI/model use and offers a temporary model-service key; model reasoning may help interpret language but cannot invent service facts, resolve ambiguous identity by guessing or supply confirmation. Historical Specify-stage record: that stage performed no credential acquisition, authenticated model call or live integration. The separate approved launch authorizes the required bounded live application integration. Offline fixtures must remain available; implementation must distinguish simulated evidence from genuine live multi-turn qualification, which remains an acceptance obligation.
 - Primary/patient and Support/Admin Persona selections remain visibly pending. No new catalog identity, validated research, permissions or admin console is inferred. Selection/validation is a follow-on, not a barrier to starting the required implementation.
 
 ### Effort, submission and truthful claims
 
-- The assignment defines a three-hour code/README window from receipt and video due thirty minutes later. Receipt time, deadline baseline and compliance are not established by this stage; the developer/Operator owns those determinations and tradeoffs. No scope is silently removed because of elapsed time.
-- A repository link and recorded video are requested submission deliverables, but Specify itself performs no remote work. The launch separately grants private Kenerator/ochsner-scheduling-policy milestone pushes; public submission and delivery remain Operator-owned.
+- The assignment defines a three-hour code/README window from receipt and video due thirty minutes later. Historical Specify-stage record: receipt time, deadline baseline and compliance were not established by that stage; the developer/Operator owns those determinations and tradeoffs. No scope is silently removed because of elapsed time.
+- A repository link and recorded video are requested submission deliverables. Historical Specify-stage record: Specify performed no remote work. Current launch authorization permits milestone pushes only to the exact private repository `Kenerator/ochsner-scheduling-policy`; public publication, submission and video delivery remain Operator-owned. This records authorization, not proof that any push or delivery has occurred.
 - The requested README statement “I completed this within the assigned 3-hour window.” may be included only if verified true. Otherwise document actual timing and unfinished work honestly; this specification makes no time-window compliance claim.
 - Useful interactive feedback targets the Constitution's 400 ms where feasible. Completion latency must be measured with scenario/environment/load before claims; no model completion deadline, capacity benchmark or production service level is invented.
 

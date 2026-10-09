@@ -1,0 +1,206 @@
+{
+  "POL-ID-01": {
+    "document": "policies.md",
+    "section": "Identity And Privacy",
+    "bullet": 1,
+    "origin": "supplied",
+    "requirements": [
+      "FR-003"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-ID-02": {
+    "document": "policies.md",
+    "section": "Identity And Privacy",
+    "bullet": 2,
+    "origin": "supplied",
+    "requirements": [
+      "FR-004"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-ID-03": {
+    "document": "policies.md",
+    "section": "Identity And Privacy",
+    "bullet": 3,
+    "origin": "supplied",
+    "requirements": [
+      "FR-004"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-MED-01": {
+    "document": "policies.md",
+    "section": "Identity And Privacy",
+    "bullet": 5,
+    "origin": "supplied",
+    "requirements": [
+      "FR-013"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-BOOK-01": {
+    "document": "policies.md",
+    "section": "Booking Rules",
+    "bullet": 1,
+    "origin": "supplied",
+    "requirements": [
+      "FR-006"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-BOOK-02": {
+    "document": "policies.md",
+    "section": "Booking Rules",
+    "bullet": 2,
+    "origin": "supplied",
+    "requirements": [
+      "FR-006",
+      "FR-007"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-BOOK-03": {
+    "document": "policies.md",
+    "section": "Booking Rules",
+    "bullet": 3,
+    "origin": "supplied",
+    "requirements": [
+      "FR-005",
+      "FR-009"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-BOOK-04": {
+    "document": "policies.md",
+    "section": "Booking Rules",
+    "bullet": 4,
+    "origin": "supplied",
+    "requirements": [
+      "FR-010"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-HANDOFF-01": {
+    "document": "policies.md",
+    "section": "Human Handoff",
+    "bullet": 1,
+    "origin": "supplied",
+    "requirements": [
+      "FR-013",
+      "FR-014"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-HANDOFF-02": {
+    "document": "policies.md",
+    "section": "Human Handoff",
+    "bullet": 2,
+    "origin": "supplied",
+    "requirements": [
+      "FR-013",
+      "FR-014"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-HANDOFF-04": {
+    "document": "policies.md",
+    "section": "Human Handoff",
+    "bullet": 4,
+    "origin": "supplied",
+    "requirements": [
+      "FR-012",
+      "FR-014"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-HANDOFF-05": {
+    "document": "policies.md",
+    "section": "Human Handoff",
+    "bullet": 5,
+    "origin": "supplied",
+    "requirements": [
+      "FR-013",
+      "FR-014"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "POL-HANDOFF-06": {
+    "document": "policies.md",
+    "section": "Human Handoff",
+    "bullet": 6,
+    "origin": "supplied",
+    "requirements": [
+      "FR-013",
+      "FR-014"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "ASSIGN-REQ-01": {
+    "document": "assignment.md",
+    "section": "What To Build / Required",
+    "bullet": 1,
+    "origin": "supplied",
+    "requirements": [
+      "FR-001"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "CON-REQ-01": {
+    "document": "Common acceptance contract v1",
+    "section": "Required",
+    "bullet": "paragraph 1",
+    "origin": "approved common contract",
+    "requirements": [
+      "FR-002",
+      "FR-003",
+      "FR-004"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "CON-REQ-02": {
+    "document": "Common acceptance contract v1",
+    "section": "Required",
+    "bullet": "paragraph 2",
+    "origin": "approved common contract",
+    "requirements": [
+      "FR-005",
+      "FR-006",
+      "FR-007",
+      "FR-008"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "CON-REQ-03": {
+    "document": "Common acceptance contract v1",
+    "section": "Required",
+    "bullet": "paragraph 3",
+    "origin": "approved common contract",
+    "requirements": [
+      "FR-009",
+      "FR-010",
+      "FR-012"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "CON-TEST-01": {
+    "document": "Common acceptance contract v1",
+    "section": "Common tests",
+    "bullet": "malformed/unavailable model result no effect",
+    "origin": "approved common contract",
+    "requirements": [
+      "FR-021"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#functional-requirements"
+  },
+  "SPEC-FR022": {
+    "document": "spec.md",
+    "section": "Approved candidate reconciliation \u2014 2026-10-08",
+    "bullet": "FR-022",
+    "origin": "approved candidate requirement",
+    "requirements": [
+      "FR-022"
+    ],
+    "spec": "specs/001-appointment-scheduling/spec.md#approved-candidate-reconciliation--2026-10-08"
+  }
+}

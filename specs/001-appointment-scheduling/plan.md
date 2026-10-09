@@ -2,7 +2,9 @@
 
 **Branch**: local Git `main`; native feature identifier `001-appointment-scheduling` | **Date**: 2026-10-08 | **Spec**: [spec.md](spec.md)
 
-**Input**: `specs/001-appointment-scheduling/spec.md`. Native setup completed; no Git extension or new branch requested. Plan ends after Phase 1; implementation and Tasks have not started.
+**Input**: `specs/001-appointment-scheduling/spec.md`. Native setup completed; no Git extension or new branch requested. Implementation and integration verification are ongoing under [tasks.md](tasks.md).
+
+**Historical Plan-stage record (2026-10-08)**: The native Plan stage ended after Phase 1 before Tasks and implementation began. The reconciled requirements and contracts below govern the current implementation; this historical stage boundary does not defer approved work.
 
 ## Summary
 
@@ -12,9 +14,9 @@ The adopted supplied mock is the scheduling source of truth. Offline intent fixt
 
 ## Technical Context
 
-**Language/Version**: Python 3.11+, as declared by existing pyproject.toml; inspected shell Python is 3.14.3. Validate the chosen project interpreter before any launch.
+**Language/Version**: Python 3.11+; candidate `.venv/bin/python` was verified as 3.11.13 for implementation tests. Historical shell inspection returned 3.14.3. Verify the actual executable used for each launch and clean-copy qualification.
 
-**Primary Dependencies**: `zen-engine==2.1.2`, `marimo==0.25.1`; standard library HTTP/JSON/unittest, unchanged supplied mock. OpenAI Responses structured extraction via HTTPS, explicit configurable `gpt-5.4-mini` default (small capability check HTTP200). Reviewer uses ordinary OPENAI_API_KEY; no Bitwarden runtime dependency. Pin the full installed dependency set for clean MacARM/Linux qualification.
+**Primary Dependencies**: `zen-engine==2.1.2`, `marimo==0.25.1`; standard library HTTP/JSON/unittest, unchanged supplied mock. OpenAI Responses structured extraction via HTTPS, explicit configurable `gpt-5.4-mini` default (small capability check HTTP200). Reviewer uses ordinary OPENAI_API_KEY; no Bitwarden runtime dependency. Declare the required exact runtime versions and reproducible installation steps; clean macOS ARM/Linux qualification remains integration work until supported by recorded evidence.
 
 **Storage**: Private per-conversation in-memory state; mock-owned synthetic scheduling state backed by supplied JSON fixtures. No database, durable sessions or distributed duplicate guarantees.
 
@@ -26,13 +28,13 @@ The adopted supplied mock is the scheduling source of truth. Offline intent fixt
 
 **Performance Goals**: Useful local feedback near 400 ms where feasible; synchronous scheduling request timeout initially five seconds, no automatic retry. Report actual turn/API elapsed times with interpreter, environment, scenario and load. No measured throughput or model SLA claim.
 
-**Constraints**: Synthetic data only; disclose AI/simulated mode; no medical advice, guessed identity or invented service facts; explicit confirmation for exact proposal; uncertainty stops retry. No credentials, external publication, deployment, Constitution or managed asset changes in this stage.
+**Constraints**: Synthetic data only; disclose AI/simulated mode; no medical advice, guessed identity or invented service facts; explicit confirmation for exact proposal; uncertainty stops retry. Required bounded live-model calls and exact private `Kenerator/ochsner-scheduling-policy` milestone pushes are authorized by the separate launch grant. Keep secrets out of source/logs. Public publication, deployment and submission remain Operator-owned; no Constitution amendment is implied. Adopt only approved UI assets with provenance.
 
 **Scale/Scope**: One sequential local conversation per CLI; independent sessions do not share identity or confirmations. Supplied data has five patients, three providers, four slots and two pre-existing appointments. No production concurrency claim.
 
 ## Constitution Check
 
-Gate evaluated before research and re-evaluated after design. PASS means planned compliance, not implemented acceptance.
+Historical Plan-stage check: evaluated before research and re-evaluated after design. PASS describes planned compliance at that stage, not completed implementation acceptance; current verification is tracked in tasks.md.
 
 | Principle | Pre-research gate | Post-design evidence |
 | --- | --- | --- |
@@ -41,7 +43,7 @@ Gate evaluated before research and re-evaluated after design. PASS means planned
 | III Honest responsiveness | PASS: targets distinguished from results | Timeout and elapsed-time diagnostics planned; no benchmark claim |
 | IV Small core | PASS: core plus thin effect adapters, no replacement backend | Independent intent and scheduling ports; CLI references same core |
 | V Verification | PASS: tests-first and supplied synthetic integration | quickstart lists success, negative, boundary, recovery and clean-copy validation |
-| VI Safety | PASS: local synthetic scope and external grants separated | Private identity state, allowlisted diagnostics, live AI explicitly pending |
+| VI Safety | PASS: local synthetic scope and external grants separated | Private identity state, allowlisted diagnostics; live AI authorized and required, qualification tracked separately |
 | VII Demonstration/docs | PASS: required setup, failure, reset and walkthrough planned | Near-final as-built population after code integration; reviewed revision/navigation/diagram verification required |
 | VIII Lightweight governance | PASS: native spec/plan/tasks authority and safe parallel ownership | Research dispatched read-only; Tasks lanes depend on tests/stable contracts; no deadline compliance claim |
 
@@ -61,11 +63,11 @@ specs/001-appointment-scheduling/
 └── contracts/interfaces.md
 ```
 
-`tasks.md` is the next native stage's output, not created by Plan.
+Historical Plan-stage record: `tasks.md` was the next stage's output. It now exists and is the canonical implementation-progress record.
 
 ### Source Code (repository root)
 
-Proposed additions below; existing generic tooling stays available.
+Design layout below; actual as-built structure is finalized from integrated code and tests. Existing generic tooling stays available.
 
 ```text
 src/scheduling_assistant/
@@ -89,7 +91,7 @@ tests/                      # planned scheduling behavior tests
 
 Planned test files: `tests/test_scheduling_core.py`, `tests/test_scheduling_policy.py`, `tests/test_scheduling_http.py`, `tests/test_scheduling_intent.py`, `tests/test_scheduling_diagnostics.py`, `tests/test_scheduling_acceptance.py`. Flat discovery keeps the required unittest command effective. `src/poc_demo/` and `src/poc_template/` are existing scaffold examples/tools, not implemented appointment behavior.
 
-**Structure Decision**: One package with standard-library ports/adapters. Policy guards are deterministic code with concise intent comments and a linked decision table; actual ZEN decisions gate workflow actions; transaction invariants remain independently checked in core. Keep supplied server/data/OpenAPI unchanged. Thin required Marimo UI reuses the same core.
+**Structure Decision**: One package with standard-library ports/adapters. Actual ZEN decisions gate workflow actions through versioned tables and stable source IDs; deterministic Python transaction guards with concise intent comments independently enforce booking invariants; transaction invariants remain independently checked in core. Keep supplied server/data/OpenAPI unchanged. Thin required Marimo UI reuses the same core.
 
 ## Implementation sequencing for Tasks
 
@@ -101,7 +103,7 @@ Planned test files: `tests/test_scheduling_core.py`, `tests/test_scheduling_poli
 
 ## Complexity Tracking
 
-No Constitution violations requiring justification. Unfinished external model validation, Persona selection, video recording, remote setup/publication and deadline-baseline determination are recorded follow-ons, not completed deliverables.
+No Constitution violations requiring justification. Required live multi-turn qualification, dependency setup and integrated UI verification remain implementation/acceptance work until evidenced; they are not optional follow-ons. Persona selection, video recording/delivery, public submission and deadline-compliance determinations remain explicitly pending Operator-owned items. Exact private milestone pushes are authorized; authorization alone is not delivery evidence.
 
 ## Reconciled candidate implementation contracts
 

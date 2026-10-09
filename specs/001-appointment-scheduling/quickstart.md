@@ -1,10 +1,10 @@
-# Planned validation quickstart
+# Implementation validation quickstart
 
-Date: 2026-10-08. This guide defines commands and outcomes for the implementation stage. `scheduling_assistant` does not exist yet; the current generic demos do not prove scheduling acceptance. Run commands from repository root. See [interfaces](contracts/interfaces.md) and [data model](data-model.md).
+Updated during implementation reconciliation, 2026-10-08. The scheduling package, CLI and demo entry points now exist; integration, dependency setup and final qualification remain ongoing in [tasks](tasks.md). Commands below describe the current interfaces and expected outcomes, not a claim that every setup/platform/live scenario has been qualified. Generic starter demos do not prove scheduling acceptance. Run commands from repository root. See [interfaces](contracts/interfaces.md) and [data model](data-model.md).
 
 ## Prerequisites and setup
 
-Use Python 3.11+. Inspect `python3 --version`; substitute a verified compatible executable in every command if necessary. Current shell inspection returned 3.14.3, while prior project environment evidence records 3.11.13; verify the executable actually used. No global tooling changes, model key or network account is needed for offline verification.
+Use Python 3.11+. Inspect `python3 --version`; substitute a verified compatible executable in every command if necessary. The candidate `.venv/bin/python` used for implementation tests was verified as 3.11.13; earlier shell inspection returned 3.14.3. Verify the executable actually used. No global tooling changes, model key or network account is needed for offline verification.
 
 ```sh
 python3 --version
@@ -12,40 +12,42 @@ python3 -m venv .venv
 .venv/bin/python --version
 ```
 
-If `.venv` already exists, verify and reuse it rather than recreating it. Required ZEN2.1.2 and Marimo0.25.1 are declared/pinned in project dependencies. Install the project and locked runtime dependencies before running; final exact commands are verified during integration. Use `.venv/bin/python` instead of `python3` in the following commands when selected. Check that candidate port 4012 is free; never terminate an unrelated process.
+If `.venv` already exists, verify and reuse it rather than recreating it. Required runtime selections are `zen-engine==2.1.2` and `marimo==0.25.1`. Follow the integration-owned [README setup](../../README.md) for project/dependency installation; dependency declaration and exact fresh-copy installation qualification must be completed and evidenced during integration. An existing prepared environment is not proof of reproducible setup or a lock file. The runtime commands below use the verified candidate `.venv/bin/python`; substitute another explicitly verified Python 3.11+ environment only when needed. Check that candidate port 4012 is free; never terminate an unrelated process.
 
 ## Start and reset supplied scheduling service
 
 ```sh
-python3 reference/mock-api/server.py --port 4012
+.venv/bin/python reference/mock-api/server.py --port 4012
 ```
 
 Keep it in a separate terminal. Restart only that owned process to reset bookings. There is no HTTP reset endpoint. Tests use isolated server ports/state; demos must not race with each other. Conversation `reset` clears assistant state only. Reset does not prove an uncertain prior booking failed.
 
-## Planned interactive assistant
+## Interactive assistant
 
 ```sh
-PYTHONPATH=src python3 -m scheduling_assistant --api-base http://127.0.0.1:4012 --intent-mode offline
+PYTHONPATH=src .venv/bin/python -m scheduling_assistant --api-base http://127.0.0.1:4012 --intent-mode offline
 ```
 
 Expect explicit AI/offline-mode disclosure and a multi-turn prompt. Ask “Which primary care providers are downtown?”: expect actual service providers, no identity prompt and no appointment claim. Start booking and provide supplied synthetic identity (phone `555-0101`, DOB `1985-04-12`), specialty primary care and downtown. Choose a displayed returned slot, review exact details, then explicitly confirm. Expect exactly one matching service appointment and zero POSTs before confirmation. Repeated yes returns known completed details without another booking.
 
+Required live mode is the application default: omit `--intent-mode offline` after supplying `OPENAI_API_KEY` through the environment. Never put the key in source, command arguments or output. Live provider and booking conversations need genuine multi-turn evidence; the offline flow above is a disclosed rehearsal. The required Marimo UI shares this core; its integration-owned launch/configuration steps are in the [README](../../README.md).
+
 ## Verification commands
 
-Required existing baseline checks (currently runnable generic starter only):
+Required combined test suite and retained generic baseline demonstrations:
 
 ```sh
-PYTHONPATH=src python3 -m unittest discover -s tests -v
-PYTHONPATH=src python3 -m poc_demo --scenario success
-PYTHONPATH=src python3 -m poc_demo --scenario failure
+PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
+PYTHONPATH=src .venv/bin/python -m poc_demo --scenario success
+PYTHONPATH=src .venv/bin/python -m poc_demo --scenario failure
 ```
 
-Planned scheduling demos, each on fresh owned mock state:
+Scheduling demos each own a fresh disposable supplied mock on an ephemeral port; they do not need the manually started port-4012 service:
 
 ```sh
-PYTHONPATH=src python3 -m scheduling_assistant.demo --scenario provider_lookup --api-base http://127.0.0.1:4012
-PYTHONPATH=src python3 -m scheduling_assistant.demo --scenario success --api-base http://127.0.0.1:4012
-PYTHONPATH=src python3 -m scheduling_assistant.demo --scenario failure --api-base http://127.0.0.1:4012
+PYTHONPATH=src .venv/bin/python -m scheduling_assistant.demo --scenario provider_lookup
+PYTHONPATH=src .venv/bin/python -m scheduling_assistant.demo --scenario success
+PYTHONPATH=src .venv/bin/python -m scheduling_assistant.demo --scenario failure
 ```
 
 ## Required behavior matrix
@@ -71,3 +73,11 @@ Write meaningful failing tests before implementing these cases. Contract tests e
 After integration, validate from a clean checkout or explicitly labeled clean-copy equivalent with declared interpreter and only owned local mock state. Verify setup, assistant launch, provider lookup, booking, failure, restart/reset and all exact commands; record scenario/environment/load and elapsed times before performance claims. Run existing baseline and new scheduling checks together. Passing generic starter checks alone is insufficient.
 
 Plan a maximum five-minute video: 0:00–0:30 purpose/mode/limitations; 0:30–1:15 provider lookup; 1:15–2:45 confirmed booking; 2:45–3:45 no-match and truthful help; 3:45–4:45 core/adapters and tradeoffs; 4:45–5:00 next steps. Link actual as-built docs after implementation. Live-model calls and exact private repository milestone pushes are approved. Public submission and recording delivery remain Operator-owned; a script is not a recorded/delivered video. Do not state three-hour compliance without an established Operator baseline and evidence.
+
+## Current integration evidence — 2026-10-09
+
+MacARM Python3.11.13: 103 unittest tests passed after integration, including actual ZEN+suppliedHTTP acceptance and UI callback tests. Editable installation and pip check pass after pinning setuptools84.0.0/wheel0.48.0. requirements.lock pins the complete selected runtime set.
+
+Authorized actual Responses model (`gpt-5.4-mini`) + actual ZEN + disposable suppliedHTTP service: provider_lookup returned providers, zero booking POST,1897.06ms whole scenario; success gathered missing identity over turns, displayed options/proposal then explicit yes, booked with exactly onePOST,5027.46ms; failure no_match,zeroPOST,3452.06ms. One sequential synthetic conversation per run; measured whole scenario, not per-turn throughput or production SLA. Raw prompts/transcripts/key were not emitted or saved. Live completion exceeds400ms; no claim of meeting that target.
+
+Controlled IAB and fresh private-clone Mac/Linux qualification remain in progress. Recorded video is not delivered.

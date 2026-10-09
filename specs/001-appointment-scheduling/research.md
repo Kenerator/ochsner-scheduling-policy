@@ -1,6 +1,6 @@
 # Planning research
 
-Date: 2026-10-08. Inputs: [specification](spec.md), [decisions](../../docs/product/decisions.md), supplied assignment/policies and [canonical scheduling API](../../reference/openapi/scheduling-api.yaml). Local source inspection is the research basis; no external model call or new installation was performed.
+Date: 2026-10-08. Inputs: [specification](spec.md), [decisions](../../docs/product/decisions.md), supplied assignment/policies and [canonical scheduling API](../../reference/openapi/scheduling-api.yaml). Historical Plan-stage research used local source inspection and performed no external model call or new installation. Current implementation follows the reconciled launch requirements below; this historical observation is not a dependency-free setup or live-qualification claim.
 
 ## Source precedence and required slice
 
@@ -10,8 +10,8 @@ Date: 2026-10-08. Inputs: [specification](spec.md), [decisions](../../docs/produ
 
 ## Runtime and interaction
 
-- Decision: Python 3.11+ reusable scheduling package, standard-library HTTP/JSON/dataclasses/unittest, thin interactive CLI and separate deterministic demo entry point. No new backend or database.
-- Rationale: Existing project already declares this runtime and has a CLI/core example. CLI meets the assignment text interaction requirement with minimal dependencies.
+- Decision: Python 3.11+ reusable scheduling package with standard-library HTTP/JSON/dataclasses/unittest, required `zen-engine==2.1.2` policy execution, required `marimo==0.25.1` conversation/policy UI, a thin CLI and a separate deterministic demo entry point. Required live OpenAI Responses interpretation remains behind the intent adapter. No new backend or database.
+- Rationale: Existing project already declares this runtime and has a CLI/core example. The CLI and required Marimo UI share the same guarded core; the selected engines remain required even for the small initial policy set.
 - Alternatives considered: Marimo conversation and policy inspector are accepted candidate requirements. Existing Marimo prerequisite evidence is retained; UI reuses the guarded core. Generic poc_demo behavior alone is insufficient for scheduling.
 
 ## Scheduling transport and failure semantics
@@ -40,8 +40,8 @@ Date: 2026-10-08. Inputs: [specification](spec.md), [decisions](../../docs/produ
 
 ## Remaining external decisions
 
-No unresolved design clarification blocks Phase 1. Persona pins, assignment receipt baseline, public submission and recording remain pending; live-model configuration and qualification are required implementation work. They are not silently resolved by this local Plan.
+No unresolved design clarification blocks the approved implementation. Persona pins, assignment timing/compliance determinations, public submission and recording/delivery remain pending. Live-model configuration, multi-turn qualification and declared dependency/clean-copy verification are required implementation work. Exact private `Kenerator/ochsner-scheduling-policy` milestone pushes are authorized; neither this research nor that authorization proves a push or delivery occurred.
 
-## Superseding approved-lane reconciliation
+## Current approved-lane requirements
 
 Earlier suggestions that Marimo/liveAI were unaccepted follow-ons or that Python guards replaced an engine are superseded by specFR021–023 and plan reconciliation. ZEN2.1.2 is selected actual policy execution, Marimo0.25.1 is selected UI, and live Responses extraction is required. Prepared dependency readiness is reused with candidate integration and fresh-clone qualification still required. No engine is dropped due to a small rule count; no other engine is mandated without a distinct capability.

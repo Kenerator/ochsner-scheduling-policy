@@ -1,13 +1,13 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools==84.0.0", "wheel==0.48.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "poc-template"
+name = "ochsner-scheduling-policy"
 version = "0.1.0"
-description = "Small, deterministic helpers for human-centered proof-of-concept projects"
+description = "Synthetic scheduling assistant with model interpretation and ZEN policy decisions"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = ["zen-engine==2.1.2", "marimo==0.25.1"]
 
 [project.optional-dependencies]
 bootstrap = ["specify-cli @ git+https://github.com/github/spec-kit.git@f1d3a4f8337ebbd3ae22760a9c12e3352b93a175"]
@@ -15,6 +15,11 @@ bootstrap = ["specify-cli @ git+https://github.com/github/spec-kit.git@f1d3a4f83
 [project.scripts]
 poc-template = "poc_template.__main__:main"
 poc-demo = "poc_demo.__main__:main"
+scheduling-assistant = "scheduling_assistant.__main__:main"
+scheduling-demo = "scheduling_assistant.demo:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+scheduling_assistant = ["policy_models/*.json"]

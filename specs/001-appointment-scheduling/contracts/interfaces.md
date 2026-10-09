@@ -1,18 +1,18 @@
-# Planned assistant interfaces
+# Assistant interface contracts
 
-Date: 2026-10-08. [Specification](../spec.md), [data model](../data-model.md), [canonical service OpenAPI](../../../reference/openapi/scheduling-api.yaml). These contracts define proposed application boundaries, not new mock endpoints.
+Date: 2026-10-08. [Specification](../spec.md), [data model](../data-model.md), [canonical service OpenAPI](../../../reference/openapi/scheduling-api.yaml). Updated during implementation reconciliation. These contracts define application boundaries, not new mock endpoints. Integration and qualification remain ongoing; [tasks](../tasks.md) owns completion status.
 
 ## Core and text interaction
 
-`Assistant.handle(conversation, user_text) -> TurnResult` processes one turn. `TurnResult` contains display-safe message, visible provider/slot options where applicable, current state, whether confirmation is requested and known outcome category. It cannot expose private match candidates or imply delivered handoff. Core depends on scheduling and intent ports; shell/network/environment access belongs to adapters.
+`Assistant.handle(conversation, user_text) -> TurnResult` processes one turn. `TurnResult` contains display-safe message, visible provider/slot options where applicable, current state, normalized policy trace and known outcome category. Confirmation is represented by the `awaiting_confirmation` state and rendered exact proposal, rather than a separate authority-bearing boolean. It cannot expose private match candidates or imply delivered handoff. Core depends on scheduling and intent ports; shell/network/environment access belongs to adapters.
 
-Planned launch: `PYTHONPATH=src python3 -m scheduling_assistant --api-base http://127.0.0.1:4012 --intent-mode offline`. Initial message discloses the AI assistant and explicitly labels offline simulated interpretation. Read one user message per turn; retain answers, support explicit yes/no for a displayed proposal, and permit `reset` for a new conversation and `quit`. Conversation reset does not reset scheduling state or reconcile unknown booking effects; warn about unknown effects before abandoning such a session. Unexpected programming errors remain visible to the developer, without dumping patient input or credentials to diagnostics.
+CLI interface: `PYTHONPATH=src .venv/bin/python -m scheduling_assistant --api-base http://127.0.0.1:4012`. Live interpretation is the default and requires `OPENAI_API_KEY`; `--intent-mode offline` explicitly selects simulated interpretation. Initial output discloses AI and the selected mode. Read one user message per turn; retain answers, support explicit yes/no for a displayed proposal, and permit `reset` for a new conversation and `quit`. Conversation reset does not reset scheduling state or reconcile unknown booking effects; warn about unknown effects before abandoning such a session. Unexpected programming errors remain visible to the developer, without dumping patient input or credentials to diagnostics.
 
-Planned demonstrations: `python3 -m scheduling_assistant.demo --scenario provider_lookup|success|failure|duplicate_identity|conflict|no_availability|outage|medical_advice --api-base URL`. Each run uses freshly restarted owned mock state or its own disposable mock instance, reports interpreter/scenario/mode and sanitized outcomes, and makes no model-service call in offline mode. CLI option values are implementation contracts to fulfill in Tasks, not working commands today.
+Demo interface: `PYTHONPATH=src .venv/bin/python -m scheduling_assistant.demo --scenario SCENARIO`, where SCENARIO is one of `provider_lookup`, `success`, `failure`, `duplicate_identity`, `conflict`, `no_availability`, `outage`, `medical_advice`. Each run creates its own disposable supplied mock on an ephemeral port; it does not accept `--api-base` or modify the interactive service on port 4012. Output reports interpreter/scenario/mode and sanitized outcomes. Offline demos make no model-service call and cannot qualify required live multi-turn behavior. Exact integrated command qualification is tracked separately from this interface definition.
 
 ## Intent port
 
-`interpret(user_text, safe_context) -> IntentResult`: intent enum `provider_lookup`, `book`, `human_help`, `medical_advice`, `unsupported`, `unknown`; extracted user-supplied phone/DOB/zip/criteria/selection fields, with validation status. Uncertain or invalid fields require clarification. Context must minimize patient information; no private candidate list or credentials. Raw input is ephemeral and not diagnostic output.
+`interpret(user_text, safe_context) -> IntentResult`: intent enum `provider_lookup`, `book`, `human_help`, `medical_advice`, `unsupported`, `unknown`; extracted user-supplied phone/DOB/zip/criteria/selection fields. Core validates those fields; IntentResult has no separate validation-status authority field. Uncertain or invalid fields require clarification. Context must minimize patient information; no private candidate list or credentials. Raw input is ephemeral and not diagnostic output.
 
 The interpreter cannot assign a trusted patientId, invent providers/slots, assert successful effects, set confirmation or call scheduling tools. Core validates enums/date ranges, known display selections and exact confirmation provenance. Explicit confirmation is a deterministic UI/core decision; any model `confirmed` property is rejected/ignored as untrusted. Offline adapter and synthetic recorded responses are always available. Required live AI implementation/configuration is authorized by the launch grant. Unit tests use controlled transport/offline fixtures; actual multi-turn evidence remains required.
 
@@ -46,7 +46,7 @@ Construct events using an allowlist: opaque local conversation token, intent, fr
 
 ## Acceptance links
 
-Provider port/CLI: US1, FR-001–002. Identity and proposal guards: US2–3, FR-003–008. Failure outcomes: US4, FR-009–014. Diagnostics, reset, isolation and reproducible commands: US5, FR-015–020. No contract grants external execution, credential use or publication.
+Provider port/CLI: US1, FR-001–002. Identity and proposal guards: US2–3, FR-003–008. Failure outcomes: US4, FR-009–014. Diagnostics, reset, isolation and reproducible commands: US5, FR-015–020. The separate approved launch grants bounded required live-model calls and exact private `Kenerator/ochsner-scheduling-policy` milestone pushes. These interface definitions add no permission for other destinations, public publication, deployment or submission; final public delivery remains Operator-owned.
 
 ## Shared Python implementation contract (reconciled)
 
