@@ -65,3 +65,22 @@ Keyboard-only IAB: Tab from page→inspector→message field→Send, typed reque
 - `src/scheduling_assistant/adapters/intent.py`: `fcedc803dac2c7b29300995a3ac94a42ccf566ffa9bdb0999862c8501bc579b0`
 
 Before filming: exercise new Recoverycontext open/close in addition to prior control checklist; reset only owned supplied mock and conversation, inspector closed, viewport default. Owned mock restored to pristine fixture state after persona checks. No footage exists; awaiting SM exclusive capture slot/capability.
+
+
+## Final end-scroll text and video hold — 2026-10-09T01:52:25.719206-05:00
+
+Qualified runtime: **RC-3 / 078b34f4fc47e58719bfd6725b9272611435efe1**. All native implementation/persona tasks complete. This final text is a documentation-only follow-on; runtime source hashes above remain unchanged, and no redundant RC is created. Operator VIDEO HOLD supersedes capture scheduling; no new takes until explicitly resumed. Media is finalizing only the already-started provider/control clip at a safe boundary; usable file/coverage has not yet been independently confirmed here. No finished or delivered video claim.
+
+Suggested closing scroll (factual reference text; Media controls final edit):
+
+> **Policy scheduling prototype — RC-3 · 078b34f4**
+>
+> Find providers without identity; clarify synthetic patient matches privately; choose a service-returned appointment and confirm it in a separate turn. Changed choices revoke the previous proposal. Only a matching scheduling-service201 is reported booked. Conflicts, no match, empty availability and outages produce truthful finite guidance; medical advice is declined. Unknown booking outcomes require reconciliation before retry.
+>
+> **Architecture:** thin Marimo0.25.1 UI and CLI share a guarded Python core. Genuine model extraction proposes fields; actual ZEN2.1.2 decision tables gate actions; independent transaction checks control consent and booking. HTTP adapters use the supplied synthetic mock. The inspector exposes bounded rule/source/fact provenance.
+>
+> **Persona impact:** exact Jules, Ellie-Rae, Morgan-Rae and Sam-Rae hypothesis pins are retained with ancestry. Keyboard-only numbered choices and invalid-input context were exercised. Morgan's local recovery panel separates supplied field names, missing information, booking outcome and next step; support contact always remains Not sent. These are synthetic implementation checks, not real-user validation or new permissions.
+>
+> **Verification:**116tests; eight scheduling demos plus generic success/failure demos; actual live browser required-flow/control rehearsals with recording off; independent focused review. Unknown-effect evidence includes controlled core/UI tests and is not presented as a live ambiguous-write demonstration.
+>
+> **Limits and next steps:** synthetic fixtures and in-memory sessions; no production authentication, durable distributed effect/idempotency guarantees, load qualification or enterprise-readiness claim. Validate real-user needs and operational/security/audit requirements before expansion. Optional appointment retrieval and automated staff delivery remain unselected. Video/public submission are incomplete and Operator-owned; filming is currently on hold.
