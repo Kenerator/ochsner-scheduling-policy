@@ -172,3 +172,14 @@ class SchedulingUITests(unittest.TestCase):
         self.assertIn('Ochsner Health',html)
         self.assertNotIn('<script',html.lower())
         self.assertNotIn('https://',html)
+
+    def test_brand_logo_keeps_original_coordinate_system_when_resized(self):
+        from xml.etree import ElementTree as ET
+        import re
+        rendered=self.ui.brand_html()
+        svg=ET.fromstring(re.search(r"<svg\b.*?</svg>",rendered,re.S).group())
+        source=ET.parse(ROOT/'assets/ui/branding/ochsner-health-observed.svg').getroot()
+        self.assertEqual(svg.attrib.get('viewBox'),'0 0 222 26')
+        self.assertEqual(svg.attrib.get('preserveAspectRatio'),'xMinYMid meet')
+        self.assertEqual([ET.tostring(child) for child in svg],
+                         [ET.tostring(child) for child in source])

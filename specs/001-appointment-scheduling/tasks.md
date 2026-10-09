@@ -226,3 +226,11 @@ Operator instruction (2026-10-08): fix every Analyze finding, regardless of seve
 ## Completion handoff — 2026-10-09
 
 Reviewed source49c5ad5/poc/mvp: all60tasks verified for required implementation/documentation slice;109tests and8scheduling+2generic demos pass on freshprivateMacARM/Linuxclones; actualliveCLI/UIprovider,booking,no-match verified; allAnalyze findings and4finalreviewfindings fixed. As-built/navigation/diagram checks complete. Recordedvideo itself is a separateblockedfollow-on (no recorder exposed); no finishedvideo/publicdelivery/enterprise readiness is claimed. Operator timedcheckpoints remain centrally dispatched, with actualfuturecapture timestamps required.
+
+
+## User-selected visual repair — 2026-10-09
+
+- [x] T061 Reproduce clipped approved SVG, add failing coordinate-preservation regression, then repair render-time scaling and compact responsive spacing without changing dependencies or source asset geometry (depends on T057).
+- [x] T062 Verify desktop/narrow browser layouts and keyboard-accessible table overflow; run UI/full tests, Marimo check and success/failure demos; record delta review and handoff (depends on T061).
+
+Validation: 13 UI tests and 110 full tests pass; Marimo check is clean; generic success/failure demos pass. Independent source/test delta review found no material issues. Browser evidence and scope are recorded in quickstart.

@@ -125,17 +125,22 @@ with app.setup:
     def brand_html():
         assets = Path(__file__).resolve().parent / 'assets/ui'
         logo = (assets / 'branding/ochsner-health-observed.svg').read_text()
+        # The adopted source has intrinsic dimensions but no viewBox. Supply its
+        # coordinate system only at render time so responsive sizing cannot crop it.
+        logo = logo.replace('<svg ', '<svg viewBox="0 0 222 26" preserveAspectRatio="xMinYMid meet" ', 1)
         theme = (assets / 'themes/ochsner-observed-theme.css').read_text()
         return '<style>' + theme + '''
-        .policy-hero{border-top:5px solid var(--brand-accent);padding:22px 0 18px;color:var(--text)}
-        .policy-logo svg{width:190px;height:auto;max-height:70px}
-        .policy-hero h1{color:var(--brand-primary);font:700 30px/1.2 var(--font-ui);margin:20px 0 8px}
+        .policy-hero{border-top:5px solid var(--brand-accent);padding:16px 0 4px;color:var(--text)}
+        .policy-logo{line-height:0}
+        .policy-logo svg{display:block;width:222px;max-width:100%;height:auto;aspect-ratio:222/26}
+        .policy-hero h1{color:var(--brand-primary);font:700 clamp(24px,4vw,30px)/1.2 var(--font-ui);margin:16px 0 8px}
         .policy-hero p{margin:6px 0;line-height:1.5}
-        .policy-reply{background:var(--surface);color:var(--text);border:1px solid #c7d1dc;border-left:5px solid var(--brand-primary);border-radius:8px;padding:20px;margin:12px 0;white-space:pre-wrap;line-height:1.6}
-        .policy-meta{color:#394957;font-size:14px;margin:10px 0}
-        .policy-inspector{margin:18px 0;border:1px solid #c7d1dc;border-radius:8px;padding:14px;color:var(--text);background:var(--surface)}
+        .policy-reply{background:var(--surface);color:var(--text);border:1px solid #c7d1dc;border-left:5px solid var(--brand-primary);border-radius:8px;padding:16px;margin:10px 0;white-space:pre-wrap;line-height:1.6}
+        .policy-meta{color:#394957;font-size:13px;line-height:1.5;margin:0 0 8px;overflow-wrap:anywhere}
+        .policy-inspector{margin:12px 0 0;border:1px solid #c7d1dc;border-radius:8px;padding:14px;color:var(--text);background:var(--surface)}
         .policy-inspector summary{cursor:pointer;font-weight:600;color:var(--brand-primary)}
-        .policy-inspector table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+        .policy-table-scroll{overflow-x:auto;max-width:100%}
+        .policy-inspector table{width:100%;min-width:580px;border-collapse:collapse;font-size:13px;margin-top:12px}
         .policy-inspector th,.policy-inspector td{text-align:left;vertical-align:top;padding:8px;border-bottom:1px solid #d7dfe7;overflow-wrap:anywhere}
         .policy-inspector pre{white-space:pre-wrap;font-size:12px;line-height:1.5}
         .policy-inspector :focus-visible{outline:3px solid var(--brand-primary);outline-offset:3px}
@@ -155,7 +160,7 @@ with app.setup:
             snapshot = ('<details><summary>Action facts</summary><pre>'+esc('\n'.join(key+': '+value for key,value in facts.items()))+'</pre></details>'
                         if facts is not None else 'Snapshot unavailable')
             table_rows += '<tr><td>'+esc(row['disposition'])+'</td><td>'+esc(row['reason'])+'</td><td>'+esc(row['rule'])+'</td><td>'+esc(', '.join(row['sources']))+'</td><td>'+snapshot+'</td></tr>'
-        table = ('<table><thead><tr><th scope="col">Decision</th><th scope="col">Reason</th><th scope="col">Rule</th><th scope="col">Sources</th><th scope="col">Facts</th></tr></thead><tbody>'+table_rows+'</tbody></table>' if rows else '<p>No policy-gated action was proposed in this turn.</p>')
+        table = ('<div class="policy-table-scroll" role="region" aria-label="Policy decision table" tabindex="0"><table><thead><tr><th scope="col">Decision</th><th scope="col">Reason</th><th scope="col">Rule</th><th scope="col">Sources</th><th scope="col">Facts</th></tr></thead><tbody>'+table_rows+'</tbody></table></div>' if rows else '<p>No policy-gated action was proposed in this turn.</p>')
         return '<div class="policy-meta">'+esc(mode)+model+' · State: '+esc(view['state'])+' · Intent: '+esc(view.get('intent','unknown'))+'</div><section class="policy-reply" role="status" aria-live="polite" aria-label="Assistant response">'+esc(view['message'])+'</section><details class="policy-inspector"><summary>Inspect this turn’s policy decisions</summary><p>ZEN 2.1.2 gates proposed actions. The shared core independently checks identity, current confirmation and booking outcomes.</p>'+table+'</details>'
 
 
@@ -186,7 +191,7 @@ def _(brand_html, get_view, message_form, mo, view_html):
         mo.Html(view_html(get_view())),
         message_form,
         mo.md("Booking requires **yes** after the exact appointment is displayed. Send **no** to decline, or **reset** for a new conversation. Reset does not undo a booking or resolve an unknown outcome."),
-    ])
+    ], gap=1)
     return
 
 

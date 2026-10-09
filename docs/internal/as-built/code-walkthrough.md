@@ -18,3 +18,6 @@ Start at [README](../../../README.md) for verified setup and [interfaces](../../
 Add a supplied-policy regression to `test_scheduling_policy.py`, observe it fail, then change the authoritative ZEN table and source registry. Run all tests and scheduling demos; inspect the rule ID in the UI. For a new scheduling criterion, update the spec/contracts and API mapping first: do not let a model field silently invent a backend capability. Verify changed criteria invalidate consent. Keep a separately reviewed policy revision rather than embedding duplicate policy logic in an adapter.
 
 See [architecture](architecture.md), [policy index](../../../policies/README.md) and [recovery/next steps](../../product/next-steps.md). Package-resource JSON is authoritative; documentation does not execute rules.
+
+
+UI presentation update — 2026-10-09 (delta from 7cbbd7a): `app.py` adds the adopted SVG coordinate viewport at render time, responsive title/spacing, and an accessible overflow wrapper for policy tables. Source asset, dependency choices and callback/effect boundaries remain unchanged. T061–T062 and quickstart record qualification.

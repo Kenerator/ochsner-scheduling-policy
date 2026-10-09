@@ -17,3 +17,5 @@ Unchanged asset SHA256:
 The SVG was checked for active constructs before adoption. No site CSS, tracking scripts, external font calls, homepage HTML, or Epic screenshots were adopted. Gold uses dark foreground tokens; actual UI keyboard/focus and contrast checks remain implementation verification, not a claim of accessibility conformance. Supplied assignment guidance takes precedence over observed branding conventions.
 
 Runtime usage and UI verification should be linked from the [as-built walkthrough](as-built/code-walkthrough.md), [architecture](as-built/architecture.md), and [video notes](video-notes.md) once implemented.
+
+Presentation repair (2026-10-09): `app.py` supplies a 222×26 viewBox and aspect-preserving responsive sizing at render time. The adopted SVG file and path geometry are unchanged.

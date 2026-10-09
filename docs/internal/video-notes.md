@@ -20,3 +20,6 @@ Current actual UI: loopback28182, supplied API4012, live gpt-5.4-mini; offline c
 No capture files exist and no external destination was written. Canonical UI/API ports are28182/4012; no automatedhandoff feature is supported. Media/Operator must coordinate nativecapture and restart only the owned suppliedmock for each deterministictake.
 
 Handoff state at2026-10-09 00:36CDT: final-source liveUI28182 collecting/unknown, no pendingproposal; ownedAPI4012 restarted to supplied fixture state. Temporary diagram server/tab closed. No recording slot or footage exists. Private finalhandoff documentation is committed separately from reviewedsource49c5ad5.
+
+
+2026-10-09 visual repair: use the current app for future recording; the logo is no longer clipped and narrow policy tables scroll. Earlier recording-ready revision notes are historical. No finished video was created by this repair.

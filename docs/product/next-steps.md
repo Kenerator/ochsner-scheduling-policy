@@ -8,4 +8,6 @@ Operator follow-ons: pin named Primary/Patient and Support/Admin Personas; estab
 
 Enterprise follow-ons require separate design and validation: real identity/authentication/authorization, durable session/effect records and idempotency, distributed concurrency and load, audit/retention controls, clinical governance, service contracts and operational ownership. Keep ZEN policies independently versioned/reviewed/regression-tested; selected dependencies are not waived because this fixture is small.
 
-Optional appointment retrieval, automated handoff, cancellation/rescheduling and post-MVP UI refinement are deferred scope. One final independent adversarial review is selected; do not add repeated mandatory proof cycles. Meaningful annotated checkpoints are selected, not a tag per task.
+Optional appointment retrieval, automated handoff, cancellation/rescheduling are deferred scope. One final independent adversarial review is selected; do not add repeated mandatory proof cycles. Meaningful annotated checkpoints are selected, not a tag per task.
+
+User-selected visual repair is complete: approved logo coordinate scaling, compact spacing and narrow policy-table scrolling. See T061–T062 and quickstart; broader UI redesign remains unselected.
