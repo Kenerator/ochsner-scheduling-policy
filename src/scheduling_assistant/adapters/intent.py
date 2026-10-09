@@ -57,6 +57,7 @@ class OfflineIntent:
 
 # Responses structured extraction returns proposals only. All effects stay in core.
 import json
+from http.client import HTTPException
 import math
 import os
 import urllib.request
@@ -107,7 +108,7 @@ class OpenAIIntent:
         try:
             request=urllib.request.Request('https://api.openai.com/v1/responses',data=json.dumps(body).encode(),headers={'Authorization':'Bearer '+self._api_key,'Content-Type':'application/json'},method='POST')
             raw=self._transport(request,self.timeout)
-        except (urllib.error.URLError,OSError,ValueError):
+        except (urllib.error.URLError,HTTPException,OSError,ValueError):
             raise ApiError('model_unavailable') from None
         try:
             if isinstance(raw,(bytes,str)) and len(raw)>1_000_000: raise ValueError()

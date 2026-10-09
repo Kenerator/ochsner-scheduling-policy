@@ -1,5 +1,5 @@
 """CLI exercises the real core; input and diagnostic streams stay separate."""
-import io, unittest
+import io, os, subprocess, sys, unittest
 from unittest.mock import patch
 from scheduling_assistant.ports import IntentResult
 from test_scheduling_core import ScriptIntent,API
@@ -24,3 +24,13 @@ class CliTests(unittest.TestCase):
             out,err=io.StringIO(),io.StringIO()
             self.assertEqual(run([],input_stream=io.StringIO('quit\n'),output=out,error=err),2)
             self.assertIn('OPENAI_API_KEY',err.getvalue())
+
+    def test_invalid_api_base_exits_safely_without_url_or_traceback(self):
+        result=subprocess.run([sys.executable,'-m','scheduling_assistant','--intent-mode','offline','--api-base','https://example.invalid'],
+                              input='quit\n',text=True,capture_output=True,timeout=5,
+                              env={**os.environ,'PYTHONPATH':'src'})
+        self.assertEqual(result.returncode,2)
+        self.assertEqual(result.stdout,'')
+        self.assertEqual(result.stderr.strip(),'Invalid local scheduling service configuration.')
+        self.assertNotIn('https://example.invalid',result.stdout+result.stderr)
+        self.assertNotIn('Traceback',result.stderr)

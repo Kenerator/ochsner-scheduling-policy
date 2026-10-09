@@ -27,7 +27,7 @@ class Assistant:
         return TurnResult(message,c.state,options or [],list(c.policy_trace),outcome)
 
     def _decide(self,c,action,*,request='scheduling',api='not_called',consent='missing',selection=None,model='valid'):
-        identity='verified' if c.patient else ('multiple' if len(c.candidates)>1 else 'not_checked')
+        identity='verified' if c.patient else ('multiple' if len(c.candidates)>1 else 'no_match' if c.identity_attempts else 'not_checked')
         criteria=self._criteria(c)
         ready=(action=='providers' or (action=='identify' and bool(c.fields.get('phone') and c.fields.get('dob'))) or bool(criteria.get('specialty')))
         current=self._proposal_valid(c)
@@ -38,7 +38,7 @@ class Assistant:
             'consent':consent,'api':api,'model':model}
         d=self.policy.evaluate(facts)
         # Only validated policy adapter supplies safe immutable metadata.
-        c.policy_trace.append(d.as_dict());c.policy_trace=c.policy_trace[-25:]
+        c.policy_trace.append({**d.as_dict(),'facts':dict(facts)});c.policy_trace=c.policy_trace[-25:]
         return d.disposition=='proceed'
 
     @staticmethod
@@ -66,6 +66,8 @@ class Assistant:
         start=time.monotonic();diagnostic={};before=c.state
         result=self._handle_errors(c,text,diagnostic)
         category=('unknown' if result.outcome=='unknown' else 'failed' if result.outcome in {'failed','no_match','no_availability','conflict','guidance','stale'} else 'completed')
+        if result.outcome=='guidance' and 'reason' not in diagnostic:
+            diagnostic['reason']='identity_unresolved' if c.identity_attempts and not c.patient else 'policy_denied'
         reason=diagnostic.get('reason',{'no_match':'no_match','no_availability':'no_availability','conflict':'slot_taken','unknown':'unknown_write','stale':'stale_proposal'}.get(result.outcome,''))
         from .diagnostics import build_event
         if self.event_sink:self.event_sink(build_event(session=c.session_id,intent=c.intent,state=c.state,from_state=before,to_state=c.state,operation='turn',outcome=category,reason=reason,elapsed=time.monotonic()-start))
@@ -73,7 +75,7 @@ class Assistant:
 
     def _handle_errors(self,c,text,diagnostic):
         c.policy_trace=[]
-        try:return self._handle(c,text)
+        try:return self._handle(c,text,diagnostic)
         except ApiError as e:
             diagnostic['reason']=e.code
             if e.unknown:
@@ -93,7 +95,7 @@ class Assistant:
             c.proposal=None;c.state='guidance'
             return self._result(c,'The request or service data could not be validated. No confirmed booking can be reported. Check the information or contact the scheduling team.','failed')
 
-    def _handle(self,c,text):
+    def _handle(self,c,text,diagnostic):
         if not isinstance(text,str) or len(text)>4000:return self._result(c,'Use a short scheduling request. No action was taken.','failed')
         literal=text.strip().lower().rstrip('.!')
         if c.unknown:
@@ -110,17 +112,19 @@ class Assistant:
             raise ApiError('invalid_model_output')
         if any(not isinstance(v,str) for v in result.fields.values()):raise ApiError('invalid_model_output')
         if result.intent in {'medical_advice','human_help','unsupported'}:
+            c.intent=result.intent
             request={'human_help':'human_requested','medical_advice':'medical_advice','unsupported':'unsupported'}[result.intent]
+            diagnostic['reason']=request
             self._decide(c,'report',request=request);c.proposal=None;c.state='guidance'
             msg='I cannot provide medical advice or triage. Contact a healthcare professional through your usual channel.' if result.intent=='medical_advice' else 'That request needs human assistance. Contact the scheduling team through your usual channel; no handoff has been queued.'
             return self._result(c,msg,'guidance')
         changes={k:v for k,v in result.fields.items() if k!='selection' and c.fields.get(k)!=v}
         if changes:
-            c.revision+=1;c.proposal=None;c.slots=[];c.blocked_slots.clear();c.state='collecting'
+            c.revision+=1;c.proposal=None;c.slots=[];c.providers=[];c.blocked_slots.clear();c.state='collecting'
             if {'phone','dob'}&set(changes):c.patient=None;c.candidates=[];c.identity_attempts=0
             c.fields.update(changes)
         if result.intent in {'provider_lookup','book'}:
-            if result.intent!=c.intent:c.proposal=None
+            if result.intent!=c.intent:c.proposal=None;c.state='collecting'
             c.intent=result.intent
         if c.intent=='unknown':return self._result(c,'Would you like to find providers or book an appointment?')
         validate_criteria(self._criteria(c))
@@ -163,9 +167,9 @@ class Assistant:
                 matches=[validate_patient(x) for x in matches]
                 if any(x['phone']!=c.fields['phone'] or x['dateOfBirth']!=c.fields['dob'] for x in matches):raise ApiError('malformed_response')
                 if not matches:
-                    c.state='guidance';return self._result(c,'No patient matched. Check your phone/date of birth or contact scheduling through your usual channel. No patient-specific action was taken.','no_match')
+                    c.state='guidance';self._decide(c,'report',api='ok');return self._result(c,'No patient matched. Check your phone/date of birth or contact scheduling through your usual channel. No patient-specific action was taken.','no_match')
                 if len(matches)>1:
-                    c.candidates=matches;c.state='clarifying_identity'
+                    c.candidates=matches;c.state='clarifying_identity';self._decide(c,'report',api='ok')
                     return self._result(c,'More than one record matched. Please provide your ZIP code privately; I will not display candidate details.','clarification')
                 c.patient=matches[0]
         if not c.fields.get('specialty'):return self._result(c,'Which specialty: primary care or dermatology?')
@@ -176,6 +180,10 @@ class Assistant:
         if c.proposal and literal in YES:return self._book(c)
         if c.proposal:return self._result(c,self._proposal_message(c)+' Reply yes to confirm or no to decline.')
         if not c.slots:
+            if not c.providers:
+                if not self._decide(c,'providers'):return self._result(c,'Policy stopped provider lookup; contact scheduling.','guidance')
+                provider_criteria={k:v for k,v in criteria.items() if k in {'specialty','location'}}
+                c.providers=[validate_provider(x) for x in self._call(c,'providers',lambda:self.api.providers(provider_criteria))]
             if not self._decide(c,'availability'):return self._result(c,'Policy stopped availability; contact scheduling.','guidance')
             rows=self._call(c,'availability',lambda:self.api.availability(c.patient['patientId'],criteria))
             c.slots=[validate_slot(x) for x in rows]
@@ -194,13 +202,17 @@ class Assistant:
             return self._result(c,self._proposal_message(c)+' Reply yes to confirm this exact appointment or no to decline.',options=[dict(slot)])
         return self._result(c,self._options(c),options=list(c.slots))
 
+    @staticmethod
+    def _provider_name(c,provider_id):
+        return next((p['name'] for p in c.providers if p['providerId']==provider_id),'provider '+provider_id)
+
     def _options(self,c):
-        return 'Available appointments from the scheduling service:\n'+'\n'.join(f"{i}. {s['specialty']} — {s['location']} — {s['startTime']} (provider {s['providerId']})" for i,s in enumerate(c.slots,1))+'\nChoose a numbered option. Nothing is booked yet.'
+        return 'Available appointments from the scheduling service:\n'+'\n'.join(f"{i}. {s['specialty']} — {s['location']} — {s['startTime']} ({self._provider_name(c,s['providerId'])})" for i,s in enumerate(c.slots,1))+'\nChoose a numbered option. Nothing is booked yet.'
 
     def _proposal_message(self,c):
         if not self._proposal_valid(c):return 'The previous proposal is stale. Choose again; no booking was sent.'
         slot=next(s for s in c.slots if s['slotId']==c.proposal.slot_id)
-        return f"Confirm for {c.patient['firstName']} {c.patient['lastName']}: {slot['specialty']} at {slot['location']}, {slot['startTime']}, provider {slot['providerId']}."
+        return f"Confirm for {c.patient['firstName']} {c.patient['lastName']}: {slot['specialty']} at {slot['location']}, {slot['startTime']}, {self._provider_name(c,slot['providerId'])}."
 
     def _book(self,c):
         # This guard remains authoritative even if an engine is replaced or defective.

@@ -1,15 +1,16 @@
-# Optional adversarial review
+# Independent adversarial review
 
-Status: **not performed**. Reviewed source commit: pending. Reviewer/method: pending.
+Updated: 2026-10-09. Independent reviewer inspected implementation046287d plus working core/name/provenance changes, requirements and tests. One full review followed by targeted delta review; no repeated mandatory proof cycle.
 
-Schedule once near completion or as an Operator-selected follow-on; this is not an implementation/MVP gate. Reuse an adequate existing independent review rather than creating another mandatory cycle.
+Four actionable findings were reproduced and fixed with tests first:
 
-Prefer a read-only Claude consultation in observable tmux under the environment's current permissions; Codex is an acceptable fallback. Share the attach command. Review supplied sanitized evidence only; do not grant new live access or copy raw transcripts into Git.
+| Finding | Fix and verification |
+| --- | --- |
+| P2 escalation diagnostics omitted classified intent/reason | Core records actual human/medical/unsupported turn intent and fixed escalation reason; unresolved identity/policy denial receive allowlisted categories. Review regressions pass. |
+| P2 truncated model HTTP response escaped safe handling | OpenAI adapter catches HTTPException/IncompleteRead as model_unavailable, makes one attempt and emits no raw failure content. Controlled transport regressions pass. |
+| P2 normalized policy facts not inspectable (FR022) | Core retains exact ten categorical inputs per decision; UI validates exact enum contract and renders safe snapshot. Invalid/extra/nested facts are omitted. Actual-core/privacy UI tests pass. |
+| P3 invalid CLI API configuration raised traceback | CLI catches actual ApiError configuration failure, returns2 with safe message and no raw URL. Subprocess regression passes. |
 
-Focus on exact confirmation/replay, ambiguous outcomes, malicious API text, constrained-persona accessibility, clean setup and misleading UI or claims. Document limits: synthetic evidence is not real-service, clinical, security or compliance acceptance.
+Independent targeted delta review: all four findings closed,37focused tests passed in0.640s, no introduced defect found. Root combined verification separately recorded in [validation](../../../specs/001-appointment-scheduling/quickstart.md). Reviewer did not independently reproduce external live-model evidence or remote clone checks; those have separate receipts. No raw consultation transcript, secrets or patient data is included.
 
-| Finding / source location | Impact | Disposition or next step |
-| --- | --- | --- |
-| Pending | Pending | Pending |
-
-Include only sanitized findings and useful synthetic regressions. Commit the report and fixes, record an immutable named review tag in [milestones](../milestones.md), then push the named commit/tag only to an already-authorized destination with its required privacy. No new publication authority is implied. If deferred, record it in [next steps](../../product/next-steps.md).
+Enterprise authentication, durable idempotency, distributed effects, clinical governance and load proof remain explicit limitations rather than newly invented MVP review gates. Final source revision is recorded by the immutable completion checkpoint and as-built docs; a checkpoint does not certify production readiness.

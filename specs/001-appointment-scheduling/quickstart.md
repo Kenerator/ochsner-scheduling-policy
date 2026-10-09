@@ -81,3 +81,7 @@ MacARM Python3.11.13: 103 unittest tests passed after integration, including act
 Authorized actual Responses model (`gpt-5.4-mini`) + actual ZEN + disposable suppliedHTTP service: provider_lookup returned providers, zero booking POST,1897.06ms whole scenario; success gathered missing identity over turns, displayed options/proposal then explicit yes, booked with exactly onePOST,5027.46ms; failure no_match,zeroPOST,3452.06ms. One sequential synthetic conversation per run; measured whole scenario, not per-turn throughput or production SLA. Raw prompts/transcripts/key were not emitted or saved. Live completion exceeds400ms; no claim of meeting that target.
 
 Controlled IAB and fresh private-clone Mac/Linux qualification remain in progress. Recorded video is not delivered.
+
+## Fresh private GitHub clone qualification
+
+Commit046287d3f121eac522659c564c76a8b75ed665bb qualified on MacARM/Python3.11.13 and Minty Linuxx86_64/Python3.12.3. Both used new remote clones and project virtual environments, installed all28 locked package versions plus editable project, passed pip check and103tests, both generic demos and all8 scheduling demos. No source/venv copy, global/trust change or model credential was used. MacSSH22 timed out; the successful clone used per-command SSH443 with existing GitHub host trust. These host-specific paths/auth details are operational evidence, not reviewer prerequisites. Current core provenance/name-display deltas need targeted refresh on these exact clones before final handoff.

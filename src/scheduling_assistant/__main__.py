@@ -5,6 +5,7 @@ import os
 import sys
 from .core import Assistant
 from .models import Conversation
+from .ports import ApiError
 from .adapters.http import HttpSchedulingAPI
 
 def run(argv=None, *, input_stream=None, output=None, error=None, api=None, intent=None):
@@ -21,7 +22,7 @@ def run(argv=None, *, input_stream=None, output=None, error=None, api=None, inte
             return 2
         intent=OfflineIntent() if args.intent_mode=='offline' else OpenAIIntent(model=args.model)
     try:api=api or HttpSchedulingAPI(args.api_base)
-    except (ValueError,TypeError):
+    except (ApiError,ValueError,TypeError):
         print('Invalid local scheduling service configuration.',file=error);return 2
     assistant=Assistant(api,intent,event_sink=lambda event:print(json.dumps(event,sort_keys=True),file=error))
     conversation=Conversation()

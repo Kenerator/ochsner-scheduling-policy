@@ -1,40 +1,20 @@
 # Code walkthrough
 
-Updated: not yet populated. Reviewed source revision: not yet recorded.
-Status: bootstrap stub; not evidence of implemented behavior.
+Updated: 2026-10-09. Reviewed source: `046287d3f121eac522659c564c76a8b75ed665bb` plus current tested core/acceptance deltas for identity-failure provenance and provider-name joins. Fresh-clone qualification and final review are tracked in [tasks](../../../specs/001-appointment-scheduling/tasks.md).
 
-For humans and agents finding the code to inspect, explain or modify. Populate
-from actual implementation, not the proposed architecture. Prefer repository-relative
-file links and exact symbols; optional line references must name the reviewed
-revision because lines move. Keep this a navigation aid, not a second task ledger.
+Start at [README](../../../README.md) for verified setup and [interfaces](../../../specs/001-appointment-scheduling/contracts/interfaces.md) for boundaries.
 
-## Find the relevant code
+1. [models.py](../../../src/scheduling_assistant/models.py) validates essential returned service facts and supported criteria. `Conversation` privately owns each session; frozen `Proposal` binds session, revision, patient, returned slot and criteria snapshot. `test_scheduling_models.py` covers malformed service facts, fixture-only data and isolation.
+2. [intent.py](../../../src/scheduling_assistant/adapters/intent.py) offers disclosed offline rehearsal and actual Responses extraction. `OpenAIIntent.interpret` sends only current text and bounded workflow context, uses strict JSON schema, validates latest-text field provenance and cannot call scheduling tools or grant consent. `test_scheduling_intent.py` tests authority injection, malformed outputs and safe failures using controlled transport.
+3. [policy.py](../../../src/scheduling_assistant/policy.py) executes ZEN2.1.2 using committed [decision tables](../../../src/scheduling_assistant/policy_models/scheduling.json). Strict enum facts contain no patient data. Stable rules/reasons link to the [source registry](../../../src/scheduling_assistant/policy_models/sources.json). Invalid engine input/output/load/evaluation stops; no Python fallback. `test_scheduling_policy.py` evaluates the actual engine, priority, catchall and fail-closed boundaries.
+4. [core.py](../../../src/scheduling_assistant/core.py) is the reusable workflow. `Assistant.handle` interprets one turn; `_decide` gates proposed actions; `_proposal_valid` independently checks immutable context and offered-slot membership; `_book` sends one confirmed request only after current literal assent. Changed criteria or selection invalidates the proposal. Duplicate candidates stay private; ZIP filters returned candidates locally. Actual201 must match patient and slot facts;409 requires a fresh choice; indeterminate writes freeze the conversation. Core and real-service acceptance tests cover these boundaries.
+5. [http.py](../../../src/scheduling_assistant/adapters/http.py) maps only supplied endpoints. It validates returned envelopes/facts, uses finite timeouts, never retries and distinguishes a validated rejection from an unknown write. [supplied server](../../../reference/mock-api/server.py) owns synthetic scheduling state; no replacement backend or database exists. `test_scheduling_http.py` starts disposable supplied servers and injects transport faults.
+6. [diagnostics.py](../../../src/scheduling_assistant/diagnostics.py) constructs allowlisted event metadata and fixed safe categories. Raw text, bodies, queries, identity values, names and keys never enter event fields. `test_scheduling_diagnostics.py` checks success/failure/unknown outcomes and privacy.
+7. [CLI](../../../src/scheduling_assistant/__main__.py) and [Marimo app](../../../app.py) share the same core. UI submission callbacks own effects; render functions only display snapshots and normalized policy traces. Each client owns a conversation. `test_scheduling_cli.py` and `test_scheduling_ui.py` cover mode disclosure, rerender safety, isolation and unknown-effect recovery.
+8. [demo.py](../../../src/scheduling_assistant/demo.py) starts fresh disposable supplied-service instances and emits sanitized scenario evidence. Offline demo success does not prove live interpretation. `test_scheduling_demo.py` repeats every scenario twice; [acceptance tests](../../../tests/test_scheduling_acceptance.py) combine actual core, ZEN and HTTP.
 
-| What you want to inspect/change | File and symbol | Relevant behavior tests | Boundary / change caution |
-| --- | --- | --- | --- |
-| Main user journey / entry point | Pending implementation | Pending | Pending |
-| Core rules and state transitions | Pending implementation | Pending | Pending |
-| External adapter / fixtures / optional integrations | Pending implementation | Pending | Pending |
-| Failure, recovery, confirmation and handoff | Pending implementation | Pending | Pending |
+## Team modification exercise
 
-Replace these examples with the project's useful navigation targets; mark
-inapplicable capabilities explicitly rather than implying they exist.
+Add a supplied-policy regression to `test_scheduling_policy.py`, observe it fail, then change the authoritative ZEN table and source registry. Run all tests and scheduling demos; inspect the rule ID in the UI. For a new scheduling criterion, update the spec/contracts and API mapping first: do not let a model field silently invent a backend capability. Verify changed criteria invalidate consent. Keep a separately reviewed policy revision rather than embedding duplicate policy logic in an adapter.
 
-## Small team-review change
-
-Pending: identify one safe, meaningful modification, its entry symbol and test
-command. Describe any effect/authorization boundary the reviewer must preserve.
-
-## Implementation task placement
-
-During Spec-Kit Tasks, schedule a near-final task: populate this walkthrough
-and the [as-built architecture](architecture.md) from stabilized code and tests;
-check paths/symbols, diagram accuracy and README links; stamp the reviewed revision.
-Independent sections may be drafted in parallel once their code is stable.
-Finalize after integration, before the completion handoff. This is **not a
-prerequisite for beginning implementation**. Update affected sections after changes.
-
-See [development](../development.md), [video notes](../video-notes.md) and
-[decisions](../../product/decisions.md) for commands, demonstrated claims and rationale.
-Link the relevant [milestone tag](../milestones.md) for this reviewed version;
-include actual theme/UI-asset entry points when applicable.
+See [architecture](architecture.md), [policy index](../../../policies/README.md) and [recovery/next steps](../../product/next-steps.md). Package-resource JSON is authoritative; documentation does not execute rules.

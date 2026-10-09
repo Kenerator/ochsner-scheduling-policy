@@ -41,6 +41,8 @@ class CoreTests(unittest.TestCase):
         self.assertIn('Synthetic Doctor',r.message);self.assertEqual([x[0] for x in api.calls],['providers'])
     def test_no_booking_before_exact_proposal_and_current_yes_or_on_replay(self):
         a,c,api,first,proposal=booking()
+        self.assertIn(PROVIDER['name'],first.message)
+        self.assertIn(PROVIDER['name'],proposal.message)
         self.assertIn(SLOT['startTime'],first.message);self.assertEqual(c.state,'awaiting_confirmation')
         self.assertNotIn('book',[x[0] for x in api.calls]);self.assertIn(SLOT['startTime'],proposal.message)
         r=a.handle(c,'yes');self.assertEqual(r.outcome,'booked')

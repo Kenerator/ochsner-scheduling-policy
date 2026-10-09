@@ -69,6 +69,7 @@ class SchedulingAcceptanceTests(unittest.TestCase):
     def test_no_match_never_reads_private_availability(self):
         result = self.assistant(dict(BOOK,phone='555-9999'))
         self.assertEqual(result.outcome,'no_match')
+        self.assertIn('R-REPORT-NO-MATCH',[x['rule'] for x in result.policy])
         self.turn('yes')
         self.assertEqual([r['path'] for r in self.requests],['/patients/search'])
         self.assertEqual(self.writes(),[])
@@ -76,13 +77,14 @@ class SchedulingAcceptanceTests(unittest.TestCase):
     def test_duplicate_identity_is_private_then_zip_resolves_locally(self):
         result = self.assistant(dict(BOOK,phone='555-0130',dob='1978-09-22'))
         self.assertEqual(result.outcome,'clarification')
+        self.assertIn('R-REPORT-MULTIPLE',[x['rule'] for x in result.policy])
         for private in ('Avery','Patel','70115','70005','pat_1003','pat_1004'):
             self.assertNotIn(private,result.message+str(result.options))
         self.assertEqual([r['path'] for r in self.requests],['/patients/search'])
         options = self.turn('70005',{'zip':'70005'},'book')
         self.assertEqual(self.c.patient['patientId'],'pat_1004')
         self.assertTrue(options.options)
-        self.assertEqual([r['path'] for r in self.requests],['/patients/search','/availability'])
+        self.assertEqual([r['path'] for r in self.requests],['/patients/search','/providers','/availability'])
         self.assertNotIn('zip',self.requests[0]['query'].lower())
         self.assertNotIn('70005',self.requests[0]['query'])
 

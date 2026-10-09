@@ -25,6 +25,7 @@ class OfflineIntentTests(unittest.TestCase):
             self.assertEqual(self.adapter.interpret(text,{'intent':'book','needed':['selection'],'phone':'555-010-0200'}).fields,{})
 
 import contextlib
+import http.client
 import io
 import json
 import os
@@ -81,20 +82,21 @@ class LiveIntentTests(unittest.TestCase):
                 self.assertEqual(caught.exception.code,'invalid_model_output')
 
     def test_no_retry_and_sanitized_network_failures(self):
-        for error in [TimeoutError('SENSITIVE-PHONE'),urllib.error.URLError('SENSITIVE-DOB'),urllib.error.HTTPError('SENSITIVE-URL',429,'SENSITIVE-KEY',{},None)]:
-            calls=[]
-            def transport(req,timeout):
-                calls.append(req)
-                raise error
-            output=io.StringIO()
-            with contextlib.redirect_stdout(output),contextlib.redirect_stderr(output):
-                with self.assertRaises(ApiError) as caught:
-                    OpenAIIntent(api_key='synthetic-key',transport=transport).interpret('SENSITIVE-UTTERANCE',{})
-            self.assertEqual(len(calls),1)
-            self.assertEqual(caught.exception.code,'model_unavailable')
-            self.assertNotIn('SENSITIVE',str(caught.exception))
-            self.assertEqual(output.getvalue(),'')
-            self.assertTrue(caught.exception.__suppress_context__)
+        for error in [http.client.HTTPException('SENSITIVE-TRANSPORT'),http.client.IncompleteRead(b'SENSITIVE-BODY',100),TimeoutError('SENSITIVE-PHONE'),urllib.error.URLError('SENSITIVE-DOB'),urllib.error.HTTPError('SENSITIVE-URL',429,'SENSITIVE-KEY',{},None)]:
+            with self.subTest(error_type=type(error).__name__):
+                calls=[]
+                def transport(req,timeout):
+                    calls.append(req)
+                    raise error
+                output=io.StringIO()
+                with contextlib.redirect_stdout(output),contextlib.redirect_stderr(output):
+                    with self.assertRaises(ApiError) as caught:
+                        OpenAIIntent(api_key='synthetic-key',transport=transport).interpret('SENSITIVE-UTTERANCE',{})
+                self.assertEqual(len(calls),1)
+                self.assertEqual(caught.exception.code,'model_unavailable')
+                self.assertNotIn('SENSITIVE',str(caught.exception))
+                self.assertEqual(output.getvalue(),'')
+                self.assertTrue(caught.exception.__suppress_context__)
 
     def test_refusal_incomplete_and_malformed_outputs_fail_closed(self):
         malformed=[b'not json',json.dumps({'status':'incomplete','output':[]}).encode(),json.dumps({'status':'completed','output':[{'type':'message','content':[{'type':'refusal','refusal':'SENSITIVE'}]}]}).encode()]

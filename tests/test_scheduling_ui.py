@@ -61,6 +61,18 @@ class SchedulingUITests(unittest.TestCase):
         session.submit('yes')
         self.assertEqual([x[0] for x in api.calls].count('book'),1)
         self.assertTrue(booked['policy'])
+        from scheduling_assistant.policy import ENUMS
+        for row in booked['policy']:
+            self.assertEqual(set(row['facts']),set(ENUMS))
+            for key,value in row['facts'].items():self.assertIn(value,ENUMS[key])
+        book_decision=next(row for row in booked['policy'] if row['facts']['action']=='book')
+        self.assertEqual(book_decision['facts']['consent'],'current_explicit')
+        self.assertEqual(book_decision['facts']['proposal'],'current')
+        rendered=self.ui.view_html(booked)
+        self.assertIn('action: book',rendered)
+        self.assertIn('consent: current_explicit',rendered)
+        self.assertNotIn('555-0101',rendered)
+        self.assertNotIn('1985-04-12',rendered)
 
     def test_no_match_is_truthful_and_private(self):
         session,api=self.session(IntentResult('book',{'phone':'555-9999','dob':'1990-01-01','specialty':'primary_care'}))
@@ -87,6 +99,37 @@ class SchedulingUITests(unittest.TestCase):
         rows=[{'disposition':'proceed','reason':'<script>secret</script>','rule':'R-TEST','sources':['POL-ID-01']},
               {'disposition':'stop','reason':'safe_reason','rule':'R-TEST','sources':['secret identity value']}]
         self.assertEqual(self.ui.normalized_trace(rows),[])
+
+    def test_trace_displays_exact_categorical_snapshot_with_its_decision(self):
+        facts={'action':'book','request':'scheduling','criteria':'supported',
+               'identity':'verified','slots':'returned','selection':'returned_option',
+               'proposal':'current','consent':'current_explicit','api':'not_called','model':'valid'}
+        row={'disposition':'proceed','reason':'booking_confirmed','rule':'R-TEST',
+             'sources':['SPEC-FR022'],'facts':facts,'raw':'private-sentinel'}
+        normalized=self.ui.normalized_trace([row])
+        self.assertEqual(normalized[0]['facts'],facts)
+        self.assertIsNot(normalized[0]['facts'],facts)
+        view={'mode':'offline','model':'test','state':'awaiting_confirmation',
+              'message':'Confirm the displayed appointment.','policy':[row]}
+        rendered=self.ui.view_html(view)
+        for key,value in facts.items():self.assertIn(key+': '+value,rendered)
+        self.assertIn('R-TEST',rendered)
+        self.assertNotIn('private-sentinel',rendered)
+
+    def test_trace_omits_invalid_nested_facts_without_inventing_legacy_snapshot(self):
+        facts={'action':'book','request':'scheduling','criteria':'supported',
+               'identity':'verified','slots':'returned','selection':'returned_option',
+               'proposal':'current','consent':'current_explicit','api':'not_called','model':'valid'}
+        base={'disposition':'stop','reason':'safe_reason','rule':'R-TEST','sources':['SPEC-FR022']}
+        variants=[{**facts,'identity':'private-sentinel'}, {**facts,'phone':'private-sentinel'},
+                  {k:v for k,v in facts.items() if k!='consent'}, {**facts,'identity':{'raw':'private-sentinel'}},
+                  {**facts,'action':['book']}, 'private-sentinel', None]
+        for invalid in variants:
+            with self.subTest(invalid=invalid):
+                rows=self.ui.normalized_trace([{**base,'facts':invalid}])
+                self.assertEqual(rows,[base])
+                self.assertNotIn('private-sentinel',str(rows))
+        self.assertEqual(self.ui.normalized_trace([base]),[base])
 
     def test_default_live_mode_and_explicit_offline_configuration(self):
         with patch.object(self.ui,'build_assistant',return_value=object()) as build:

@@ -14,6 +14,7 @@ with app.setup:
     import re
     from threading import Lock
     import marimo as mo
+    from scheduling_assistant.policy import ENUMS as POLICY_FACT_ENUMS
 
     def normalized_trace(rows):
         """Display the fixed normalized policy shape, never arbitrary engine fields."""
@@ -30,7 +31,15 @@ with app.setup:
                 not isinstance(sources, (list, tuple)) or not sources or
                 any(not isinstance(s, str) or not re.fullmatch(r'[A-Z][A-Z0-9-]{1,60}', s) for s in sources)):
                 continue
-            result.append({'disposition': disposition, 'reason': reason, 'rule': rule, 'sources': list(sources)})
+            decision = {'disposition': disposition, 'reason': reason, 'rule': rule, 'sources': list(sources)}
+            facts = row.get('facts')
+            # Only controller-derived enum snapshots are inspectable. Keep a valid
+            # legacy decision without inventing facts or exposing invalid nested data.
+            if (type(facts) is dict and set(facts) == set(POLICY_FACT_ENUMS) and
+                all(type(facts[key]) is str and facts[key] in allowed
+                    for key, allowed in POLICY_FACT_ENUMS.items())):
+                decision['facts'] = {key: facts[key] for key in POLICY_FACT_ENUMS}
+            result.append(decision)
         return result
 
 
@@ -128,6 +137,7 @@ with app.setup:
         .policy-inspector summary{cursor:pointer;font-weight:600;color:var(--brand-primary)}
         .policy-inspector table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
         .policy-inspector th,.policy-inspector td{text-align:left;vertical-align:top;padding:8px;border-bottom:1px solid #d7dfe7;overflow-wrap:anywhere}
+        .policy-inspector pre{white-space:pre-wrap;font-size:12px;line-height:1.5}
         .policy-inspector :focus-visible{outline:3px solid var(--brand-primary);outline-offset:3px}
         </style><header class="policy-hero"><div class="policy-logo" role="img" aria-label="Ochsner Health">''' + logo + '''</div>
         <h1>Let's find your appointment</h1><p>AI scheduling assistant · synthetic demonstration</p>
@@ -139,8 +149,13 @@ with app.setup:
         mode = 'Live AI interpretation' if view['mode'] == 'live' else 'Offline rehearsal · deterministic interpretation'
         model = ' · Model: ' + esc(view['model']) if view['mode'] == 'live' else ''
         rows = normalized_trace(view.get('policy', []))
-        table_rows = ''.join('<tr><td>'+esc(row['disposition'])+'</td><td>'+esc(row['reason'])+'</td><td>'+esc(row['rule'])+'</td><td>'+esc(', '.join(row['sources']))+'</td></tr>' for row in rows)
-        table = ('<table><thead><tr><th scope="col">Decision</th><th scope="col">Reason</th><th scope="col">Rule</th><th scope="col">Sources</th></tr></thead><tbody>'+table_rows+'</tbody></table>' if rows else '<p>No policy-gated action was proposed in this turn.</p>')
+        table_rows = ''
+        for row in rows:
+            facts = row.get('facts')
+            snapshot = ('<details><summary>Action facts</summary><pre>'+esc('\n'.join(key+': '+value for key,value in facts.items()))+'</pre></details>'
+                        if facts is not None else 'Snapshot unavailable')
+            table_rows += '<tr><td>'+esc(row['disposition'])+'</td><td>'+esc(row['reason'])+'</td><td>'+esc(row['rule'])+'</td><td>'+esc(', '.join(row['sources']))+'</td><td>'+snapshot+'</td></tr>'
+        table = ('<table><thead><tr><th scope="col">Decision</th><th scope="col">Reason</th><th scope="col">Rule</th><th scope="col">Sources</th><th scope="col">Facts</th></tr></thead><tbody>'+table_rows+'</tbody></table>' if rows else '<p>No policy-gated action was proposed in this turn.</p>')
         return '<div class="policy-meta">'+esc(mode)+model+' · State: '+esc(view['state'])+' · Intent: '+esc(view.get('intent','unknown'))+'</div><section class="policy-reply" role="status" aria-live="polite" aria-label="Assistant response">'+esc(view['message'])+'</section><details class="policy-inspector"><summary>Inspect this turn’s policy decisions</summary><p>ZEN 2.1.2 gates proposed actions. The shared core independently checks identity, current confirmation and booking outcomes.</p>'+table+'</details>'
 
 
