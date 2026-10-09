@@ -1,6 +1,6 @@
 # Assistant interface contracts
 
-Date: 2026-10-08. [Specification](../spec.md), [data model](../data-model.md), [canonical service OpenAPI](../../../reference/openapi/scheduling-api.yaml). Updated during implementation reconciliation. These contracts define application boundaries, not new mock endpoints. Integration and qualification remain ongoing; [tasks](../tasks.md) owns completion status.
+Date: 2026-10-08. [Specification](../spec.md), [data model](../data-model.md), [canonical service OpenAPI](../../../reference/openapi/scheduling-api.yaml). Updated during implementation reconciliation. These contracts define application boundaries, not new mock endpoints. Integration and qualification evidence is recorded in quickstart; [tasks](../tasks.md) owns completion status.
 
 ## Core and text interaction
 

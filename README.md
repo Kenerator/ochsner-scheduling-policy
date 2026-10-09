@@ -52,7 +52,7 @@ PYTHONPATH=src .venv/bin/python -m poc_demo --scenario failure
 
 Scheduling demos own disposable supplied-service instances, use offline interpretation, emit sanitized summaries, and need no running service or key. Additional scenarios: `duplicate_identity`, `conflict`, `no_availability`, `outage`, `medical_advice`. The retained `poc_demo` commands are generic scaffold regressions, not scheduling acceptance evidence.
 
-Actual live provider lookup, multi-turn booking and no-match runs passed with Python 3.11.13; success sent one booking POST and both other flows sent none. See the validation guide for exact measurements and outstanding qualifications.
+Actual live CLI and controlled-IAB provider lookup, multi-turn booking and no-match passed. Fresh private clones passed109tests and all demos on MacARM/Python3.11.13 and Linux/Python3.12.3. See the validation guide for measurements and recording limitations.
 
 ## Boundaries and document index
 

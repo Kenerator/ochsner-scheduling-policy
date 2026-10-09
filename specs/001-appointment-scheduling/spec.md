@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-08
 
-**Status**: Specification reconciled with the approved Policy candidate; implementation and integration verification are ongoing. Detailed progress is maintained in [tasks.md](tasks.md).
+**Status**: Specification reconciled with the approved Policy candidate; implementation and integration verification are complete for the synthetic required slice. Detailed progress is maintained in [tasks.md](tasks.md).
 
 **Historical Specify record (2026-10-08)**: Q1 was resolved and the specification was ready for planning before implementation began. That stage boundary did not revoke the separate launch approval.
 

@@ -2,7 +2,7 @@
 
 **Branch**: local Git `main`; native feature identifier `001-appointment-scheduling` | **Date**: 2026-10-08 | **Spec**: [spec.md](spec.md)
 
-**Input**: `specs/001-appointment-scheduling/spec.md`. Native setup completed; no Git extension or new branch requested. Implementation and integration verification are ongoing under [tasks.md](tasks.md).
+**Input**: `specs/001-appointment-scheduling/spec.md`. Native setup completed; no Git extension or new branch requested. Implementation and integration verification are recorded under [tasks.md](tasks.md).
 
 **Historical Plan-stage record (2026-10-08)**: The native Plan stage ended after Phase 1 before Tasks and implementation began. The reconciled requirements and contracts below govern the current implementation; this historical stage boundary does not defer approved work.
 

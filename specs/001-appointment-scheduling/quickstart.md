@@ -1,6 +1,6 @@
 # Implementation validation quickstart
 
-Updated during implementation reconciliation, 2026-10-08. The scheduling package, CLI and demo entry points now exist; integration, dependency setup and final qualification remain ongoing in [tasks](tasks.md). Commands below describe the current interfaces and expected outcomes, not a claim that every setup/platform/live scenario has been qualified. Generic starter demos do not prove scheduling acceptance. Run commands from repository root. See [interfaces](contracts/interfaces.md) and [data model](data-model.md).
+Updated2026-10-09. The implemented scheduling package, CLI, Marimo and demos are qualified as recorded below; [tasks](tasks.md) owns completion. Commands describe the current tested interfaces and supported platforms. Generic starter demos do not prove scheduling acceptance. Run commands from repository root. See [interfaces](contracts/interfaces.md) and [data model](data-model.md).
 
 ## Prerequisites and setup
 
@@ -80,8 +80,18 @@ MacARM Python3.11.13: 103 unittest tests passed after integration, including act
 
 Authorized actual Responses model (`gpt-5.4-mini`) + actual ZEN + disposable suppliedHTTP service: provider_lookup returned providers, zero booking POST,1897.06ms whole scenario; success gathered missing identity over turns, displayed options/proposal then explicit yes, booked with exactly onePOST,5027.46ms; failure no_match,zeroPOST,3452.06ms. One sequential synthetic conversation per run; measured whole scenario, not per-turn throughput or production SLA. Raw prompts/transcripts/key were not emitted or saved. Live completion exceeds400ms; no claim of meeting that target.
 
-Controlled IAB and fresh private-clone Mac/Linux qualification remain in progress. Recorded video is not delivered.
+Historical receipt at initial integration: IAB/clean-clone checks were pending then; subsequent receipts below supersede that status. Recorded video remains undelivered.
 
 ## Fresh private GitHub clone qualification
 
-Commit046287d3f121eac522659c564c76a8b75ed665bb qualified on MacARM/Python3.11.13 and Minty Linuxx86_64/Python3.12.3. Both used new remote clones and project virtual environments, installed all28 locked package versions plus editable project, passed pip check and103tests, both generic demos and all8 scheduling demos. No source/venv copy, global/trust change or model credential was used. MacSSH22 timed out; the successful clone used per-command SSH443 with existing GitHub host trust. These host-specific paths/auth details are operational evidence, not reviewer prerequisites. Current core provenance/name-display deltas need targeted refresh on these exact clones before final handoff.
+Commit046287d3f121eac522659c564c76a8b75ed665bb qualified on MacARM/Python3.11.13 and Minty Linuxx86_64/Python3.12.3. Both used new remote clones and project virtual environments, installed all28 locked package versions plus editable project, passed pip check and103tests, both generic demos and all8 scheduling demos. No source/venv copy, global/trust change or model credential was used. MacSSH22 timed out; the successful clone used per-command SSH443 with existing GitHub host trust. These host-specific paths/auth details are operational evidence, not reviewer prerequisites. The final reviewed-source refresh below qualifies these deltas on the same independently cloned environments.
+
+Final reviewed-source refresh:49c5ad5706988be77770f646f202637d7f7acf43. MacARM/Python3.11.13 passed109tests in16.552s; Linux/Python3.12.3 passed109tests in17.460s. Both retained fresh private clones fast-forwarded from the install-qualified source, preserved all28 locked versions, passed pip check and all8scheduling+2generic demos. Root current combined109tests also passed16.397s. Independent targeted review verified allfourfixes with37tests; no introduced defect found.
+
+Final-source live CLI qualification49c5ad5: provider_lookup exited0,correctresult,0POST,1455.18ms; multi-turnsuccess exited0,correctbooked,1POST,4968.91ms; no-match exited0,correctguidance,0POST,3282.15ms. Each owned a fresh suppliedservice. Only sanitized summaries were emitted; captured transient text/key stayed in process memory.
+
+## Controlled in-app browser receipt
+
+Reviewed source49c5ad5, livegpt-5.4-mini, UIloopback28182/API4012,2026-10-09 America/Chicago. Public lookup visibly returned supplied providers without identity. Multi-turn booking gathered missing identity, offered actual slots with returned provider names, displayed exact proposal, then accepted a separate literalyes. Supplied service logged actualPOST201; UI displayed the matching booked result. Final-source repeat logged201 at00:31:58CDT. Inspector visibly showed action=book,identity=verified,proposal=current,consent=current_explicit and stableR-BOOK/sourceIDs. Reset preserved serverbookings; subsequent no-match logged onlyGETsearch at00:33:40 and displayed finite guidance plusR-REPORT-NO-MATCH. No queuedhandoff was claimed. Offline browser booking/no-match, keyboard submission and client isolation also passed earlier; early readonlyChrome smoke occurred beforeIAB-onlydirection and its tabs were closed. Finalqualification used controlledIAB.
+
+Both as-built Mermaid diagrams rendered in controlledIAB through a temporary loopback page;104localnavigation links checked with zero missing targets at final integration. No WCAG conformance, throughput, enterprise readiness or recordedvideo claim follows from these checks. Actualvideo remains blocked on Operator/Media nativecapture; no supported recorder is exposed in thisagent session.

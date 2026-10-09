@@ -1,12 +1,7 @@
 # Product brief
 
-<!-- Adoption: replace the following generic statements with your input-derived brief. -->
+Updated:2026-10-09. Provide a reviewable synthetic scheduling conversation: public provider lookup, identified booking with exact confirmation, and truthful failure guidance. Primary/Patient and Support/Admin Persona pins remain unresolved; [stories](user-stories.md) index canonical requirements.
 
-- Purpose/pain: make a consequential workflow understandable and easy to demonstrate without exposing real data or services.
-- People/agents: select personas in [personas](personas.md), including user and support/admin needs. Names do not imply verified identity.
-- Journeys: reconcile supplied and inferred [User Stories](user-stories.md) with Persona pins; native feature stories own accepted detail.
-- Success: show the actual proposal, confirm it, perform one synthetic operation and explain the result.
-- Failure/recovery: cancellation performs no operation; unavailable service gives a finite handoff.
-- Assumptions: Python core/CLI is a reference starter, not a required final UI; synthetic fixtures are deliberate.
-- Evidence: meaningful behavior tests and repeatable demos; user research and real integration remain explicit next steps.
-- Limits: no live API, user authentication, durable execution, deployment or compliance certification.
+Live model extraction interprets text; actual ZEN2.1.2 decides proposed progression; the reusable core independently enforces identity, returned options, current consent and confirmed service outcomes. Marimo0.25.1 and CLI share this core. The unchanged supplied mock owns synthetic scheduling state.
+
+[Validation](../../specs/001-appointment-scheduling/quickstart.md) distinguishes live, offline, browser and fresh-clone evidence. [Next steps](next-steps.md) carries video/delivery and enterprise follow-ons. No production identity, durable/distributed effects, clinical advice, automated staff delivery or readiness certification is implied.

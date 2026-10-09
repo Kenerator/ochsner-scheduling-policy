@@ -1,6 +1,6 @@
 # User Stories — draft and index
 
-Updated 2026-10-08. Supplied journeys and scenarios remain verbatim in intake. Reconciled story detail now lives in the native specification below; Q1 is resolved with optional appointment lookup and required duplicate-identity clarification within booking. Specification validation is not implementation completion evidence.
+Updated 2026-10-09. Supplied journeys and scenarios remain verbatim in intake. Reconciled story detail now lives in the native specification below; Q1 is resolved with optional appointment lookup and required duplicate-identity clarification within booking. Specification validation is not implementation completion evidence.
 
 **Origin** (specified/inferred) is separate from **scope** (proposed/accepted/deferred). Inferred story wording can describe an explicitly required capability; preserve that requirement. Acceptance of an inference does not change its origin. Persona labels and drafts grant no permissions.
 
@@ -16,7 +16,7 @@ Updated 2026-10-08. Supplied journeys and scenarios remain verbatim in intake. R
 - [Failure and human-help guidance](../../specs/001-appointment-scheduling/spec.md#user-story-4---receive-truthful-failure-and-human-help-guidance-priority-p1)
 - [Support/Admin recovery context](../../specs/001-appointment-scheduling/spec.md#user-story-5---understand-outcomes-and-recover-responsibly-priority-p2)
 
-Native stories retain inferred wording, supplied scenario/requirement basis and scope labels separately. Native `tasks.md` will own implementation progress after Tasks; none exists yet.
+Native stories retain inferred wording, supplied scenario/requirement basis and scope labels separately. Native [tasks.md](../../specs/001-appointment-scheduling/tasks.md) owns implementation progress. Actual verification evidence is in the [validation guide](../../specs/001-appointment-scheduling/quickstart.md).
 
 ## Persona mappings
 
