@@ -101,7 +101,7 @@ As a person whose request cannot safely complete, I want a specific explanation 
 
 As the support/admin teammate, I want sanitized diagnostic and recovery context, so I can understand what happened without asking the user to repeat work or taking unsafe action.
 
-**Origin/basis**: INFERRED seed migrated from [story background](../../docs/product/user-stories.md), aligned with SPECIFIED observability policies and project Constitution. **Scope**: Required documentation/basic diagnostic coverage; no admin console or live staff delivery. **Persona**: Support/Admin placeholder, selection pending.
+**Origin/basis**: INFERRED seed migrated from [story background](../../docs/product/user-stories.md), aligned with SPECIFIED observability policies and project Constitution. **Scope**: Required documentation/basic diagnostic coverage; no admin console or live staff delivery. **Persona**: Morgan-Rae HUMAN support hypothesis, exact retained pin in [personas](../../docs/product/personas.md); Sam-Rae AGENT QA supplies test perspective only.
 
 **Why this priority**: Helps demonstrate, inspect and maintain the required workflows.
 
@@ -212,3 +212,6 @@ The original bootstrap input omitted the separately approved lane contract. This
 - **SC-009**: Real ZEN negative/missing/conflicting fact cases produce zero proposed adapter calls; a forged engine proceed cannot bypass deterministic booking checks. UI and CLI share the tested core.
 
 Source: approved four-candidate launch (native Operator OptionA), common acceptance contract, and direct Operator instruction to retain selected scalable rule technology rather than omit it because rules are small. Existing appointment lookup/handoff submission remain optional; no new clinical/eligibility rules are accepted. Persona pins remain pending.
+
+
+Persona adoption2026-10-09: exact Jules/Ellie-Rae hypothesis pins cover US1–US4, Morgan-Rae HUMAN support covers US5, and Sam-Rae AGENT QA probes US2–US5. See retained cards for IDs/ancestry. Selection does not change origin, accepted scope, permissions or real-user validation. Morgan local recovery-summary gap is within existing US5 acceptance3.

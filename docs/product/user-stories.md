@@ -20,11 +20,11 @@ Native stories retain inferred wording, supplied scenario/requirement basis and 
 
 ## Persona mappings
 
-Primary-user/patient Persona selection remains pending in [Personas](personas.md). Stories 1–4 use this unresolved placeholder, without inventing a named Persona or claiming validated research.
+Exact Jules and Ellie-Rae hypothesis pins now map to Stories1–4; Sam-Rae (AGENT QA) probes safety across Stories2–5. See [retained persona cards and mapping](personas.md). This changes selection, not story origin/scope or research-validation status.
 
 ## Support/Admin coverage
 
-**Persona selection pending:** corresponding Support/Admin placeholder in [Personas](personas.md); not a fabricated identity or permission.
+**Selected support hypothesis:** exact Morgan-Rae pin in [Personas](personas.md), mapped to native Story5. No console or staff-delivery permission follows.
 
 - The INFERRED generic teammate seed and acceptance basis were migrated into [native Story 5](../../specs/001-appointment-scheduling/spec.md#user-story-5---understand-outcomes-and-recover-responsibly-priority-p2), reconciled with supplied observability policy. Coverage is documentation/diagnostics, not an admin UI or actual staff handoff.
 

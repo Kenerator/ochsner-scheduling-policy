@@ -242,3 +242,10 @@ Validation: 13 UI tests and 110 full tests pass; Marimo check is clean; generic 
 - [x] T064 Exercise actual app controls and required flows with recording off on corrected candidate; resolve discovered defects, rerun full tests/demos, record source-bound coverage in existing video notes, restore owned synthetic starting state.
 
 T063–T064: 114tests pass, all8scenario demos and generic success/failure pass, Marimo check clean. Independent delta review findings fixed. RC-1 remains immutable historical baseline; corrected candidate receives RC-2.
+
+
+## Focused selected-persona validation
+
+- [x] T065 Retain exact narrow Jules/Ellie-Rae/Morgan-Rae/Sam-Rae pins and ancestry locally; map native stories, distinguish existing implementation evidence/hypotheses and record introduced milestone.
+- [ ] T066 Write meaningful privacy/no-effect/known-missing-outcome tests first; implement Morgan's local recovery context within existing US5, preserving actual delivery and unknown-effect boundaries.
+- [ ] T067 Qualify invalid-number context, keyboard-only controls and new recovery context in actual IAB with recording off; full tests/demos, independent delta review, as-built/video updates, impact milestone and next qualifiedRC.

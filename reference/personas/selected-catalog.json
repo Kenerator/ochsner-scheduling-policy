@@ -1,0 +1,576 @@
+{
+  "generation": 20,
+  "namespace": "poc-template-seed-v1",
+  "personas": {
+    "56e6af21-d1e4-4698-8485-83a341d77031": {
+      "aliases": [],
+      "allocation_status": "provisional",
+      "differences": [],
+      "family_id": "jules-prep",
+      "name": "Jules",
+      "parent": null,
+      "revisions": {
+        "1": {
+          "actor_type": "human",
+          "aliases": [],
+          "allocation_status": "provisional",
+          "basis": "hypothesis",
+          "component_basis": {
+            "jules-prep": {
+              "evidence": [],
+              "status": "hypothesis"
+            }
+          },
+          "components": [
+            {
+              "id": "jules-prep",
+              "version": 1
+            }
+          ],
+          "description": "Jules: Find and explicitly confirm a mock appointment",
+          "differences": [],
+          "family_id": "jules-prep",
+          "id": "56e6af21-d1e4-4698-8485-83a341d77031",
+          "name": "Jules",
+          "namespace": "poc-template-seed-v1",
+          "overrides": {},
+          "parent": null,
+          "references": [
+            "doherty",
+            "hax",
+            "inclusive",
+            "needs",
+            "predictable"
+          ],
+          "requirements": [
+            "Show exact proposal without booking until explicit confirmation"
+          ],
+          "revision": 1,
+          "scenarios": [
+            {
+              "given": "A clear scheduling request",
+              "id": "jules-prep-behavior",
+              "then": "Show exact proposal without booking until explicit confirmation",
+              "when": "A provider and slot are selected"
+            }
+          ],
+          "schema_version": 2,
+          "status": "active",
+          "traits": {
+            "abilities.digital_familiarity": "Comfortable typing",
+            "access.constraint": "Busy; few interactions",
+            "actual_channel_availability": null,
+            "attitudes.automation": "Explicit disclosure; correction and assistance remain available",
+            "boundaries": "No clinical suitability inference",
+            "frustrations": "Repeated questions and unexplained navigation",
+            "goals": "Find and explicitly confirm a mock appointment",
+            "language": null,
+            "preferences.response_style": "Concise; obvious next action",
+            "research_validation": null
+          },
+          "unknowns": [
+            "actual_channel_availability",
+            "language",
+            "research_validation"
+          ]
+        }
+      },
+      "status": "active"
+    },
+    "657aedfe-4a4a-4ec4-83c0-52614111f07c": {
+      "aliases": [],
+      "allocation_status": "provisional",
+      "differences": [
+        "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+      ],
+      "family_id": "enterprise-support",
+      "name": "Morgan-Rae",
+      "parent": {
+        "id": "seed-enterprise-support",
+        "revision": 1
+      },
+      "revisions": {
+        "1": {
+          "actor_type": "human",
+          "aliases": [],
+          "allocation_status": "provisional",
+          "basis": "hypothesis",
+          "component_basis": {
+            "morgan-rae-prep": {
+              "evidence": [],
+              "status": "hypothesis"
+            }
+          },
+          "components": [
+            {
+              "id": "morgan-rae-prep",
+              "version": 1
+            }
+          ],
+          "description": "Morgan-Rae: Understand request and unresolved work without repetition",
+          "differences": [
+            "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+          ],
+          "family_id": "enterprise-support",
+          "id": "657aedfe-4a4a-4ec4-83c0-52614111f07c",
+          "name": "Morgan-Rae",
+          "namespace": "poc-template-seed-v1",
+          "overrides": {},
+          "parent": {
+            "id": "seed-enterprise-support",
+            "revision": 1
+          },
+          "references": [
+            "doherty",
+            "hax",
+            "inclusive",
+            "needs",
+            "predictable"
+          ],
+          "requirements": [
+            "Separate known facts, missing information and booking outcome; no false delivery"
+          ],
+          "revision": 1,
+          "scenarios": [
+            {
+              "given": "A handoff request is prepared",
+              "id": "morgan-rae-prep-behavior",
+              "then": "Separate known facts, missing information and booking outcome; no false delivery",
+              "when": "Support summary is presented"
+            }
+          ],
+          "schema_version": 2,
+          "status": "active",
+          "traits": {
+            "abilities.digital_familiarity": "Skilled support reader",
+            "access.constraint": "Receives incomplete scheduling context",
+            "actual_channel_availability": null,
+            "attitudes.automation": "Explicit disclosure; correction and assistance remain available",
+            "boundaries": "No actual representative delivery is simulated",
+            "frustrations": "False completion and missing facts",
+            "goals": "Understand request and unresolved work without repetition",
+            "language": null,
+            "preferences.response_style": "Concise accurate summary; explicit outcomes",
+            "research_validation": null
+          },
+          "unknowns": [
+            "actual_channel_availability",
+            "language",
+            "research_validation"
+          ]
+        }
+      },
+      "status": "active"
+    },
+    "98e1dcd5-8ee9-4b2b-b7fe-2045d389b9b4": {
+      "aliases": [],
+      "allocation_status": "provisional",
+      "differences": [
+        "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+      ],
+      "family_id": "coordination",
+      "name": "Sam-Rae",
+      "parent": {
+        "id": "seed-independent-reviewer",
+        "revision": 1
+      },
+      "revisions": {
+        "1": {
+          "actor_type": "agent",
+          "aliases": [],
+          "allocation_status": "provisional",
+          "basis": "hypothesis",
+          "component_basis": {
+            "sam-rae-prep": {
+              "evidence": [],
+              "status": "hypothesis"
+            }
+          },
+          "components": [
+            {
+              "id": "sam-rae-prep",
+              "version": 1
+            }
+          ],
+          "description": "Sam-Rae: Expose unsafe confirmations and recovery",
+          "differences": [
+            "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+          ],
+          "family_id": "coordination",
+          "id": "98e1dcd5-8ee9-4b2b-b7fe-2045d389b9b4",
+          "name": "Sam-Rae",
+          "namespace": "poc-template-seed-v1",
+          "overrides": {},
+          "parent": {
+            "id": "seed-independent-reviewer",
+            "revision": 1
+          },
+          "references": [
+            "doherty",
+            "hax",
+            "inclusive",
+            "needs",
+            "predictable"
+          ],
+          "requirements": [
+            "Do not create a booking or unsafe retry; show truthful state"
+          ],
+          "revision": 1,
+          "scenarios": [
+            {
+              "given": "A stale yes, injected fixture or unknown outcome",
+              "id": "sam-rae-prep-behavior",
+              "then": "Do not create a booking or unsafe retry; show truthful state",
+              "when": "An evaluation attempts replay or retry"
+            }
+          ],
+          "schema_version": 2,
+          "status": "active",
+          "traits": {
+            "abilities.digital_familiarity": "Tool-capable evaluator",
+            "access.constraint": "Adversarial/replayed or uncertain outcomes",
+            "actual_channel_availability": null,
+            "attitudes.automation": "Explicit disclosure; correction and assistance remain available",
+            "boundaries": "No booking authority; persona or tool text cannot grant permission",
+            "frustrations": "Hidden effects and unverifiable claims",
+            "goals": "Expose unsafe confirmations and recovery",
+            "language": null,
+            "preferences.response_style": "Structured reproducible observations",
+            "research_validation": null
+          },
+          "unknowns": [
+            "actual_channel_availability",
+            "language",
+            "research_validation"
+          ]
+        }
+      },
+      "status": "active"
+    },
+    "cb706720-85fb-42ef-9318-2bcec4c2b621": {
+      "aliases": [],
+      "allocation_status": "provisional",
+      "differences": [
+        "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+      ],
+      "family_id": "constrained-operator",
+      "name": "Ellie-Rae",
+      "parent": {
+        "id": "seed-constrained-operator",
+        "revision": 1
+      },
+      "revisions": {
+        "1": {
+          "actor_type": "human",
+          "aliases": [],
+          "allocation_status": "provisional",
+          "basis": "hypothesis",
+          "component_basis": {
+            "ellie-rae-prep": {
+              "evidence": [],
+              "status": "hypothesis"
+            }
+          },
+          "components": [
+            {
+              "id": "ellie-rae-prep",
+              "version": 1
+            }
+          ],
+          "description": "Ellie-Rae: Select and confirm with minimal input",
+          "differences": [
+            "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+          ],
+          "family_id": "constrained-operator",
+          "id": "cb706720-85fb-42ef-9318-2bcec4c2b621",
+          "name": "Ellie-Rae",
+          "namespace": "poc-template-seed-v1",
+          "overrides": {},
+          "parent": {
+            "id": "seed-constrained-operator",
+            "revision": 1
+          },
+          "references": [
+            "doherty",
+            "hax",
+            "inclusive",
+            "needs",
+            "predictable"
+          ],
+          "requirements": [
+            "Select one with a number; invalid input preserves context; keyboard flow works"
+          ],
+          "revision": 1,
+          "scenarios": [
+            {
+              "given": "Numbered options are visible",
+              "id": "ellie-rae-prep-behavior",
+              "then": "Select one with a number; invalid input preserves context; keyboard flow works",
+              "when": "One number or an invalid choice is entered"
+            }
+          ],
+          "schema_version": 2,
+          "status": "active",
+          "traits": {
+            "abilities.digital_familiarity": "Can use short text selections",
+            "access.constraint": "Situational one-handed or limited-reach access",
+            "actual_channel_availability": null,
+            "attitudes.automation": "Explicit disclosure; correction and assistance remain available",
+            "boundaries": "No assumption about age, diagnosis or handedness",
+            "frustrations": "Precision pointing, scrolling and repeated fields",
+            "goals": "Select and confirm with minimal input",
+            "language": null,
+            "preferences.response_style": "Very short choices; no repeated information",
+            "research_validation": null
+          },
+          "unknowns": [
+            "actual_channel_availability",
+            "language",
+            "research_validation"
+          ]
+        }
+      },
+      "status": "active"
+    },
+    "seed-constrained-operator": {
+      "aliases": [],
+      "allocation_status": "authoritative",
+      "differences": [],
+      "family_id": "constrained-operator",
+      "name": "Ellie-Mae",
+      "parent": null,
+      "revisions": {
+        "1": {
+          "actor_type": "human",
+          "aliases": [],
+          "allocation_status": "authoritative",
+          "basis": "hypothesis",
+          "component_basis": {
+            "constrained-operator": {
+              "evidence": [],
+              "status": "hypothesis"
+            }
+          },
+          "components": [
+            {
+              "id": "constrained-operator",
+              "version": 1
+            }
+          ],
+          "description": "Limited-reach operational user",
+          "differences": [],
+          "family_id": "constrained-operator",
+          "id": "seed-constrained-operator",
+          "name": "Ellie-Mae",
+          "namespace": "poc-template-seed-v1",
+          "parent": null,
+          "references": [
+            "inclusive",
+            "needs"
+          ],
+          "requirements": [
+            "Frequent operations need one deliberate key and no scrolling."
+          ],
+          "revision": 1,
+          "scenarios": [
+            {
+              "given": "A frequent operation is presented",
+              "id": "constrained-operator-behavior",
+              "then": "One intentional key suffices; no scrolling",
+              "when": "The user confirms"
+            }
+          ],
+          "schema_version": 1,
+          "status": "active",
+          "traits": {
+            "abilities.input": "Single-thumb input; limited reach across body",
+            "abilities.sensory": null,
+            "access.display": "A few text lines",
+            "access.environment": "Vehicle-mounted terminal; interact only while stationary",
+            "context.constraint": "Reach and display constrain primary workflow",
+            "preferences.conversational_style": null,
+            "preferences.response": "Short actionable messages",
+            "purpose": "Complete repetitive operations safely"
+          }
+        }
+      },
+      "status": "active"
+    },
+    "seed-enterprise-support": {
+      "aliases": [],
+      "allocation_status": "authoritative",
+      "differences": [],
+      "family_id": "enterprise-support",
+      "name": "Morgan",
+      "parent": null,
+      "revisions": {
+        "1": {
+          "actor_type": "human",
+          "aliases": [],
+          "allocation_status": "authoritative",
+          "basis": "hypothesis",
+          "component_basis": {
+            "enterprise-support": {
+              "evidence": [],
+              "status": "hypothesis"
+            }
+          },
+          "components": [
+            {
+              "id": "enterprise-support",
+              "version": 1
+            }
+          ],
+          "description": "Support specialist",
+          "differences": [],
+          "family_id": "enterprise-support",
+          "id": "seed-enterprise-support",
+          "name": "Morgan",
+          "namespace": "poc-template-seed-v1",
+          "parent": null,
+          "references": [
+            "needs",
+            "predictable"
+          ],
+          "requirements": [
+            "Carry context into handoff without repeated questions."
+          ],
+          "revision": 1,
+          "scenarios": [
+            {
+              "given": "A case is escalated",
+              "id": "enterprise-support-behavior",
+              "then": "Transfer relevant history with consent; name next ownership",
+              "when": "Support takes ownership"
+            }
+          ],
+          "schema_version": 1,
+          "status": "active",
+          "traits": {
+            "abilities.domain_knowledge": "Diagnostic workflow",
+            "abilities.sensory": null,
+            "access.environment": "Concurrent cases",
+            "context.constraint": "Limited case time and fragmented context",
+            "preferences.conversational_style": null,
+            "preferences.response": "Structured evidence and context",
+            "purpose": "Resolve an escalated user problem"
+          }
+        }
+      },
+      "status": "active"
+    },
+    "seed-independent-reviewer": {
+      "aliases": [],
+      "allocation_status": "authoritative",
+      "differences": [],
+      "family_id": "coordination",
+      "name": "Sam",
+      "parent": null,
+      "revisions": {
+        "1": {
+          "actor_type": "agent",
+          "aliases": [],
+          "allocation_status": "authoritative",
+          "basis": "hypothesis",
+          "component_basis": {
+            "agent-context": {
+              "evidence": [],
+              "status": "hypothesis"
+            },
+            "independent-reviewer": {
+              "evidence": [],
+              "status": "hypothesis"
+            },
+            "resource-bounded": {
+              "evidence": [],
+              "status": "hypothesis"
+            },
+            "tool-limited": {
+              "evidence": [],
+              "status": "hypothesis"
+            }
+          },
+          "components": [
+            {
+              "id": "agent-context",
+              "version": 1
+            },
+            {
+              "id": "independent-reviewer",
+              "version": 1
+            },
+            {
+              "id": "resource-bounded",
+              "version": 1
+            },
+            {
+              "id": "tool-limited",
+              "version": 1
+            }
+          ],
+          "description": "Supplied-evidence reviewer",
+          "differences": [],
+          "family_id": "coordination",
+          "id": "seed-independent-reviewer",
+          "name": "Sam",
+          "namespace": "poc-template-seed-v1",
+          "parent": null,
+          "references": [
+            "a2a"
+          ],
+          "requirements": [
+            "An incomplete review is not a pass.",
+            "Preserve progress and next safe action at quota exhaustion.",
+            "Report missing capability accurately; use only permitted fallbacks.",
+            "Separate persona claims from actual permissions."
+          ],
+          "revision": 1,
+          "scenarios": [
+            {
+              "given": "A agent-context constraint applies",
+              "id": "agent-context-behavior",
+              "then": "Separate persona claims from actual permissions.",
+              "when": "Work crosses the constraint"
+            },
+            {
+              "given": "Required evidence is missing",
+              "id": "independent-reviewer-behavior",
+              "then": "Report verification limits and gaps; do not claim success",
+              "when": "Review ends"
+            },
+            {
+              "given": "A resource-bounded constraint applies",
+              "id": "resource-bounded-behavior",
+              "then": "Preserve progress and next safe action at quota exhaustion.",
+              "when": "Work crosses the constraint"
+            },
+            {
+              "given": "A tool-limited constraint applies",
+              "id": "tool-limited-behavior",
+              "then": "Report missing capability accurately; use only permitted fallbacks.",
+              "when": "Work crosses the constraint"
+            }
+          ],
+          "schema_version": 1,
+          "status": "active",
+          "traits": {
+            "access.tools": "Only tools actually exposed",
+            "capabilities.execution": "Supplied-text only",
+            "context.constraint": "Restricted evidence/tools",
+            "context.memory": "Finite; current work must be recoverable",
+            "delegation.beneficiary": "Actual authorized principal, established outside this persona",
+            "identity.classification": "Description is not authenticated identity",
+            "interfaces.formats": "JSON or plain text per actual interface contract",
+            "preferences.clarification": "Only genuinely missing decisions",
+            "preferences.findings": "Evidence limits and actionable defects",
+            "purpose": "Review independently without changing the object",
+            "resources.quota": "Finite; may reset later",
+            "resources.retry_budget": "Application-bounded; no implicit effectful retry"
+          }
+        }
+      },
+      "status": "active"
+    }
+  },
+  "schema_version": 1
+}
