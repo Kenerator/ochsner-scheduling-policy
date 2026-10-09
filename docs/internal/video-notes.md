@@ -91,3 +91,22 @@ Suggested closing scroll (factual reference text; Media controls final edit):
 Media confirmed browser CLOSED and capture reservation RELEASED; canonical28182/4012 remain running unchanged. The already-started clip was preserved at the safe hold boundary. Owner independently verified file existence,1577380bytes and SHA256`c4cb1f049a9c4bcb3fb60ba2b8385ca8654a8f08853f5fb9a9fe8f1ccdbc4610`. External original filename:`OSCAR__policy__provider__078b34f4__T01.webm`, in Media's assigned policy/20261009 source-media directory; binary is not in Git.
 
 Media-reported coverage: live badge, provider reply, policy inspector, Actionfacts, Recoverycontext, Tab/ShiftTab and Return/reset. Only providerGET and independent sessionreset; no bookingPOST. This is partial provider/control footage, not proof of complete required-flow capture. Full decode QA and final edit/duration/coverage verification remain pending. No further capture or rendering under Operator hold. Qualified product remains RC-3/078b34f4; subsequent commits change these notes only.
+
+
+## Actual IAB still set — 2026-10-09T02:11:15.546165-05:00
+
+New direction permits stills and assembly/narration/render from existing assets; **all new video capture remains forbidden**. Exactly two actual owned-IAB screenshot originals were selected. Media accepted nativeJPEG `.jpg`; bytes are unchanged, not misnamedPNG, recreatedDOM, Chrome screenshots or generated mockups. StandardNode temporary byte export was explicitly resolved bySM; external copy used approved filesystem access with exclusive no-overwrite destinations.
+
+Runtime **RC-3/078b34f4fc47e58719bfd6725b9272611435efe1**; runtime source hashes compared byte-for-byte with RC-3. Capture-time notes commit **b894dbeb05a77f3cfc3815218ad8586cd79ccefd**; later notes commits are documentation-only. Original directory is Media's `assignment-stills/policy/20261009`, outsideGit. Matching JSON sidecars record runtimeRC/SHA, notescommit/contenthash, runtime source hashes, mode/model, scenario/state, persona need/actual impact, dimensions and limits.
+
+- Original: `/Volumes/Seagate Backup Plus Drive/nxus-media-studio/source-media/oscar-poc-engineering-review/assignment-stills/policy/20261009/OSCAR__policy__overview__078b34f4__S01.jpg`
+  Sidecar: `/Volumes/Seagate Backup Plus Drive/nxus-media-studio/source-media/oscar-poc-engineering-review/assignment-stills/policy/20261009/OSCAR__policy__overview__078b34f4__S01.json`
+  64130bytes; 832×1003; SHA256`ce43fc39b5ee3712dad31651c2d1034fcd06dc86d10e5c319ddb8aceef44b3f9`. DestinationSHA equals original temporaryfileSHA.
+
+- Original: `/Volumes/Seagate Backup Plus Drive/nxus-media-studio/source-media/oscar-poc-engineering-review/assignment-stills/policy/20261009/OSCAR__policy__recovery-confirmed__078b34f4__S01.jpg`
+  Sidecar: `/Volumes/Seagate Backup Plus Drive/nxus-media-studio/source-media/oscar-poc-engineering-review/assignment-stills/policy/20261009/OSCAR__policy__recovery-confirmed__078b34f4__S01.json`
+  71266bytes; 755×912; SHA256`18d52351b334b4bef2f8b7debd30f9a53f420fe906afc8788a7601eb06bb2740`. DestinationSHA equals original temporaryfileSHA.
+
+Overview: actual service-returned providers, branding and live mode visible; no identity required. Persona/confirmed: actual matching201 synthetic booking after exact proposal and separate yes, plus Morgan-Rae's implemented local known/missing/confirmed-outcome/NotSent-support recovery panel. This second view also covers the confirmed main flow; no extra still was taken. Both visually inspected from actual screenshot tool output. No new model secret retrieval, product changes or RC were needed.
+
+Limitations: synthetic-only; persona hypotheses are not real-user validation; no enterprise readiness or full-workflow video coverage claim. Unknown effects are not represented as actual ambiguous-write imagery. Source originals remain unchanged; Media may create separately labeled derivatives under its assembly grant. Paths delivered directly toSM andMedia; no remaining still-export gap. Root owned API now contains the one actual synthetic booking used for the second still; reset only this owned mock before a fresh deterministic demonstration.
