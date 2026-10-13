@@ -27,3 +27,12 @@ RC-2 correction reviewed2026-10-09: pending proposals are revoked before model i
 
 
 Persona impact reviewed2026-10-09: `models.recovery_context` is a pure allowlisted field-name/categorical snapshot. `Conversation.booking_effect` tracks notattempted→unknownbeforePOST→knownrejected/validatedconfirmed; unknown overrides displayed effect. `UISession.view` derives context without effects and `recovery_html` validates/escapes bounded output inside existing inspector. No support transmission or admin capability. Actual source hashes,116tests and live affected-flow evidence are in video notes; compiled diagram architecture unchanged.
+
+
+## Reviewed launcher delta — 2026-10-12
+
+Candidate base `a01ef5140e12e1f32b7f1dc463dccc584a20b0f7`; final consumer review remains pending. `poc-launch.json` selects the Policy CLI adapter/default model/exact item/notes field. The four files under `tools/poc-runtime/` match the reviewed `export-manifest.json` hashes; source lineage and limits are in [validation](../../../specs/001-appointment-scheduling/quickstart.md#launcher-delta--2026-10-12).
+
+`launch.load_config`/`resolve_request` validate the closed configuration/request; `adapters.preflight` validates files/ports before effects; `credentials.resolve_key` privately obtains one scalar; `adapters.process_specs` routes the supplied mock and existing `scheduling_assistant.__main__.run`; `processes.run_owned` owns readiness and exact-child cleanup. These shared bytes are pinned, not a second Policy-specific launcher implementation.
+
+`tests/test_runtime_launcher.py` imports the actual installed bundle, calls the actual CLI model constructor with fake transport, constructs the unchanged direct UI without a startup request, checks unsupported browser-wrapper behavior and exercises real isolated offline cleanup. Existing model/core/HTTP/policy/UI sources and vendor fixtures are unchanged. Normal instructions: [README](../../../README.md#normal-model-first-launcher).

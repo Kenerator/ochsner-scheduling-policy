@@ -18,13 +18,37 @@ python3 -m venv .venv
 
 `requirements.lock` pins the runtime package set. ZEN contains a native extension; a compatible platform wheel is required. Clean private-clone qualification is recorded in the [validation guide](specs/001-appointment-scheduling/quickstart.md), separately from local tests.
 
+## Normal model-first launcher
+
+From the repository root, use the project interpreter and trusted helper configured on your host:
+
+```sh
+# Non-secret path to your existing trusted bw-get-secret helper:
+export POC_SECRET_HELPER=/absolute/path/to/bw-get-secret.sh
+.venv/bin/python tools/poc-runtime/launch.py --doctor
+.venv/bin/python tools/poc-runtime/launch.py
+```
+
+The launcher privately reads the **notes** scalar from **`[Env] (Ochsner PoC) OPENAI_API_KEY`**. An inherited `OPENAI_API_KEY` or generic vault item is never a fallback. Default live interpretation uses `gpt-5.4-mini`; `OPENAI_MODEL` or explicit `--model MODEL` overrides it, with the explicit option taking precedence. The trusted helper must already be installed and authenticated; alternatively put its `bw-get-secret` executable on PATH. Never paste a key into an argument or file.
+
+This pinned launcher supports **CLI only** for Policy. It owns a fresh synthetic service on port4012 and the CLI; choose `--api-port PORT` if occupied. It refuses to stop another process. Help and doctor retrieve no credential, start no service and make no model request. The wrapper validates configuration and local ports, then resolves the key; configuration/helper failures exit safely without switching to offline. Ctrl-C stops only its owned children. A successful doctor is local readiness evidence, not a successful model interaction.
+
+```sh
+.venv/bin/python tools/poc-runtime/launch.py --help
+.venv/bin/python tools/poc-runtime/launch.py --offline --api-port 29412
+```
+
+Explicit offline mode uses simulated extraction and needs no helper/key. Launcher ownership/readiness is qualified on macOS ARM with `lsof` on PATH; other platforms remain unqualified for this wrapper. Existing direct browser/CLI commands below retain their original configuration and do not require Bitwarden. [Launcher validation and lineage](specs/001-appointment-scheduling/quickstart.md#launcher-delta--2026-10-12).
+
+## Direct browser and CLI entrypoints
+
 In one terminal, start the unchanged supplied synthetic service:
 
 ```sh
 .venv/bin/python reference/mock-api/server.py --port 4012
 ```
 
-For live interpretation, set `OPENAI_API_KEY` through your usual secure environment mechanism. `OPENAI_MODEL` optionally overrides `gpt-5.4-mini`. Never put keys in source, command arguments or a committed file. No Bitwarden dependency is required to run the application.
+For live interpretation, set `OPENAI_API_KEY` through your usual secure environment mechanism. `OPENAI_MODEL` optionally overrides `gpt-5.4-mini`. Never put keys in source, command arguments or a committed file. These direct entrypoints do not require Bitwarden; the normal launcher above uses the dedicated helper.
 
 ```sh
 PYTHONPATH=src .venv/bin/marimo run app.py --host 127.0.0.1 --port 28182

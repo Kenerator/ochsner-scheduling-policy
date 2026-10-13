@@ -90,3 +90,23 @@ RC-2 correction reviewed2026-10-09: pending proposals are revoked before model i
 
 
 Persona impact reviewed2026-10-09: `models.recovery_context` is a pure allowlisted field-name/categorical snapshot. `Conversation.booking_effect` tracks notattempted→unknownbeforePOST→knownrejected/validatedconfirmed; unknown overrides displayed effect. `UISession.view` derives context without effects and `recovery_html` validates/escapes bounded output inside existing inspector. No support transmission or admin capability. Actual source hashes,116tests and live affected-flow evidence are in video notes; compiled diagram architecture unchanged.
+
+
+## Model-first launcher boundary — 2026-10-12
+
+Launch-only candidate based on `a01ef5140e12e1f32b7f1dc463dccc584a20b0f7`; shared reviewed lineage and pending final source review are in [validation](../../../specs/001-appointment-scheduling/quickstart.md#launcher-delta--2026-10-12). The pinned standard-library launcher validates config/mode/model and owned loopback ports before exact-item credential lookup, starts a secret-free unchanged supplied mock, then starts the existing CLI with live/offline flags and model selection. Only the model CLI receives `OPENAI_API_KEY`; the mock's raw request audit is suppressed. The runtime cleans exact children it started. No source-policy/identity/effect boundary or supplied fixture byte changes.
+
+```mermaid
+flowchart LR
+  C[poc-launch.json] --> L[Reviewed launcher]
+  L --> P[Local preflight]
+  P --> K[Exact-item private helper lookup in model mode]
+  K --> M[Existing live CLI adapter]
+  P --> O[Explicit offline CLI adapter]
+  L --> S[Secret-free owned supplied mock]
+  M --> G[Existing guarded core and ZEN]
+  O --> G
+  G --> S
+```
+
+Policy wrapper is CLI-only; direct Marimo remains unchanged and independent. Ten consumer tests verify constructor routing, fake model requests, no-call help/doctor, manifest identity, error/port handling and owned offline cleanup. Full candidate126 tests and8scheduling+2generic demos pass; no new paid model/browser outcome is claimed.

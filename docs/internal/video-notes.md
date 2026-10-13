@@ -110,3 +110,8 @@ Runtime **RC-3/078b34f4fc47e58719bfd6725b9272611435efe1**; runtime source hashes
 Overview: actual service-returned providers, branding and live mode visible; no identity required. Persona/confirmed: actual matching201 synthetic booking after exact proposal and separate yes, plus Morgan-Rae's implemented local known/missing/confirmed-outcome/NotSent-support recovery panel. This second view also covers the confirmed main flow; no extra still was taken. Both visually inspected from actual screenshot tool output. No new model secret retrieval, product changes or RC were needed.
 
 Limitations: synthetic-only; persona hypotheses are not real-user validation; no enterprise readiness or full-workflow video coverage claim. Unknown effects are not represented as actual ambiguous-write imagery. Source originals remain unchanged; Media may create separately labeled derivatives under its assembly grant. Paths delivered directly toSM andMedia; no remaining still-export gap. Root owned API now contains the one actual synthetic booking used for the second still; reset only this owned mock before a fresh deterministic demonstration.
+
+
+### Launch-only source delta — 2026-10-12
+
+Prepared model-first CLI wrapper uses the reviewed shared runtime, dedicated Ochsner item/notes and retained model semantics; direct Marimo remains unchanged. Base source a01ef51; current candidate awaits final consumer review/integration. Consumer126-test suite,8scheduling+2generic no-call demos and Marimo check pass. This adds no live model/browser qualification, media capture or release; original RC-3 still/video evidence retains its original source/date. See [launcher validation](../../specs/001-appointment-scheduling/quickstart.md#launcher-delta--2026-10-12).

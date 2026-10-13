@@ -215,3 +215,12 @@ Source: approved four-candidate launch (native Operator OptionA), common accepta
 
 
 Persona adoption2026-10-09: exact Jules/Ellie-Rae hypothesis pins cover US1–US4, Morgan-Rae HUMAN support covers US5, and Sam-Rae AGENT QA probes US2–US5. See retained cards for IDs/ancestry. Selection does not change origin, accepted scope, permissions or real-user validation. Morgan local recovery-summary gap is within existing US5 acceptance3.
+
+
+## Approved launch-only delta — 2026-10-12
+
+US5 setup/recovery now includes the normal model-first Ochsner launcher. The direct CLI/Marimo entrypoints retain their existing environment configuration. The wrapper selects live interpretation by default, retains `gpt-5.4-mini` and `OPENAI_MODEL`/explicit override semantics, and privately resolves only `[Env] (Ochsner PoC) OPENAI_API_KEY` through the trusted helper. Explicit offline launch remains a disclosed no-model-call alternative. Invalid configuration fails before child startup; no offline substitution is permitted. Non-model children receive no model/vault credentials. Help and doctor perform no vault/model operation; Ctrl-C cleans only owned children. This adds no scheduling, identity, policy, dashboard or spending authority.
+
+Acceptance: installed pinned runtime hashes match its reviewed manifest; actual CLI/browser adapter construction under fake transports honors the effective mode/model; bad config and occupied ports fail safely; no-call demos remain unchanged. Genuine model performance and browser interaction are not established by these launcher tests. Canonical work: T068–T072 in [tasks](tasks.md).
+
+Reviewed-delivery clarification (2026-10-12): the pinned Policy wrapper supports CLI only; `--interface browser` fails explicitly. Existing direct Marimo launch/model environment semantics are retained, with real constructor/no-startup-request qualification under fake transport. This supersedes the earlier proposed wrapper browser routing; no unreviewed shared-runtime change is made. Exact reviewed manifest source revision: `b7875452e3a999ca69ce170822c66e7f679b4442`; clean independently reviewed Template HEAD: `6e89464582dd62a977aaec778c8d6f8a0adf25c7`.

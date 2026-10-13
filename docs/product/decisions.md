@@ -10,3 +10,10 @@ Updated: 2026-10-09.
 - Persona selection remains pending with primary/patient and Support/Admin coverage in [spec](../../specs/001-appointment-scheduling/spec.md); implementation progress stays in [tasks](../../specs/001-appointment-scheduling/tasks.md).
 
 - Actual model/core/service qualification passed; actual normalized categorical facts accompany each ZEN decision for privacy-safe inspection. All Analyze findings and four final independent review findings were corrected with evidence. See [validation](../../specs/001-appointment-scheduling/quickstart.md).
+
+
+## Launcher decision — 2026-10-12
+
+Approved launch-only delta: normal wrapper is model-first and uses the exact named Ochsner Bitwarden item. Existing direct CLI/UI commands preserve their environment/model settings and remain available without Bitwarden. No credential lookup or genuine model call occurred during planning/baseline tests. Runtime installation awaits SM's reviewed export; progress belongs in [native tasks](../../specs/001-appointment-scheduling/tasks.md#approved-model-first-launcher-delta--2026-10-12). No product-policy changes, new engine, dashboard, budget override or release are selected.
+
+Reviewed runtime adopted byte-for-byte on the topic branch: Policy preset is CLI, exact dedicated Secure Note field `notes`, default model unchanged. Browser remains a direct Marimo entrypoint and is rejected by this wrapper. SM centrally performed the serialized field preflight; Policy does not repeat vault access. Runtime tests use fabricated credentials and model transports only.
