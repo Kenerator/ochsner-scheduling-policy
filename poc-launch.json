@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "project_id": "ochsner-scheduling-policy",
+  "adapter": "policy",
+  "default_interface": "cli",
+  "credential": {
+    "item": "[Env] (Ochsner PoC) OPENAI_API_KEY",
+    "field": "notes",
+    "helper_path_env": "POC_SECRET_HELPER",
+    "helper_command": "bw-get-secret"
+  },
+  "model": {
+    "default": "gpt-5.4-mini",
+    "environment": "OPENAI_MODEL"
+  }
+}

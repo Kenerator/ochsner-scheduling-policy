@@ -116,3 +116,14 @@ Model extraction returns IntentResult(intent, fields) only. Fields allowed: phon
 Marimo notebook app.py uses a per-client core/conversation and callback-only submission, with replay-safe transaction core. No transcript persisted. Policy inspection uses normalized trace and committed table/source registry.
 
 Scale path: independently version/review/regression-test policy artifacts, preserve bounded facts contract, and replace identity/session/effect infrastructure separately for real deployment. This PoC has no production authentication, durable idempotency, load/scaling proof or clinical readiness claim.
+
+
+## Approved launcher integration — 2026-10-12
+
+Implement L4 of the approved five-consumer launcher plan using the exact SM-reviewed shared `tools/poc-runtime/` export and `poc-launch.json`; never duplicate the runtime. Root owns Policy files on `codex/model-first-launcher`, based on clean `a01ef5140e12e1f32b7f1dc463dccc584a20b0f7`. This supersedes historical local-main implementation wording for this delta. Protected integration uses an ordinary topic branch/PR without bypass or new release tags.
+
+CLI routing uses `python -m scheduling_assistant --intent-mode live|offline --model MODEL --api-base LOOPBACK`. Browser routing uses existing `app.py` environment settings `SCHEDULING_INTENT_MODE`, `OPENAI_MODEL`, `SCHEDULING_API_BASE` and headless Marimo. Runtime resolves request/preflight before private exact-item key lookup; only model host receives the key. Public direct commands remain independent of Bitwarden. Existing ZEN/Marimo dependencies, synthetic reference fixtures and no-call demos remain unchanged.
+
+Tests precede runtime installation. Verify actual consumer constructors with fake model transport, configuration/override/error matrix, manifest identity and role environment isolation. Run the compatible project interpreter/full tests and existing demos; one independent SM final-diff review precedes protected integration. Shared runtime delivery is a prerequisite for final installation/qualification, not for current-source reconciliation or test design. No live paid check is selected.
+
+Reviewed-delivery clarification (2026-10-12): the pinned Policy wrapper supports CLI only; `--interface browser` fails explicitly. Existing direct Marimo launch/model environment semantics are retained, with real constructor/no-startup-request qualification under fake transport. This supersedes the earlier proposed wrapper browser routing; no unreviewed shared-runtime change is made. Exact reviewed manifest source revision: `b7875452e3a999ca69ce170822c66e7f679b4442`; clean independently reviewed Template HEAD: `6e89464582dd62a977aaec778c8d6f8a0adf25c7`.

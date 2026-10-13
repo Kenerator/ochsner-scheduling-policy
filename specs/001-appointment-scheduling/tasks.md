@@ -251,3 +251,20 @@ T063–T064: 114tests pass, all8scenario demos and generic success/failure pass,
 - [x] T067 Qualify invalid-number context, keyboard-only controls and new recovery context in actual IAB with recording off; full tests/demos, independent delta review, as-built/video updates, impact milestone and next qualifiedRC.
 
 Focused validation:116tests16.615s, all8scenario demos+generic2, Marimo check clean; independent30testreview noissues. Actual live keyboard-only booking, invalid99retainedidentity/options, exactproposal/separateyes201, support-beforePOST, missing/confirmed/rejected recoverypanel verified recordingOFF. Unknown effect is controlledcore/UI evidence, not an actual ambiguous-write IAB claim. Persona introduction milestone d99a6e8 precedes actual impact; nextqualifiedRC follows impact commit.
+
+
+## Approved model-first launcher delta — 2026-10-12
+
+This launch-only L4 work follows the approved shared-runtime plan; historical completed tasks remain unchanged. Policy owner writes this repository; SM alone implements shared Template runtime.
+
+- [x] T068 Reconcile clean source, native artifacts, CLI/browser configuration contracts and compatible interpreter; create protected-integration topic branch. Baseline: a01ef51, Python3.11.13, 116 tests pass in16.681s.
+- [x] T069 Write consumer tests for actual installed runtime/manifest, effective live/offline/model overrides and real CLI/browser constructors with fake transports; observe missing-launcher RED before install (depends onT068).
+- [x] T070 Install exact SM-reviewed runtime manifest/config; document normal model-first launch, exact vault item, explicit no-call alternatives, safe configuration failure and owned cleanup (depends onT069 and reviewed shared delivery).
+- [x] T071 Run candidate-bound full tests, help/doctor no-call checks and existing scheduling/generic demos; update source-bound launcher/Persona-story-test evidence and affected as-built navigation, retaining historical live-evidence limits (depends onT070).
+- [ ] T072 Obtain one independent SM final-diff review, repair only delta findings, run staged credential guard, commit and integrate by ordinary protected PR; report exact source/remaining limits without new RC/tag or protection bypass (depends onT071).
+
+T069 historical RED evidence (2026-10-12, before installation): four consumer tests failed specifically because the reviewed shared launcher is not installed. Tests already cover effective CLI model requests through a fake transport, real browser constructor/no-startup-request, exact credential item, explicit offline mode and secret-free mock environment. Manifest/error/help/doctor assertions were subsequently completed against the reviewed interface during T070–T071; the initial RED is not qualification.
+
+T070 installation checkpoint (historical intermediate nine-test run): exact four runtime hashes verified before and after copy; reviewed manifest copied unchanged. Policy CLI/notes preset installed. Nine consumer tests GREEN0.547s; wrapper browser is explicitly unsupported, direct Marimo constructor remains verified under fake transport. SM owns the one vault field preflight; no repeated lookup. At that checkpoint full-suite/demo qualification was pending; subsequent T071 records126 passing tests and all demos.
+
+T071 evidence:126tests16.941s PASS; all8scheduling+2generic no-call demos PASS; Marimo check clean. Updated launcher lineage/limits, as-built and Persona-story-test navigation. SM independently reviewed executable candidate c6b6749128cfb74c3a7be75013cf522201b7c17c on2026-10-13: ten targeted tests pass, four runtime hashes match, no blocking executable finding. T072 remains pending affected-doc review and protected integration. No fresh live-model/browser qualification, paid call or vault lookup.
