@@ -31,7 +31,7 @@ Persona impact reviewed2026-10-09: `models.recovery_context` is a pure allowlist
 
 ## Reviewed launcher delta — 2026-10-12
 
-Candidate base `a01ef5140e12e1f32b7f1dc463dccc584a20b0f7`; installed consumer candidate `c6b6749128cfb74c3a7be75013cf522201b7c17c` was independently reviewed by SM on 2026-10-13; protected integration remains pending. `poc-launch.json` selects the Policy CLI adapter/default model/exact item/notes field. The four files under `tools/poc-runtime/` match the reviewed `export-manifest.json` hashes; source lineage and limits are in [validation](../../../specs/001-appointment-scheduling/quickstart.md#launcher-delta--2026-10-12).
+Candidate base `a01ef5140e12e1f32b7f1dc463dccc584a20b0f7`; installed consumer candidate `c6b6749128cfb74c3a7be75013cf522201b7c17c` was independently reviewed by SM on 2026-10-13; protected integration completed through [PR #1](https://github.com/Kenerator/ochsner-scheduling-policy/pull/1), merge `447f985579faad9e8a5a332ce5ce566199a2b5c2` on 2026-10-13. `poc-launch.json` selects the Policy CLI adapter/default model/exact item/notes field. The four files under `tools/poc-runtime/` match the reviewed `export-manifest.json` hashes; source lineage and limits are in [validation](../../../specs/001-appointment-scheduling/quickstart.md#launcher-delta--2026-10-12).
 
 `launch.load_config`/`resolve_request` validate the closed configuration/request; `adapters.preflight` validates files/ports before effects; `credentials.resolve_key` privately obtains one scalar; `adapters.process_specs` routes the supplied mock and existing `scheduling_assistant.__main__.run`; `processes.run_owned` owns readiness and exact-child cleanup. These shared bytes are pinned, not a second Policy-specific launcher implementation.
 
