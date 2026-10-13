@@ -1,6 +1,6 @@
 # Persona, story and test index
 
-Updated: 2026-10-13. Scope of this addition: approved model-first launcher L4. Base source: `a01ef5140e12e1f32b7f1dc463dccc584a20b0f7`; launcher runtime/configuration is installed in candidate `c6b6749128cfb74c3a7be75013cf522201b7c17c`, independently reviewed by SM on 2026-10-13; protected integration remains pending. Exact pinned persona identities and constraint sources remain in [personas](../product/personas.md); native acceptance and progress remain in [spec](../../specs/001-appointment-scheduling/spec.md) and [tasks](../../specs/001-appointment-scheduling/tasks.md).
+Updated: 2026-10-13. Scope of this addition: approved model-first launcher L4. Base source: `a01ef5140e12e1f32b7f1dc463dccc584a20b0f7`; launcher runtime/configuration is installed in candidate `c6b6749128cfb74c3a7be75013cf522201b7c17c`, independently reviewed by SM on 2026-10-13; protected integration completed through [PR #1](https://github.com/Kenerator/ochsner-scheduling-policy/pull/1), merge `447f985579faad9e8a5a332ce5ce566199a2b5c2` on 2026-10-13. Exact pinned persona identities and constraint sources remain in [personas](../product/personas.md); native acceptance and progress remain in [spec](../../specs/001-appointment-scheduling/spec.md) and [tasks](../../specs/001-appointment-scheduling/tasks.md).
 
 | Pinned hypothesis / relevant constraint | Native story and actual design | Verification / limit |
 | --- | --- | --- |
