@@ -147,10 +147,21 @@ def _scalar(raw: str) -> str:
     return value
 
 
+def validate_selection(credential: dict) -> None:
+    """Validate an explicit source; this supplies no authority to use it.
+
+    Historical named-source compatibility remains, but current project policy
+    must explicitly select the own-account notes item during the Ochsner pause.
+    """
+    item, field = credential.get("item"), credential.get("field")
+    if not ((item == "[Env] OPENAI_API_KEY" and field == "notes")
+            or (item == "[Env] (Ochsner PoC) OPENAI_API_KEY" and field in ("auto", "password", "notes"))):
+        raise LaunchError("Unsupported credential source or field configuration.")
+
+
 def resolve_key(credential: dict, *, run=bounded_helper) -> str:
     """Resolve exactly the named item, without inherited-key or item fallback."""
-    if credential.get("item") != "[Env] (Ochsner PoC) OPENAI_API_KEY" or credential.get("field") not in ("auto", "password", "notes"):
-        raise LaunchError("Unsupported Ochsner credential configuration.")
+    validate_selection(credential)
     helper = helper_executable(credential)
     fields = ("password", "notes") if credential["field"] == "auto" else (credential["field"],)
     values = []

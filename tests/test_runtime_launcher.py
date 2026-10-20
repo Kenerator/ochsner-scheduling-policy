@@ -49,7 +49,7 @@ class RuntimeLauncherTests(unittest.TestCase):
         request, specs = self.specs(["--interface", "cli"])
         self.assertEqual("model", request.mode)
         self.assertEqual("gpt-5.4-mini", request.model)
-        self.assertEqual("[Env] (Ochsner PoC) OPENAI_API_KEY", self.config["credential"]["item"])
+        self.assertEqual("[Env] OPENAI_API_KEY", self.config["credential"]["item"])
         self.assertEqual("notes", self.config["credential"]["field"])
         self.exercise_cli(specs, "gpt-5.4-mini")
 
@@ -125,7 +125,7 @@ class RuntimeLauncherTests(unittest.TestCase):
 
     def test_installed_runtime_matches_reviewed_manifest(self):
         manifest = json.loads((RUNTIME / "export-manifest.json").read_text())
-        self.assertEqual("b7875452e3a999ca69ce170822c66e7f679b4442", manifest["source_revision"])
+        self.assertEqual("20e3dd56747797b35c082d109ac3bb0a7d7b1ebe", manifest["source_revision"])
         self.assertEqual("clean", manifest["source_worktree_state"])
         self.assertEqual(4, len(manifest["files"]))
         for name, digest in manifest["files"].items():
@@ -201,3 +201,41 @@ class RuntimeLauncherTests(unittest.TestCase):
         self.assertEqual(2, code)
         self.assertNotIn(CANARY, out.getvalue() + err.getvalue())
         self.assertNotIn("offline", out.getvalue())
+
+    def test_explicit_own_key_selection_uses_only_exact_notes_without_fallback(self):
+        credential = dict(self.config["credential"], item="[Env] OPENAI_API_KEY", field="notes")
+        with tempfile.TemporaryDirectory() as directory:
+            helper = Path(directory) / "helper"
+            helper.write_text("#!/bin/sh\nexit 99\n")
+            helper.chmod(0o700)
+            calls = []
+            def fake_run(argv, **kwargs):
+                calls.append(argv)
+                self.assertNotIn("OPENAI_API_KEY", kwargs["env"])
+                self.assertNotIn("BW_SESSION", kwargs["env"])
+                return subprocess.CompletedProcess(argv, 0, stdout=CANARY, stderr="")
+            environment = {"POC_SECRET_HELPER": str(helper), "OPENAI_API_KEY": "stale-parent-canary"}
+            with patch.dict(os.environ, environment, clear=True):
+                try:
+                    key = self.launch.credentials.resolve_key(credential, run=fake_run)
+                except self.launch.LaunchError:
+                    self.fail("Explicit Operator-selected own-key notes binding is rejected")
+            self.assertEqual(CANARY, key)
+            self.assertEqual([[str(helper), "[Env] OPENAI_API_KEY", "notes"]], calls)
+            calls.clear()
+            def failed_run(argv, **kwargs):
+                calls.append(argv)
+                return subprocess.CompletedProcess(argv, 1, stdout="", stderr="private helper detail")
+            with patch.dict(os.environ, {"POC_SECRET_HELPER": str(helper)}, clear=True):
+                with self.assertRaises(self.launch.LaunchError) as failure:
+                    self.launch.credentials.resolve_key(credential, run=failed_run)
+            self.assertEqual([[str(helper), "[Env] OPENAI_API_KEY", "notes"]], calls)
+            self.assertNotIn("private helper detail", str(failure.exception))
+
+    def test_own_key_wrong_fields_and_unselected_items_fail_before_helper(self):
+        for item, field in [("[Env] OPENAI_API_KEY", "password"),
+                            ("[Env] OPENAI_API_KEY", "auto"),
+                            ("unselected-item", "notes")]:
+            credential = dict(self.config["credential"], item=item, field=field)
+            with self.subTest(item=item, field=field), self.assertRaises(self.launch.LaunchError):
+                self.launch.credentials.resolve_key(credential, run=lambda *a, **k: self.fail("helper called"))

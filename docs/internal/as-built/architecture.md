@@ -110,3 +110,8 @@ flowchart LR
 ```
 
 Policy wrapper is CLI-only; direct Marimo remains unchanged and independent. Ten consumer tests verify constructor routing, fake model requests, no-call help/doctor, manifest identity, error/port handling and owned offline cleanup. Full candidate126 tests and8scheduling+2generic demos pass; no new paid model/browser outcome is claimed.
+
+
+### Own-key credential binding — 2026-10-20
+
+Reviewed central runtime source20e3dd56747797b35c082d109ac3bb0a7d7b1ebe (export metadata8b4ecef27273a8df72fcdabd1976f01ed35e523a) replaces the earlier pinned runtime only at the launcher boundary; all five source/destination hashes verified. `credentials.validate_selection` is shared by config validation and private key resolution. Current config selects our exact Secure Note `[Env] OPENAI_API_KEY`/notes; helper failures never try another item/inherited key. Historical-source compatibility is not permission to use the paused Ochsner key. Model settings, scheduling/identity/confirmation/policy, supplied vendor bytes and owned process/accounting safeguards are preserved. Qualification:12launcher/128full tests and no-call demos; own-account live use remains held/unqualified. See current native tasks and [validation](../../../specs/001-appointment-scheduling/quickstart.md#own-key-policy--2026-10-20).

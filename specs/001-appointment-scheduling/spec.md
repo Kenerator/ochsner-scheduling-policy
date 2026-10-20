@@ -224,3 +224,10 @@ US5 setup/recovery now includes the normal model-first Ochsner launcher. The dir
 Acceptance: installed pinned runtime hashes match its reviewed manifest; actual CLI/browser adapter construction under fake transports honors the effective mode/model; bad config and occupied ports fail safely; no-call demos remain unchanged. Genuine model performance and browser interaction are not established by these launcher tests. Canonical work: T068–T072 in [tasks](tasks.md).
 
 Reviewed-delivery clarification (2026-10-12): the pinned Policy wrapper supports CLI only; `--interface browser` fails explicitly. Existing direct Marimo launch/model environment semantics are retained, with real constructor/no-startup-request qualification under fake transport. This supersedes the earlier proposed wrapper browser routing; no unreviewed shared-runtime change is made. Exact reviewed manifest source revision: `b7875452e3a999ca69ce170822c66e7f679b4442`; clean independently reviewed Template HEAD: `6e89464582dd62a977aaec778c8d6f8a0adf25c7`.
+
+
+## Temporary own-key policy — 2026-10-20
+
+The Operator paused all Ochsner-supplied-key use until further notice and explicitly selected our Secure Note `[Env] OPENAI_API_KEY`, field `notes`. This supersedes the earlier current launcher credential selection; historical source/evidence records remain intact. No inherited-key/item fallback, new spending allowance, model change, scheduling effect or live qualification is authorized by this adaptation. Help/doctor/tests stay key-free. Existing runtime validators reject the own-key item; shared bytes remain frozen pending SM's reviewed capability fix.
+
+Reviewed-delivery resolution: central runtime code/source `20e3dd56747797b35c082d109ac3bb0a7d7b1ebe`, metadata `8b4ecef27273a8df72fcdabd1976f01ed35e523a`, now supports explicit own-key notes selection. Historical-source compatibility in the validator grants no paused-source permission. No own-key live qualification or runtime start is selected.

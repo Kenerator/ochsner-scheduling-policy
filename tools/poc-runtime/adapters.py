@@ -55,15 +55,17 @@ def _ports(config: dict, request: LaunchRequest):
         raise LaunchError("Unsupported application request.")
     if request.mode == "offline" and adapter not in ("bob", "lab", "policy"):
         raise LaunchError("This application has no interactive offline mode.")
-    if request.unlimited_today and (adapter != "bob" or request.mode != "model"):
-        raise LaunchError("The today-only budget option applies only to BOB model operation.")
     if request.interface == "cli" and request.ui_port is not None:
         raise LaunchError("A UI port applies only to browser mode.")
-    if adapter == "bob" and request.api_port is not None:
-        raise LaunchError("BOB owns its ephemeral synthetic API; do not supply --api-port.")
+    if adapter == "bob" and request.interface == "browser" and request.api_port is not None:
+        raise LaunchError("BOB browser owns its ephemeral synthetic API; do not supply --api-port.")
+    if request.interface == "cli" and request.transport_port is not None:
+        raise LaunchError("A transport port applies only to BOB browser mode.")
     if adapter != "bob" and request.transport_port is not None:
         raise LaunchError("A transport port applies only to BOB.")
-    api = None if adapter == "bob" else request.api_port if request.api_port is not None else API_PORTS[adapter]
+    api = (None if adapter == "bob" and request.interface == "browser" else
+           request.api_port if request.api_port is not None else
+           4010 if adapter == "bob" else API_PORTS[adapter])
     ui = (request.ui_port if request.ui_port is not None else UI_PORTS[adapter]) if request.interface == "browser" else None
     transport = (request.transport_port if request.transport_port is not None else 28451) if adapter == "bob" and request.interface == "browser" else None
     ports = [p for p in (api, ui, transport) if p is not None]
@@ -90,18 +92,20 @@ def process_specs(root: Path, config: dict, request: LaunchRequest, *, key: str 
         if request.mode == "model":
             settings["BOB_ENABLE_OPENAI"] = "1"
         if request.interface == "cli":
-            argv = (sys.executable, "-m", "ochsner_bob", "--journal", str(namespace / "effects.json"))
+            # CLI has no nested mock owner: supervise the unchanged server
+            # directly, and bind the application to this launch's exact port.
+            specs.append(ProcessSpec("mock", (sys.executable, str(root / "vendor/reference/mock-api/server.py"),
+                                     "--port", str(api)), child_environment(os.environ, settings=public), api))
+            argv = (sys.executable, "-m", "ochsner_bob", "--api-url", f"http://127.0.0.1:{api}",
+                    "--journal", str(namespace / "effects.json"))
             if request.mode == "model":
                 argv += ("--openai",)
-            if request.unlimited_today:
-                argv += ("--unlimited-today",)
-            return [ProcessSpec("model", argv, child_environment(os.environ, settings=settings, key=model_key))]
+            specs.append(ProcessSpec("model", argv, child_environment(os.environ, settings=settings, key=model_key)))
+            return specs
         argv = (sys.executable, str(root / "scripts/serve_browser.py"), "--port", str(transport),
                 "--ui-port", str(ui), "--namespace", str(namespace))
         if request.mode == "model":
             argv += ("--openai",)
-        if request.unlimited_today:
-            argv += ("--unlimited-today",)
         specs.append(ProcessSpec("model", argv, child_environment(os.environ, settings=settings, key=model_key), transport))
         viewer = public | {"BOB_TRANSPORT_URL": f"http://127.0.0.1:{transport}"}
         specs.append(ProcessSpec("viewer", _marimo(root, APPS[adapter], ui),
@@ -139,8 +143,8 @@ def _marimo(root, app, port):
     return (sys.executable, "-m", "marimo", "run", str(root / app), "--headless", "--host", "127.0.0.1", "--port", str(port))
 
 
-def check_bob_budget(root: Path, model: str, *, unlimited_today: bool = False) -> None:
-    """Delegate validation to the installed budget; never initialize a ledger."""
+def check_bob_budget(root: Path, model: str) -> None:
+    """Check existing accounting storage/model support, not a runtime spend grant."""
     _regular(root, "src/ochsner_bob/model_budget.py")
     source = str(root / "src")
     sys.path.insert(0, source)
@@ -151,9 +155,9 @@ def check_bob_budget(root: Path, model: str, *, unlimited_today: bool = False) -
         readiness = getattr(budget, "preflight_budget", None)
         if not callable(readiness):
             raise ValueError()
-        readiness(root / ".bob-local/model-budget.json", model=model, unlimited_today=unlimited_today)
+        readiness(root / ".bob-local/model-budget.json", model=model)
     except Exception:
-        raise LaunchError("BOB model budget is unavailable, incompatible or exhausted; no new ledger was created.") from None
+        raise LaunchError("BOB model accounting is unavailable or incompatible; no new ledger was created.") from None
     finally:
         sys.path.remove(source)
 
@@ -169,11 +173,11 @@ def preflight(root: Path, config: dict, request: LaunchRequest) -> None:
     _regular(root, f"src/{PACKAGES[adapter]}/__main__.py")
     if adapter == "bob":
         _regular(root, "vendor/reference/mock-api/server.py")
-        _regular(root, "scripts/mock_lifecycle.py")
         if request.interface == "browser":
+            _regular(root, "scripts/mock_lifecycle.py")
             _regular(root, "scripts/serve_browser.py")
         if request.mode == "model":
-            check_bob_budget(root, request.model, unlimited_today=request.unlimited_today)
+            check_bob_budget(root, request.model)
     else:
         _regular(root, VENDOR[adapter])
     if request.interface == "browser":

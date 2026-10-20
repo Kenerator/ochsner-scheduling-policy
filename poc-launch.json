@@ -4,7 +4,7 @@
   "adapter": "policy",
   "default_interface": "cli",
   "credential": {
-    "item": "[Env] (Ochsner PoC) OPENAI_API_KEY",
+    "item": "[Env] OPENAI_API_KEY",
     "field": "notes",
     "helper_path_env": "POC_SECRET_HELPER",
     "helper_command": "bw-get-secret"

@@ -19,7 +19,6 @@ class LaunchRequest:
     api_port: int | None
     ui_port: int | None
     transport_port: int | None
-    unlimited_today: bool = False
 
 
 MODELS = {"bob": "BOB_OPENAI_MODEL", "enhanced": "OPENAI_MODEL", "lab": "OPENAI_MODEL",
@@ -69,11 +68,10 @@ def load_config(path: Path) -> dict:
         raise LaunchError("Unsupported application interface.")
     credential = value["credential"]
     _keys(credential, ("item", "field", "helper_path_env", "helper_command"))
-    if (credential["item"] != "[Env] (Ochsner PoC) OPENAI_API_KEY"
-        or credential["field"] not in ("auto", "password", "notes")
-        or credential["helper_path_env"] != "POC_SECRET_HELPER"
+    credentials.validate_selection(credential)
+    if (credential["helper_path_env"] != "POC_SECRET_HELPER"
         or credential["helper_command"] != "bw-get-secret"):
-        raise LaunchError("Unsupported Ochsner credential configuration.")
+        raise LaunchError("Unsupported credential helper configuration.")
     model = value["model"]
     _keys(model, ("default", "environment"))
     if model["environment"] != MODELS[adapter]:
@@ -95,7 +93,6 @@ class SafeParser(argparse.ArgumentParser):
 def resolve_request(config: dict, argv: list[str], environ) -> LaunchRequest:
     parser = SafeParser(add_help=False)
     parser.add_argument("--offline", action="store_true")
-    parser.add_argument("--unlimited-today", action="store_true")
     parser.add_argument("--interface", choices=("browser", "cli"))
     parser.add_argument("--model")
     for name in ("api-port", "ui-port", "transport-port"):
@@ -107,14 +104,12 @@ def resolve_request(config: dict, argv: list[str], environ) -> LaunchRequest:
         raise LaunchError("This adapter does not support the selected interface.")
     if options.offline and adapter not in ("bob", "lab", "policy"):
         raise LaunchError("Interactive offline mode is unsupported; use the documented deterministic demos.")
-    if options.unlimited_today and (adapter != "bob" or options.offline):
-        raise LaunchError("The today-only budget option applies only to explicitly authorized BOB model operation.")
     ports = (options.api_port, options.ui_port, options.transport_port)
     if any(port is not None and not 1024 <= port <= 65535 for port in ports):
         raise LaunchError("Use a loopback service port between 1024 and 65535.")
     selected = options.model if options.model is not None else environ.get(config["model"]["environment"], config["model"]["default"])
     model = None if options.offline else _model(selected)
-    return LaunchRequest("offline" if options.offline else "model", interface, model, *ports, options.unlimited_today)
+    return LaunchRequest("offline" if options.offline else "model", interface, model, *ports)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -122,7 +117,6 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--config", type=Path, default=Path("poc-launch.json"))
     parser.add_argument("--doctor", action="store_true", help="Check readiness without credentials, startup or model calls")
     parser.add_argument("--offline", action="store_true", help="Explicit no-model mode where supported")
-    parser.add_argument("--unlimited-today", action="store_true", help="BOB-only explicit Operator-authorized today window; accounting and expiry remain enforced")
     parser.add_argument("--interface", choices=("browser", "cli"))
     parser.add_argument("--model")
     for name in ("api-port", "ui-port", "transport-port"):
@@ -136,8 +130,6 @@ def main(argv: list[str] | None = None) -> int:
         request_argv = []
         if options.offline:
             request_argv.append("--offline")
-        if options.unlimited_today:
-            request_argv.append("--unlimited-today")
         for name in ("interface", "model", "api_port", "ui_port", "transport_port"):
             value = getattr(options, name)
             if value is not None:
@@ -149,7 +141,7 @@ def main(argv: list[str] | None = None) -> int:
         if options.doctor:
             if request.mode == "model":
                 credentials.helper_executable(config["credential"])
-            print("Application configuration, dependencies, ports and budget are ready; no credentials retrieved or model request made.")
+            print("Application configuration, dependencies, ports and accounting are ready; no credentials retrieved or model request made.")
             return 0
         key = credentials.resolve_key(config["credential"]) if request.mode == "model" else None
         from processes import run_owned
