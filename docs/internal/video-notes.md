@@ -115,3 +115,8 @@ Limitations: synthetic-only; persona hypotheses are not real-user validation; no
 ### Launch-only source delta — 2026-10-12
 
 Prepared model-first CLI wrapper uses the reviewed shared runtime, dedicated Ochsner item/notes and retained model semantics; direct Marimo remains unchanged. Base source a01ef51; installed candidate c6b6749128cfb74c3a7be75013cf522201b7c17c was independently reviewed by SM on2026-10-13; protected integration completed through [PR #1](https://github.com/Kenerator/ochsner-scheduling-policy/pull/1), merge `447f985579faad9e8a5a332ce5ce566199a2b5c2` on 2026-10-13. Consumer126-test suite,8scheduling+2generic no-call demos and Marimo check pass. This adds no live model/browser qualification, media capture or release; original RC-3 still/video evidence retains its original source/date. See [launcher validation](../../specs/001-appointment-scheduling/quickstart.md#launcher-delta--2026-10-12).
+
+
+### Credential-policy delta — 2026-10-20
+
+Ochsner-key use paused; current launcher selects our own exact notes item. Reviewed shared bundle20e3dd5 adopted with five hashes verified;12launcher/128full tests and8+2no-call demos pass. This is offline binding evidence, NOT own-account live/model/browser qualification or new footage. No vault/model call or model-enabled service restart was performed. Historical RC-3 media/receipts retain original source/date/account scope. Current implementation progress stays in native T073–T076.

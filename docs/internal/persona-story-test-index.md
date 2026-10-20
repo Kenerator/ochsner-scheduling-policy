@@ -10,3 +10,8 @@ Updated: 2026-10-13. Scope of this addition: approved model-first launcher L4. B
 | Ellie-Rae `poc-template-seed-v1:cb706720-85fb-42ef-9318-2bcec4c2b621@1`: numeric/keyboard selection and retained context | US2 existing thin CLI/Marimo routes remain; launcher adds no patient control | Browser keyboard behavior was historically verified on RC-3; fake-constructor tests do not prove a new browser interaction. No UI behavior change selected. |
 
 Historical required behavioral tests/evidence are linked from the [validation guide](../../specs/001-appointment-scheduling/quickstart.md) and [video notes](video-notes.md). These hypotheses are not user research validation or permissions. The new Template transition-scenario catalog is guidance for relevant future tests; it is not automatically adopted as a new product/engine/admin-console scope.
+
+
+## Own-key policy delta — 2026-10-20
+
+Base67da8b9; current candidate is pending SM review. Morgan-Rae US5 setup/recovery needs a truthful selected credential source and finite safe error; Sam-Rae US4/US5 requires no implicit authority/fallback or false qualification. `poc-launch.json` explicitly selects `[Env] OPENAI_API_KEY`/notes; `tests/test_runtime_launcher.py` verifies the actual installed reviewed bundle's exact fake-helper item/field, wrong-field rejection, no inherited/item fallback and secret-free children. Twelve launcher and128full tests pass; historical initial RED remains in native tasks. Own-key live/model/browser qualification is NOT RUN; Ochsner-source permission remains paused. Jules/Ellie patient controls are unchanged; no new product interaction is inferred from this launcher adaptation.
